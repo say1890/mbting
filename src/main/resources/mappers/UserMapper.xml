@@ -1,26 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace = "com.juhyang.mbting.dao.UserDAO">
+<mapper namespace = "com.juhyang.mbting.user.dao.UserDAO">
 	<insert id="InsertUser" parameterType = "map">
 	INSERT INTO `user`
 	(`loginId`,
 	 `password`,
-	  `email`,
-	  `createdAt`,
-	  `updatedAt`
+	 `userName`,
+	 `sex`,
+	 `mbti`,
+	 `email`,
+	 `createdAt`,
+	 `updatedAt`
 	)
 	VALUES(
 	#{loginId},
 	#{password},
-	 #{email},
+	#{userName},
+	#{sex},
+	#{mbti},
+	#{email},
 	 now(),
 	 now()
 	);
 	</insert>
 	
-	<select id = "IsDuplicate" parameterType = "String" resultType ="boolean">
-	SELECT count(1) FROM `user` where  loginId = #{loginId}; 
+	<select id="selectUser" parameterType="map" resultType="com.juhyang.mbting.user.model.User">
+		SELECT 
+			`id`
+			, `loginId`
+			, `password`
+			, `name`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`user`
+		WHERE
+			`loginId` = #{loginId} 
+			AND `password` = #{password}
+	
 	</select>
+	<select id = "IsDuplicate" parameterType = "String" resultType ="boolean">
+	SELECT count(1) FROM `user` where  `loginId` = #{loginId}; 
+	</select>
+	
+
 
 </mapper>

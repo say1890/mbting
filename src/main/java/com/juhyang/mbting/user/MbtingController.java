@@ -1,16 +1,13 @@
-package com.juhyang.mbting;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.juhyang.mbting.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.juhyang.mbting.bo.UserBO;
-import com.juhyang.mbting.dao.UserDAO;
+import com.juhyang.mbting.user.bo.UserBO;
+import com.juhyang.mbting.user.dao.UserDAO;
 @Controller
+@RequestMapping("/user")
 public class MbtingController {
 
 	//autowired
@@ -30,11 +27,7 @@ public class MbtingController {
 	{
 		return "welcome/join";
 	}
-	@RequestMapping("/test")
-	public String test_view()
-	{
-		return "welcome/test";
-	}
+	
 	@RequestMapping("/selectbox")
 	public String select_view()
 	{

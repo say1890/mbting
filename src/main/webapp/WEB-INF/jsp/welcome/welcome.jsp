@@ -40,7 +40,7 @@
 
     </form>
 
-    <p class="text--center">회원이 아니십니까? <a href="/test">가입하기</a> <svg class="icon">
+    <p class="text--center">회원이 아니십니까? <a href="/user/join">가입하기</a> <svg class="icon">
         <use xlink:href="#icon-arrow-right"></use>
     <p class = "text--center">ID, PW를 잊으셨다면 
     	<a href ="#">ID,PW 찾기</a>
