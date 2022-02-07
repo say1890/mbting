@@ -8,35 +8,39 @@ import com.juhyang.mbting.user.bo.UserBO;
 import com.juhyang.mbting.user.dao.UserDAO;
 @Controller
 @RequestMapping("/user")
-public class MbtingController {
+public class UserController {
 
-	//autowired
-	@Autowired
-	UserBO userBO;
-	UserDAO userDAO;
-	
+
 	
 	//view
-	@RequestMapping("/welcome")
+	@RequestMapping("/signin_view")
 	public String welcome_view()
 	{
-		return "welcome/welcome";
+		return "user/signin";
 	}
-	@RequestMapping("/join")
-	public String join_view()
+	@RequestMapping("/signup_view")
+	public String signup_view()
 	{
-		return "welcome/join";
+		return "user/signup";
 	}
 	
 	@RequestMapping("/selectbox")
 	public String select_view()
 	{
-		return "welcome/selectBox";
+		return "user/selectBox";
 	}
 	
+	@RequestMapping("/find_id_view")
+	public String findID_view()
+	{
+		return "user/findId";
+	}
 	
-	
-	//api
+	@RequestMapping("/find_pw_view")
+	public String findPW_view()
+	{
+		return "user/findPw";
+	}
 	
 	
 }

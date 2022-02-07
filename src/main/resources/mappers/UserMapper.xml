@@ -22,7 +22,7 @@
 	#{email},
 	 now(),
 	 now()
-	);
+	)
 	</insert>
 	
 	<select id="selectUser" parameterType="map" resultType="com.juhyang.mbting.user.model.User">
@@ -30,7 +30,7 @@
 			`id`
 			, `loginId`
 			, `password`
-			, `name`
+			, `userName`
 			, `email`
 			, `createdAt`
 			, `updatedAt`

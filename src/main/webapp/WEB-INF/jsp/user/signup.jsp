@@ -172,7 +172,7 @@ $(document).ready(function(){
 		
 		
 		$.ajax({
-			url: "/checkId",
+			url: "/user/checkId",
 			type:"post",
 			data:{"loginId":loginId},
 			success:function(data){
@@ -186,6 +186,7 @@ $(document).ready(function(){
 					$("#nameCheckInfo").removeClass("d-none");
 					 $("#nameCheckInfo").text("사용 가능합니다.");
 					isDuplication = false;
+					checkId = true;
 					
 				}
 				
@@ -208,19 +209,10 @@ $(document).ready(function(){
 		var sex = $('input[name=sex]:radio:checked').val();
 		var mbti = $('select[name=mbti]').val();
 		var email = $("#email").val();
-		
-		alert(typeof mbti);
-
-		
+		alert(loginId);
 		if(loginId == null || loginId == "") {
 			alert("아이디를 입력하세요.");
 			return;
-		}
-		if(typeof sex == undefined){
-			alert("성별을 선택하세요. ");
-		}
-		if(mbti == "none"){
-			alert("mbti를 선택해주세요.");
 		}
 		if(password == null || password == "") {
 			alert("비밀번호를 입력하세요. ");
@@ -229,6 +221,14 @@ $(document).ready(function(){
 		
 		if(checkId == false){
 			alert("id를 확인해주세요. ");
+			return;
+		}
+		
+		if(typeof sex == undefined){
+			alert("성별을 선택하세요. ");
+		}
+		if(mbti == "none"){
+			alert("mbti를 선택해주세요.");
 			return;
 		}
 		
@@ -254,7 +254,7 @@ $(document).ready(function(){
 		 
 		$.ajax({
 			type:"post",
-			url:"/sign_up",
+			url:"/user/signup",
 			data:{"loginId":loginId, 
 				"password":password,
 				"userName":userName,

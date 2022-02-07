@@ -25,7 +25,7 @@ public class UserBO {
 	}
 
 	public User getUser(String loginId,String password) {
-		return userDAO.selectUser(loginId, password);
+		return userDAO.selectUser(loginId,  EncryptUtils.md5(password));
 	}
 	
 	public boolean CountUser(String loginId) {

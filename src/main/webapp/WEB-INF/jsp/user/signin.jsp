@@ -10,6 +10,12 @@
  		 <link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+
+<!-- jquery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+
+
+
 <title>MBTING</title>
 </head>
 <body class="align">
@@ -19,19 +25,19 @@
      	MBTING... 👱🏻‍♀️💛👨🏻‍🍳🍓👦🏻👦   
      </div>
 
-	<form action="" method="POST" class="form login">
+	<form id ="loginForm" class="form login">
       <div class="form__field">
         <label for="login__username"><svg class="icon">
             <use xlink:href="#icon-user"></use>
-          </svg><span class="hidden">Username</span></label>
-        <input autocomplete="username" id="login__username" type="text" name="username" class="form__input" placeholder="ID를 입력하세요." required>
+         </label>
+        <input type ="text" id="loginId" type="text" class="form__input" placeholder="ID를 입력하세요."  autocomplete="off" required>
       </div>
 
       <div class="form__field">
         <label for="login__password"><svg class="icon">
             <use xlink:href="#icon-lock"></use>
-          </svg><span class="hidden">Password</span></label>
-        <input id="login__password" type="password" name="password" class="form__input" placeholder="비밀번호를 입력하세요." required>
+          </svg></label>
+        <input type ="password" id="password" class="form__input" placeholder="비밀번호를 입력하세요."  autocomplete="off" required>
       </div>
 
       <div class="form__field">
@@ -40,10 +46,11 @@
 
     </form>
 
-    <p class="text--center">회원이 아니십니까? <a href="/user/join">가입하기</a> <svg class="icon">
+    <p class="text--center">회원이 아니십니까? <a href="/user/signup_view">가입하기</a> <svg class="icon">
         <use xlink:href="#icon-arrow-right"></use>
     <p class = "text--center">ID, PW를 잊으셨다면 
-    	<a href ="#">ID,PW 찾기</a>
+    	<a href ="/user/find_id_view">ID /</a>
+    	<a href ="/user/find_pw_view"> PW 찾기</a>
     	<svg class="icon">
     	<use xlink:href="#icon-arrow-right"></use>
     </p> 
@@ -63,5 +70,46 @@
     </symbol>
   </svg>
 
+	<script>
+		$(document).ready(function(){
+			
+			$("#loginForm").on("submit",function(e){
+				e.preventDefault();
+				
+				var loginId = $("#loginId").val();
+				alert(loginId);
+				var password = $("#password").val();
+				if(loginId == "") {
+					 
+					 return ;
+				}
+				
+				if(password == "") {
+				
+					return ;
+				}
+				
+				
+				$.ajax({
+					type:"post",
+					url:"/user/signin",
+					data:{"loginId":loginId, "password":password},
+					success:function(data) {
+						if(data.result == "success") {
+							location.href="/post/list_view";
+						} else {
+							alert("아이디/비밀번호를 확인하세요");
+						}
+						
+					},
+					error:function() {
+						alert("에러발생");
+					}
+				});
+				
+			});
+			
+		});
+	</script>
 </body>
 </html>
