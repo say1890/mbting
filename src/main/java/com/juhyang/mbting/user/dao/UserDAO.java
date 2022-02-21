@@ -23,6 +23,8 @@ public interface UserDAO {
 	
 	
 	public boolean IsDuplicate( @Param("loginId") String loginId);
+	
+	public boolean IsEmailExist( @Param("email") String email);
 
 	
 

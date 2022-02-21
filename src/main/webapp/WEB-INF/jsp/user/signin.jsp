@@ -49,8 +49,7 @@
     <p class="text--center">회원이 아니십니까? <a href="/user/signup_view">가입하기</a> <svg class="icon">
         <use xlink:href="#icon-arrow-right"></use>
     <p class = "text--center">ID, PW를 잊으셨다면 
-    	<a href ="/user/find_id_view">ID /</a>
-    	<a href ="/user/find_pw_view"> PW 찾기</a>
+    	<a href ="/user/find_info_view">ID / PW 찾기</a>
     	<svg class="icon">
     	<use xlink:href="#icon-arrow-right"></use>
     </p> 

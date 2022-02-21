@@ -45,6 +45,9 @@
 	SELECT count(1) FROM `user` where  `loginId` = #{loginId}; 
 	</select>
 	
+	<select id ="IsEmailExist" parameterType = "String" resultType ="boolean">
+	SELECT count(1) FROM `user` where  `email` = #{email}; 
+	</select>
 
 
 </mapper>

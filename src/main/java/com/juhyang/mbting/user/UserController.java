@@ -30,17 +30,12 @@ public class UserController {
 		return "user/selectBox";
 	}
 	
-	@RequestMapping("/find_id_view")
+	@RequestMapping("/find_info_view")
 	public String findID_view()
 	{
-		return "user/findId";
+		return "user/findInfo";
 	}
 	
-	@RequestMapping("/find_pw_view")
-	public String findPW_view()
-	{
-		return "user/findPw";
-	}
 	
 	
 }
