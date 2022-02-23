@@ -209,7 +209,7 @@ $(document).ready(function(){
 		var sex = $('input[name=sex]:radio:checked').val();
 		var mbti = $('select[name=mbti]').val();
 		var email = $("#email").val();
-		alert(loginId);
+		alert(password);
 		if(loginId == null || loginId == "") {
 			alert("아이디를 입력하세요.");
 			return;
@@ -264,8 +264,7 @@ $(document).ready(function(){
 				},
 			success:function(data){
 				alert(data.result);
-				alert(isDuplication);
-				//location.href = ""
+				location.href = "/user/signin_view"
 			}, error:function(e){
 				alert("error" + e);
 			}

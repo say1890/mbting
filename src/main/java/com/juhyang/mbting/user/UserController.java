@@ -1,11 +1,10 @@
 package com.juhyang.mbting.user;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.juhyang.mbting.user.bo.UserBO;
-import com.juhyang.mbting.user.dao.UserDAO;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -24,11 +23,6 @@ public class UserController {
 		return "user/signup";
 	}
 	
-	@RequestMapping("/selectbox")
-	public String select_view()
-	{
-		return "user/selectBox";
-	}
 	
 	@RequestMapping("/find_info_view")
 	public String findID_view()

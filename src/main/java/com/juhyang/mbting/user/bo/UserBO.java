@@ -32,8 +32,17 @@ public class UserBO {
 		return userDAO.IsDuplicate(loginId);
 	}
 	
-	public boolean EmailExist(String email) {
-		return userDAO.IsDuplicate(email);
+	public int EmailExist(String email) {
+		return userDAO.IsEmailExist(email);
+	}
+
+	public String getUserByEmail(String email) {
+		return userDAO.selectUserByEmail(email);
+		
+	}
+	public int setPassword(String loginId, String password) {
+		String encPw = EncryptUtils.md5(password);
+		return userDAO.updatePassword(loginId, encPw);
 	}
 	
 }

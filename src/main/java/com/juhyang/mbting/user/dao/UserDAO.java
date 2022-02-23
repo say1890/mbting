@@ -10,8 +10,8 @@ public interface UserDAO {
 
 	public void InsertUser(
 			@Param("loginId") String loginId,
-			@Param("userName")String userName,
 			@Param("password")String password,
+			@Param("userName")String userName,
 			@Param("sex")String sex, 
 			@Param("mbti")String mbti,
 			@Param("email") String email
@@ -24,7 +24,13 @@ public interface UserDAO {
 	
 	public boolean IsDuplicate( @Param("loginId") String loginId);
 	
-	public boolean IsEmailExist( @Param("email") String email);
+	public int IsEmailExist( @Param("email") String email);
+	
+	
+	public String selectUserByEmail(@Param("email") String email);
+	
+	public int updatePassword(@Param("loginId") String loginId, 
+			@Param("password")String password);
 
 	
 

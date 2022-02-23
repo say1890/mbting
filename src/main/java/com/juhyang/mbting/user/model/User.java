@@ -9,17 +9,16 @@ public class User {
 	private String passWord;
 	private String introduce;
 	private String email;
-	
+	private String sex;
+	private String mbti;
+	private Date createdAt;
+	private Date updatedAt;
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	private String sex;
-	private String mbti;
-	private Date createdAt;
-	private Date updatedAt;
 	public int getId() {
 		return id;
 	}
