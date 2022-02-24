@@ -30,6 +30,16 @@ public class UserController {
 		return "user/findInfo";
 	}
 	
+	@RequestMapping("/mypage_view")
+	public String myPage_view() {
+		
+		return "user/myPage";
+	}
+	
+	@RequestMapping("/mypage_edit_view")
+	public String editprofile_view() {
+		return "user/editProfile";
+	}
 	
 	
 }

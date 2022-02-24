@@ -1,5 +1,7 @@
 package com.juhyang.mbting.user.bo;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +18,13 @@ public class UserBO {
 	public void addUser(String loginId,
 			String password,
 			String userName,			
+			Date birthday,
 			String sex,
 			String mbti,
 			String email) {
 	
 		String encPw = EncryptUtils.md5(password);
-		userDAO.InsertUser(loginId, encPw, userName, sex, mbti, email);
+		userDAO.InsertUser(loginId, encPw, userName, birthday, sex, mbti, email);
 	}
 
 	public User getUser(String loginId,String password) {

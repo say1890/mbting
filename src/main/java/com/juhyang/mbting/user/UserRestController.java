@@ -1,7 +1,9 @@
 package com.juhyang.mbting.user;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -9,7 +11,6 @@ import java.util.Random;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,12 +42,16 @@ public class UserRestController {
 	public Map<String,String> signUp(@RequestParam("loginId") String loginId, 
 			@RequestParam("password") String password,
 			@RequestParam("userName") String userName,
+			@RequestParam("birthday") String birthday,
 			@RequestParam("sex") String sex,
 			@RequestParam("mbti") String mbti,
-			@RequestParam("email") String email) {
-		
+			@RequestParam("email") String email) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = sdf.parse(birthday);
 		Map<String,String> result = new HashMap<>();
-		userBO.addUser(loginId, password, userName, sex, mbti,email);
+		
+		  
+		userBO.addUser(loginId, password, userName, date, sex, mbti,email);
 		result.put("result", "가입이 완료됐습니다.");
 		return result;
 	}

@@ -37,7 +37,7 @@
         
          <!-- 홈 화면 -->
         <li>
-	        <a href="#">
+	        <a href="/post/main">
 	        	<i class="bi bi-house-door-fill menu-icon"></i>
 	        </a>
         </li>
@@ -50,7 +50,7 @@
         
         <!-- 마이페이지 -->
         <li>
-	        <a href="#">
+	        <a href="/user/mypage_view">
 	        	<i class="bi bi-person-fill menu-icon"></i>
 	        </a>
         </li>

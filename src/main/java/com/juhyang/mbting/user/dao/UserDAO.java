@@ -1,5 +1,7 @@
 package com.juhyang.mbting.user.dao;
 
+import java.util.Date;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +14,7 @@ public interface UserDAO {
 			@Param("loginId") String loginId,
 			@Param("password")String password,
 			@Param("userName")String userName,
+			@Param("birthday") Date birthday,
 			@Param("sex")String sex, 
 			@Param("mbti")String mbti,
 			@Param("email") String email
