@@ -31,7 +31,7 @@
 		SELECT 
 			`id`
 			, `loginId`
-			, `password`
+			, `mbti`
 			, `userName`
 			, `email`
 			, `createdAt`

@@ -54,8 +54,10 @@
 	        	<i class="bi bi-person-fill menu-icon"></i>
 	        </a>
         </li>
-        
-        
+      
+        	${userName} 님 
+        	<a href ="/user/sign_out" class ="ml-3">로그아웃</a>
+   
         
       </ul>
     </div>

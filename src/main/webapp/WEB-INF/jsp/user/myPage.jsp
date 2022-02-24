@@ -25,7 +25,7 @@
     <section class ="d-flex mb-5">
     	<a href ="/user/mypage_edit_view"><i class="bi bi-person-circle myprofile-icon"></i></a>
     	<div class ="mt-5 ml-4 col-12">
-    	<h3>최주향</h3>
+    	<h3>${userName}</h3>
     	</div>
     </section>
    

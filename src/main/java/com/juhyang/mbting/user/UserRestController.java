@@ -74,7 +74,10 @@ public class UserRestController {
 			session.setAttribute("userId", user.getId());
 			session.setAttribute("userLoginId", user.getLoginId());
 			session.setAttribute("userName", user.getUserName());
-			
+			session.setAttribute("birthday", user.getBirthday());
+			session.setAttribute("mbti", user.getMbti());
+			session.setAttribute("introduce", user.getIntroduce());
+			session.setAttribute("profile", user.getProfile());
 		} else {
 			// 로그인 실패
 			result.put("result", "fail");
@@ -91,6 +94,11 @@ public class UserRestController {
 		result.put("result",exist );
 		return result;
 	}
+	
+	
+	
+	
+	
 	
 	
 	//비밀번호 찾기
