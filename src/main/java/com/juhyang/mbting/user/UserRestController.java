@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
@@ -16,11 +17,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
 import com.juhyang.mbting.user.bo.UserBO;
 import com.juhyang.mbting.user.model.User;
 
@@ -150,6 +155,18 @@ public class UserRestController {
 		}
 			
 		}
+	
+	@GetMapping("/getRecommendedKeyword")
+	public String json(Locale locale, Model model) {    
+	    String[] personality = {"감성적인", "내성적인", "외향적인", "열정적인","섬세한","배려깊은","센스있는"
+	    		,"눈치있는","신중한","현실적인","당당한","적극적인","4차원","솔직한"}; // 배열 생성
+	    
+	        Gson gson = new Gson();
+
+	    return gson.toJson(personality); // 배열 반환
+	}
+	
+	
 	}
 
 	

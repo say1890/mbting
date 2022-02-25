@@ -16,16 +16,17 @@
 
 <!-- css -->
  	<link href="/static/css/addbox.css" rel="stylesheet">
+ 	<link href="/static/css/btn.css" rel="stylesheet">
 </head>
 <body>
 <c:import url ="/WEB-INF/jsp/include/header.jsp" />
 <div class="section bg">
   <div class="container">
     <h1>나는 이런 사람이예요</h1>
-    <section class ="d-flex mb-5">
+    <section class ="d-flex mb-5 ml-5">
     	<a href ="/user/mypage_edit_view"><i class="bi bi-person-circle myprofile-icon"></i></a>
     	<div class ="mt-5 ml-4 col-12">
-    	<h3>${userName}</h3>
+    	<h3 class ="ml-3">${userName}</h3>
     	<div class ="mt-3 mb-1 col-12">
     		<label class ="mr-4 col-2 mb-2">별명</label>
     			<input type ="text" class ="col-8 form-control" placeholder ="${userName}">
@@ -59,25 +60,81 @@
 			</select>
 			
 			
-			
-			<label class ="mr-4 col-8 mt-2">장점</label>
-			<button class ="btn" id ="meritPlusBtn">+</button>
-			<div id="meritBoxWrap" class ="boxWrap col-10">
+			<!-- 자신의 장점/취미/성격 -->
+			<div>
+				<label class ="mr-4 col-8 mt-2">장점</label>
+				<button class ="btn my">+</button>
+				<div id="meritBoxWrap" class ="boxWrap col-10 mt-3 mb-3">
+				</div>	
 			</div>
-	
-			<label class ="mr-4 col-8 mt-2">취미</label>
-			<button class ="btn" id ="hobbyPlusBtn">+</button>
-			<div id="hobbyBoxWrap" class ="boxWrap col-10">
+				
+			<div>
+				<label class ="mr-4 col-8 mt-2">취미</label>
+				<button class ="btn my">+</button>
+				<div id="hobbyBoxWrap" class ="boxWrap col-10 mt-3 mb-3"></div>
 			</div>	
 				
-			<label class ="mr-4 col-8 mt-2">성격</label>
-			<button class ="btn" id ="characterPlusBtn">+</button>
-			<div id="characterBoxWrap" class ="boxWrap col-10">
+			<div>
+				<label class ="mr-4 col-8 mt-2">성격</label>
+				<button class ="btn my">+</button>
+				<div id="characterBoxWrap" class ="boxWrap col-10 mt-3 mb-3"></div>
+			</div>
+			
+		
+			
+			
+			<h1 class ="ml-5 mt-5 mb-5">❤️ 이런 분이 좋아요</h1>
+			
+			<!-- 이상형의 장점/취미/성격  -->
+			<!-- 장점 -->
+			
+				<div>
+					<label class ="mr-4 col-8 mt-2">장점</label>
+					<button class ="btn your" >+</button>
+					<div id="meritBoxWrap" class ="boxWrap col-10 mt-3 mb-3"></div>
+				</div>
+		
+			
+			
+		
+				<div>
+					<label class ="mr-4 col-8 mt-2">취미</label>
+					<button class ="btn your" >+</button>
+					<div id="hobbyBoxWrap" class ="boxWrap col-10 mt-3 mb-3"></div>
+				</div>	
+				
+			
+			
+				<div>
+					<label class ="mr-4 col-8 mt-2">성격</label>
+					<button class ="btn your">+</button>
+					<div id="characterBoxWrap" class ="boxWrap col-10 mt-3 mb-3"></div>
+				</div>
+				
+				
+				<div>
+					<label class ="mr-4 col-8 mt-2">기피형</label>
+					<button class ="btn your" id ="characterPlusBtn">+</button>
+					<div id="HateBoxWrap" class ="boxWrap col-10 mt-3 mb-3"></div>
+				</div>
+		
+		
+			<label class ="mr-4 col-8 mt-2">나이</label>
+			<div id="ageWrap" class ="boxWrap col-10 mt-3 mb-3 mt-3 mb-3">
+				<button type ='button'  class ='btn ml-2 mb-1 agebtn col-3' >연상</button>
+				<button type ='button'  class ='btn ml-2 mb-1 agebtn col-3' >연하</button>
+				<button type ='button'  class ='btn ml-2 mb-1 agebtn col-3' >동갑</button>
 			</div>	
+				
+		<button type ="button" class ="overlay__btn btn col-10 mt-5 "> 
+		<b class ="text-white">저장하기</b> 
+		<span class="overlay__btn-emoji ">🎨</span>
+			</button>
+	
+				
     	</div>
     	</div>
     </section>
-   
 
     
     <div class="group"></div>
@@ -85,36 +142,47 @@
 </div>
 <script>
 $(document).ready(function(){
-	var merit = 0;
-	var hobby = 0;
-	var character = 0;
-	$("#meritPlusBtn").on("click",function(){
-		  $("#meritBoxWrap").append("<input type ='text'  maxlength='8' class ='btn ml-2 mb-1 addbtn col-3'>"+"</button>");
-		  merit++;
-		    	if(merit>=6){
-		    		$("#meritPlusBtn").attr('disabled', true);
-		    	}
 	
+	$(".my").on("click",function(){
+		  let one=1;
+		  let boxWrap = $(this).parent().children('.boxWrap');
+		  let btn = boxWrap.children('.btn');
+		  let btnLength =btn.length;
+		  boxWrap.append(`<input type ='text'  maxlength = '8' class ='btn ml-2 mb-1 addbtn col-3' id = '${one}'>`);
 		
-	});
-	$("#hobbyPlusBtn").on("click",function(){
-		  $("#hobbyBoxWrap").append("<input type ='text'  maxlength='8' class ='btn ml-2 mb-1 addbtn col-3'>"+"</button>");
-		  hobby++;
-		    	if(hobby>=6){
-		    		$("#hobbyPlusBtn").attr('disabled', true);
+		    	if(btn.length>=5){
+		    		 $(this).attr('disabled', true);
 		    	}
-	
-		
 	});
-	$("#characterPlusBtn").on("click",function(){
-		  $("#characterBoxWrap").append("<input type ='text'  maxlength='8' class ='btn ml-2 mb-1 addbtn col-3'>"+"</button>");
-		  character++;
-		    	if(character>=6){
-		    		$("#characterPlusBtn").attr('disabled', true);
+	
+	$(".your").on("click",function(){
+		  let boxWrap = $(this).parent().children('.boxWrap');
+		  let btn = boxWrap.children('.btn');
+		  boxWrap.append("<input type ='text'  maxlength='8' class ='btn ml-2 mb-1 addbtn col-3'>"+"</button>");
+		
+		    	if(btn.length>=5){
+		    		 $(this).attr('disabled', true);
 		    	}
-	
-		
 	});
+	
+	
+	
+	
+	
+	
+	
+	
+	$(".agebtn").on("click",function(){
+		let age = $(this).text();
+	    if ($(this).hasClass("addbtn")) { 
+	    	$(this).removeClass("addbtn");
+	    	       }
+	    else{
+	    	$(this).addClass("addbtn");
+	    }
+
+
+	})
 	
 	
 	
