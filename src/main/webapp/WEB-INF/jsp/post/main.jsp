@@ -21,7 +21,18 @@
 
 
 <body>
-<c:import url ="/WEB-INF/jsp/include/header.jsp" />
+
+<c:choose>
+<c:when test = "${userLoginId eq 'admin' }">
+	<c:import url ="/WEB-INF/jsp/admin/include/header.jsp" />
+</c:when>
+
+<c:otherwise>
+	<c:import url ="/WEB-INF/jsp/include/header.jsp" />
+</c:otherwise>
+</c:choose>
+
+
 
 <div class="section">
 <!-- 이성 추천란 -->

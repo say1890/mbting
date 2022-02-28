@@ -27,4 +27,6 @@ public class PostController {
 		return "/post/main";
 	}
 	
+	
+	
 }

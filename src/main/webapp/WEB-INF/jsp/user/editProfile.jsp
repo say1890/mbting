@@ -17,6 +17,10 @@
 <!-- css -->
  	<link href="/static/css/addbox.css" rel="stylesheet">
  	<link href="/static/css/btn.css" rel="stylesheet">
+ 	
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 	
+	
 </head>
 <body>
 <c:import url ="/WEB-INF/jsp/include/header.jsp" />
@@ -126,7 +130,8 @@
 				<button type ='button'  class ='btn ml-2 mb-1 agebtn col-3' >동갑</button>
 			</div>	
 				
-		<button type ="button" class ="overlay__btn btn col-10 mt-5 "> 
+		<button type ="button" class ="overlay__btn btn col-10 mt-5 " id ="saveBtn"> 
+		
 		<b class ="text-white">저장하기</b> 
 		<span class="overlay__btn-emoji ">🎨</span>
 			</button>
@@ -143,16 +148,36 @@
 <script>
 $(document).ready(function(){
 	
+	$("#saveBtn").on("click",function(){
+		$.ajax({
+			
+			
+			 type: 'post',
+             url: "/user/editProfile",
+           
+		});
+	});
+	
+	
 	$(".my").on("click",function(){
+		
 		  let one=1;
 		  let boxWrap = $(this).parent().children('.boxWrap');
 		  let btn = boxWrap.children('.btn');
 		  let btnLength =btn.length;
-		  boxWrap.append(`<input type ='text'  maxlength = '8' class ='btn ml-2 mb-1 addbtn col-3' id = '${one}'>`);
+		  boxWrap.append("<input type ='text'  maxlength = '8' class ='btn ml-2 mb-1 addbtn col-3' id = '"+one+"'>");
 		
 		    	if(btn.length>=5){
 		    		 $(this).attr('disabled', true);
 		    	}
+		    	
+
+
+
+
+		    	});  	
+		    	
+		    	
 	});
 	
 	$(".your").on("click",function(){
@@ -186,7 +211,7 @@ $(document).ready(function(){
 	
 	
 	
-});
+
 </script>
 </body>
 </html>

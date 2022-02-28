@@ -100,12 +100,7 @@ public class UserRestController {
 		return result;
 	}
 	
-	
-	
-	
-	
-	
-	
+
 	//비밀번호 찾기
 	@RequestMapping("/findPw")
 	public String sendMail(
@@ -155,14 +150,30 @@ public class UserRestController {
 		}
 			
 		}
+	@PostMapping("/editProfile")
+	public String editProfile() {
+		return null;
+		
+	}
 	
 	@GetMapping("/getRecommendedKeyword")
 	public String json(Locale locale, Model model) {    
+	    String[] merit = {
+	    		"머릿결이 좋은","예쁜 눈","큰 키","꿀같은 목소리","애교쟁이","듬직한","날씬한","웃는게 예쁜",
+	    		"노래를 잘하는","웃긴","좋은 향기가 나는","꿀피부","청순한","진중한","해바라기","무쌍","속쌍","겉쌍"
+	    		,"도톰한입술"
+	    };
+	    
+	    String[] hobby = {"운동", "요리", "산책", "악기 연주","언어 공부","쇼핑","넷플릭스", "그림 그리기"
+	    		,"노래 부르기","여행 가기","독서","음악 감상","사진 찍기","춤","낚시", "애니메이션"};
+	    
 	    String[] personality = {"감성적인", "내성적인", "외향적인", "열정적인","섬세한","배려깊은","센스있는"
-	    		,"눈치있는","신중한","현실적인","당당한","적극적인","4차원","솔직한"}; // 배열 생성
+	    		,"눈치있는","신중한","현실적인","당당한","적극적인","4차원","솔직한"};
+	    
+	    
 	    
 	        Gson gson = new Gson();
-
+	         
 	    return gson.toJson(personality); // 배열 반환
 	}
 	
