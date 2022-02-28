@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.juhyang.mbting.post.model.post;
+
 @Controller
 @RequestMapping("/post")
 public class PostController {
@@ -21,6 +23,7 @@ public class PostController {
 		String userName = (String)session.getAttribute("userName");	
 		String profile = (String)session.getAttribute("profile");
 		String mbti = (String)session.getAttribute("mbti");
+		post post;
 		return "/post/main";
 	}
 	
