@@ -1,5 +1,6 @@
 package com.juhyang.mbting.post.bo;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -26,5 +27,13 @@ public class PostBO {
 
 	public List<post> getPostList() {
 		return postDAO.selectPostList();
+	}
+
+	public post getPost(int postId) {
+		return postDAO.selectPost(postId);
+	}
+
+	public List<post> getQuestionForMain(LocalDate now) {
+		return postDAO.selectQuestion(now);
 	};
 }

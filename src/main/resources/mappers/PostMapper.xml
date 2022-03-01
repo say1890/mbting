@@ -34,4 +34,33 @@ FROM
 	`server_post`
 
 </select>
+
+
+<select id ="selectPost" resultType = "com.juhyang.mbting.post.model.post">
+SELECT 
+	`id`,
+	`subject`,
+	`content`,
+	`date`,
+	`imagePath`,
+	`createdAt`,
+	`updatedAt`
+FROM
+	`server_post`
+WHERE 
+	`id` = #{postId}
+</select>
+
+<select id ="selectQuestion" resultType = "com.juhyang.mbting.post.model.post">
+SELECT 
+	`subject`,
+	`content`,
+	`imagePath`
+	
+FROM
+	`server_post`
+WHERE 
+	`date` = #{today}
+</select>
+
 </mapper>

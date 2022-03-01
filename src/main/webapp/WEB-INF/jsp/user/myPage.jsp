@@ -18,7 +18,15 @@
 
 </head>
 <body>
-<c:import url ="/WEB-INF/jsp/include/header.jsp" />
+<c:choose>
+<c:when test = "${userLoginId eq 'admin' }">
+	<c:import url ="/WEB-INF/jsp/admin/include/header.jsp" />
+</c:when>
+
+<c:otherwise>
+	<c:import url ="/WEB-INF/jsp/include/header.jsp" />
+</c:otherwise>
+</c:choose>
 <div class="section bg">
   <div class="container">
     <h1>My page</h1>

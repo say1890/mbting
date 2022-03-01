@@ -72,30 +72,29 @@
 </div>
 <div class="section">
   <div class="container row">
+  
 	<h1>오늘의 질문</h1>
-	<h4 class ="ml-3">2022-02-22</h4>
-	<h3 class ="mt-5">
-	<i class="bi bi-pen"></i>
-	깻잎논쟁, 어떻게 생각하시나요?
-	</h3>
-	<section class ="mt-5 mb-5 row">
-	<h4 class ="col-12">
-	깻잎절임을 못 떼는 내 친구를 위해 깻잎지를 눌러주는 나의 연인.
-
-최근 인터넷상에서는 이성 친구의 깻잎지를 떼어주는 연인을 이해해야 하는지를 두고 치열한 논쟁이 벌어졌다. 떼어주는 게 배려라는 의견과 함께, 과도한 배려는 관심이라는 반박이 이어졌다.
-
-이른바 '깻잎 논쟁'은 최근 연예계로도 번졌다. 인기 예능 '유퀴즈 온 더 블럭'에서 다루면서 연예인도 하나둘씩 이 논쟁에 참전하고 있다.
-	</h4>
+	<h4 class ="ml-3">${today}</h4>
+	<c:forEach var="q" items="${questionList}">	
+		<h3 class ="mt-5">
+			<i class="bi bi-pen"></i>
+			${q.subject}
+			</h3>
+			<section class ="mt-5 mb-5 row">
+			<h4 class ="col-12">
+			${q.content}
+			</h4>
 	
-	
-	
-	<div class="input-group mt-4">
-	      <input type="text" class="form-control col-8 ml-4">
-	      <span class="input-group-btn">
-		<button class="btn btn-default" type="button">입력</button>
-	      </span>
-	 </div>
-	
+		
+		
+		<div class="input-group mt-4">
+		      <input type="text" class="form-control col-8 ml-4" id ="commentInput">
+		      <span class="input-group-btn">
+			<button class="btn btn-default" type="button" id="commentBtn" data-post-id ="${q.id}">입력</button>
+				
+		      </span>
+		 </div>
+	</c:forEach>
 	<div class ="ml-4 mt-5 row">
 		<div class ="col-12">
 		<label class ="mb-3"><h5>서강준</h5></label>
@@ -258,6 +257,41 @@
 
 
 <c:import url ="/WEB-INF/jsp/include/footer.jsp" />
+
+<script>
+$(document).ready(function(){
+	
+	$("#commentBtn").on("click",function(){
+		let comment = $("#commentInput").val();
+		let postId = $(this).data("post-id");
+		$.ajax({
+			type:"get",
+			url:"/comment/addComment",
+			data:{
+			"comment":comment,
+			"postId":postId
+			},
+			success:function(data) {
+				if(data.result == "success") {
+					location.reload();
+				} else {
+					alert("댓글 달기 실패");
+				}
+				
+			},
+			error:function() {
+				alert("에러발생");
+			}
+		});
+		
+	});
+	
+	
+	
+});
+
+</script>
+
 
 </body>
 </html>
