@@ -35,7 +35,7 @@
     	<div class ="mt-3 mb-1 col-12">
     		<label class ="mr-4 col-2 mb-2">별명</label>
     			<input type ="text" class ="col-8 form-control" placeholder ="${userName}" id = "userNameInput" maxlength="10">
-    		
+    			
 			<label class ="mr-4 col-3 mt-2">한줄소개</label>
 				<input type ="text" class ="col-8 form-control" placeholder ="${introduce}" id = "introduceInput" maxlength="50">
 			
@@ -69,7 +69,7 @@
 			<div>
 				<label class ="mr-4 col-8 mt-2">장점</label>
 				
-				<div id="merit" class =" col-10 mt-3 mb-3">
+				<div id="MyMerit" class =" col-10 mt-3 mb-3">
 					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >예쁜 눈</button>
 					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >오똑한 코</button>
 					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >섹시한 두뇌</button>
@@ -94,7 +94,7 @@
 			<div>
 				<label class ="mr-4 col-8 mt-2">취미</label>
 			
-				<div id="hobby" class =" col-10 mt-3 mb-3">
+				<div id="MyHobby" class =" col-10 mt-3 mb-3">
 					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >산책</button>
 					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >악기 연주</button>
 					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >운동</button>
@@ -117,7 +117,7 @@
 			<div>
 				<label class ="mr-4 col-8 mt-2">성격</label>
 				
-				<div id="character" class =" col-10 mt-3 mb-3">
+				<div id="MyCharacter" class =" col-10 mt-3 mb-3">
 					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >감성적인</button>
 					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >내성적인</button>
 					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >외향적인</button>
@@ -148,7 +148,7 @@
 				<div>
 					<label class ="mr-4 col-8 mt-2">장점</label>
 					
-					<div id="merit" class =" col-10 mt-3 mb-3">
+					<div id="YourMerit" class =" col-10 mt-3 mb-3">
 						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >예쁜 눈</button>
 						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >오똑한 코</button>
 						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >섹시한 두뇌</button>
@@ -176,7 +176,7 @@
 				<div>
 					<label class ="mr-4 col-8 mt-2">취미</label>
 					
-					<div id="hobby" class =" col-10 mt-3 mb-3">
+					<div id="YourHobby" class =" col-10 mt-3 mb-3">
 						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >산책</button>
 						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >악기 연주</button>
 						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >운동</button>
@@ -200,7 +200,7 @@
 				<div>
 					<label class ="mr-4 col-8 mt-2">성격</label>
 					
-					<div id="character" class =" col-10 mt-3 mb-3">
+					<div id="YourCharacter" class =" col-10 mt-3 mb-3">
 						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >감성적인</button>
 						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >내성적인</button>
 						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >외향적인</button>
@@ -248,12 +248,84 @@
 $(document).ready(function(){
 	
 	$("#saveBtn").on("click",function(){
+		
+	
+		/* 나 관련 */
+		let userName = $("#userNameInput").val();
+		let introduce = $("#introduceInput").val();
+		let mbti = $("#mbtiInput").val();
+		
+
+		let myMeritArr=[];
+		
+		$("#MyMerit").children('.selectedBtn').each(function(index){
+			myMeritArr.push($(this).text());
+		})
+		
+		let myHobbyArr=[];
+		
+		$("#MyHobby").children('.selectedBtn').each(function(index){
+			myHobbyArr.push($(this).text());
+		})
+		
+		let myCharacterArr=[];
+		
+		$("#MyCharacter").children('.selectedBtn').each(function(index){
+			myCharacterArr.push($(this).text());
+		})
+
+
+		/* 상대 관련 */
+		
+		let yourMeritArr=[];
+		
+		$("#YourMerit").children('.selectedBtn').each(function(index){
+			yourMeritArr.push($(this).text());
+		})
+		
+		
+		let yourHobbyArr=[];
+		
+		$("#YourHobby").children('.selectedBtn').each(function(index){
+			yourHobbyArr.push($(this).text());
+		})
+		
+
+		let yourCharacterArr=[];
+		
+		$("#YourCharacter").children('.selectedBtn').each(function(index){
+			yourCharacterArr.push($(this).text());
+		})
+		
+		let age = $("#age").children('.selectedBtn').text();
+		
+		
+		
+		
 		$.ajax({
 			
 			
 			 type: 'post',
              url: "/user/editProfile",
-           
+             data:{
+            	 
+            	"userName" : userName,
+            	"introduce" : introduce,
+            	"mbti" : mbti,
+ 				"myMeritArr":myMeritArr,
+ 				"myHobbyArr":myHobbyArr,
+ 				"myCharacterArr":myCharacterArr,
+ 				"yourMeritArr":yourMeritArr, 
+ 				"yourHobbyArr":yourHobbyArr,
+ 				"yourCharacterArr":yourCharacterArr,
+ 				"age":age
+ 				},
+ 			success:function(data){
+ 		
+ 			}, error:function(e){
+ 				alert("error" + e);
+ 			}
+           	 	
 		});
 	});
 	
@@ -274,15 +346,15 @@ $(document).ready(function(){
 		let  myClass = $(this).closest("div").attr('id');
 		alert(myClass);
 
-	    if ($(this).hasClass("addbtn")) { 
-	    	$(this).removeClass("addbtn");
+	    if ($(this).hasClass("selectedBtn")) { 
+	    	$(this).removeClass("selectedBtn");
 	    	       }
 	    else{
-	    	$(this).addClass("addbtn");
+	    	$(this).addClass("selectedBtn");
 	    }
-
-
 	})
+	
+	
 	
 	
 	

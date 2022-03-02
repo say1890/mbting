@@ -24,7 +24,7 @@ public interface PostDAO {
 
 	public List<post> selectQuestion(@Param("today") LocalDate now);
 
-	public int selectPostId(@Param("today") LocalDate now);
+	public Integer selectPostId(@Param("today") LocalDate now);
 
 	
 }

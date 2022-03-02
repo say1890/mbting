@@ -37,7 +37,7 @@ public class PostBO {
 		return postDAO.selectQuestion(now);
 	}
 
-	public int getPostId(LocalDate now) {
+	public Integer getPostId(LocalDate now) {
 		return postDAO.selectPostId(now);
 	};
 }

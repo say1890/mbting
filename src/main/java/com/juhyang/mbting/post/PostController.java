@@ -39,11 +39,22 @@ public class PostController {
 		LocalDate now = LocalDate.now();
         
         List<post> questionList = postBO.getQuestionForMain(now);
-        int PostId = postBO.getPostId(now);
-        List<post> commentList = commentBO.getCommentForMain(PostId);
+       
+        Integer ifnull = null;
+        try{ 
+        	 Integer PostId = postBO.getPostId(now);
+        	 List<post> commentList = commentBO.getCommentForMain(PostId);
+        	 model.addAttribute("commentList", commentList);
+        }
+        catch(NullPointerException e) { 
+        	System.out.print("post 없음"); 
+        } 	
+        
+        
+        
         model.addAttribute("today", now);
         model.addAttribute("questionList", questionList);
-		model.addAttribute("commentList", commentList);
+		
 		
 		return "/post/main";
 	}

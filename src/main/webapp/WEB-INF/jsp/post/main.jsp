@@ -77,28 +77,32 @@
   
 	<h1 class ="mt-5">오늘의 질문</h1>
 	<h4 class ="ml-3 mt-5">${today}</h4>
-	<c:forEach var="q" items="${questionList}">	
-		<h3 class ="mt-5 ml-5">
-			<i class="bi bi-pen"></i>
-			${q.subject}
-			</h3>
-			<section class ="mt-5 mb-5 row col-12">
+	<c:choose>
+		<c:when test = "${not empty questionList }">
+		<c:forEach var="q" items="${questionList}">	
+			<h3 class ="mt-5 ml-5">
+				<i class="bi bi-pen"></i>
+				${q.subject}
+				</h3>
+				<section class ="mt-5 mb-5 row col-12">
+					<p class ="col-12">
+					<h4> ${q.content}</h4>
+					</p>
+				
 			
-				<p class ="col-12">
-				<h4> ${q.content}</h4>
-				</p>
+				
+				
+				<div class="input-group mt-4">
+				      <input type="text" class="form-control col-8 ml-4" id ="commentInput">
+				      <span class="input-group-btn">
+					<button class="btn btn-default" type="button" id="commentBtn" data-post-id ="${q.id}">입력</button>
+						
+				      </span>
+				</div>
+				</c:forEach>
+			</c:when>
 			
-		
-			
-			
-			<div class="input-group mt-4">
-			      <input type="text" class="form-control col-8 ml-4" id ="commentInput">
-			      <span class="input-group-btn">
-				<button class="btn btn-default" type="button" id="commentBtn" data-post-id ="${q.id}">입력</button>
-					
-			      </span>
-			</div>
-		</c:forEach>
+		</c:choose>
 		<div class ="mt-5 row col-12">
 			<!-- 댓글 -->
 			<c:forEach var="c" items="${commentList}">	
