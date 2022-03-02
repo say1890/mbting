@@ -23,14 +23,14 @@
         <p>Moderately responsive, should work on anything modern.</p>
       </div>
       <div class="col four left">
-        <h1>Why?</h1>
-        <p>Many popular HTML themes have thousands of lines of HTML, thousands of lines of CSS and several JS plugins on every page amounting to tens of thousands of lines of JavaScript.</p>
-        <p>I fail to see a valid reason for this, particularly the horrendous line counts that are usually due to unused features or badly designed code.</p>
+        <h1>Why Mbting?</h1>
+        <p>기존에 관심 있던 '중개' 분야에 도전하고 싶었습니다.</p>
+        <p>'직방' 이나 '당근마켓'등 사람과 사람을 연결해주는 플랫폼이 돈이 된다는 것을 알았기 때문입니다.</p>
       </div>
       <div class="col four left">
         <h1>Who?</h1>
-        <p>I'm Andrew.</p>
-        <p>You can get in touch with me through <a href="http://atunnecliffe.com">http://atunnecliffe.com</a> or <a href="mailto:andrew@atunnecliffe.com">emailing me</a>.</p>
+        <p>최주향입니다.</p>
+        <p>깃허브 주소는 <a href="https://github.com/say1890/mbting">https://github.com/say1890/mbting</a> 이고,  이메일 주소는<a href="say1890@naver.com">say1890@naver.com</a>입니다.</p>
       </div>
       <div class="group"></div>
     </div>

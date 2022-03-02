@@ -35,5 +35,9 @@ public class PostBO {
 
 	public List<post> getQuestionForMain(LocalDate now) {
 		return postDAO.selectQuestion(now);
+	}
+
+	public int getPostId(LocalDate now) {
+		return postDAO.selectPostId(now);
 	};
 }

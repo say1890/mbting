@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
 <!-- 부트스트랩 -->
 
@@ -66,58 +67,61 @@
 	      		</div>
 	      </div>
       </div>
-      <!-- <div class="call"><span>Wow</span></div> -->
+     
     </div>
   </div>
 </div>
-<div class="section">
-  <div class="container row">
+<div class="section mt-5" id = "QuestionForToday">
+
+    <div class="container row" >
   
-	<h1>오늘의 질문</h1>
-	<h4 class ="ml-3">${today}</h4>
+	<h1 class ="mt-5">오늘의 질문</h1>
+	<h4 class ="ml-3 mt-5">${today}</h4>
 	<c:forEach var="q" items="${questionList}">	
-		<h3 class ="mt-5">
+		<h3 class ="mt-5 ml-5">
 			<i class="bi bi-pen"></i>
 			${q.subject}
 			</h3>
-			<section class ="mt-5 mb-5 row">
-			<h4 class ="col-12">
-			${q.content}
-			</h4>
+			<section class ="mt-5 mb-5 row col-12">
+			
+				<p class ="col-12">
+				<h4> ${q.content}</h4>
+				</p>
+			
+		
+			
+			
+			<div class="input-group mt-4">
+			      <input type="text" class="form-control col-8 ml-4" id ="commentInput">
+			      <span class="input-group-btn">
+				<button class="btn btn-default" type="button" id="commentBtn" data-post-id ="${q.id}">입력</button>
+					
+			      </span>
+			</div>
+		</c:forEach>
+		<div class ="mt-5 row col-12">
+			<!-- 댓글 -->
+			<c:forEach var="c" items="${commentList}">	
+				<label class ="mb-3 col-3">
+					<h5>${c.user_name}</h5>
+				</label>
+				<label class ="col-7">
+					<h5>${c.comment}</h5>
+				</label>
+			</c:forEach>
 	
-		
-		
-		<div class="input-group mt-4">
-		      <input type="text" class="form-control col-8 ml-4" id ="commentInput">
-		      <span class="input-group-btn">
-			<button class="btn btn-default" type="button" id="commentBtn" data-post-id ="${q.id}">입력</button>
-				
-		      </span>
-		 </div>
-	</c:forEach>
-	<div class ="ml-4 mt-5 row">
-		<div class ="col-12">
-		<label class ="mb-3"><h5>서강준</h5></label>
-		<label class ="ml-4">
-		<h5>
-		깻잎절임을 못 떼는 내 친구를 위해 깻잎지를 눌러주는 나의 연인부터 주시죠 ㅠㅠ
-		</h5>
-		
-		</label>
+			
+			
+	
 		</div>
-		
-		
-
-	</div>
 	
 	
-	</section>
+		</section>
 	
 	
 	
     <div class="group"></div>
   </div>
-  
   
   
   

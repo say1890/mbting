@@ -43,7 +43,7 @@
         </li>
          <!-- 오늘의 질문 -->
         <li>
-	        <a href="#">
+	        <a href="#QuestionForToday">
 	        	<i class="bi bi-question-circle-fill menu-icon"></i>
 	        </a>
         </li>

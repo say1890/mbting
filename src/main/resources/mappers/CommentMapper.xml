@@ -20,4 +20,17 @@
 	 now()
 	)
 	</insert>
+
+	<select id ="selectComment" resultType ="com.juhyang.mbting.comment.model.Server_Comment">
+	SELECT 
+		`id`,
+		`user_name`,
+		`comment`
+	FROM
+		`server_comment`
+	WHERE
+	`server_postId` =#{postId}
+	
+	</select>
+	
 </mapper>	

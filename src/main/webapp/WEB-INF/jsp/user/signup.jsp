@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>Insert title here</title>
 
 <!-- css link -->
@@ -49,17 +50,17 @@
 		<section class = "mt-5">
 		  
 		 	<div class="input-group">
-				<input type = "text" placeholder="ID를 입력하세요." class = "input-text form-control" id= "inputId">
+				<input type = "text" placeholder="ID를 입력하세요." class = "input-text form-control" id= "inputId" maxlength="15">
 				<div id="nameCheckInfo" class="text-info d-none mt-2 ml-2"></div>
 			</div>
 		 
 			
 
-			<input type = "password" id = "password" placeholder = "비밀번호 입력" class ="input-text form-control mt-3" >
+			<input type = "password" id = "password" placeholder = "비밀번호 입력" class ="input-text form-control mt-3" maxlength="32">
 				<small id = "pwInput" class= "d-none">ㅎㅎ</small>
-			<input type = "password" id ="passwordCheck" placeholder = "비밀번호 확인"  class = "input-text form-control mt-3">
+			<input type = "password" id ="passwordCheck" placeholder = "비밀번호 확인"  class = "input-text form-control mt-3"  maxlength="32">
 			
-			<input type = "text" id ="userName" placeholder = "별명" class = "input-text form-control mt-3">
+			<input type = "text" id ="userName" placeholder = "별명" class = "input-text form-control mt-3" maxlength="10">
 			
 			<input type ="date" id="birthday" class = "form-control mt-3" name ="bday"
 			data-bs-toggle="tooltip" data-placement="right" title="생년월일"
@@ -90,7 +91,7 @@
 				<option value ="ENFJ">ENFJ</option>
 				<option value ="ENTJ">ENTJ</option>
 			</select>
-			<input type="email" id="email" size="30" required  placeholder = "이메일을 입력하세요." class = "input-text form-control mt-3">
+			<input type="email" id="email" size="30" required  placeholder = "이메일을 입력하세요." class = "input-text form-control mt-3" maxlength="30">
 			
 			
 		</section>

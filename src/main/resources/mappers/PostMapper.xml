@@ -53,6 +53,7 @@ WHERE
 
 <select id ="selectQuestion" resultType = "com.juhyang.mbting.post.model.post">
 SELECT 
+	`id`,
 	`subject`,
 	`content`,
 	`imagePath`
@@ -61,6 +62,17 @@ FROM
 	`server_post`
 WHERE 
 	`date` = #{today}
+</select>
+
+
+<select id = "selectPostId" resultType = "int">
+SELECT
+ 	`id`
+FROM
+	`server_post`
+WHERE 
+	`date` = #{today}
+
 </select>
 
 </mapper>

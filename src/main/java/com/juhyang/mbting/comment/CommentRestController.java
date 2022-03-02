@@ -1,6 +1,7 @@
 package com.juhyang.mbting.comment;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.juhyang.mbting.comment.bo.CommentBO;
+import com.juhyang.mbting.post.model.post;
 
 @RestController
 @RequestMapping("/comment")
@@ -29,6 +31,7 @@ public class CommentRestController {
 		int userId = (Integer)session.getAttribute("userId");
 		String userName = (String)session.getAttribute("userName");
 		int count = commentBO.addComment(postId,comment,userId,userName);
+		
 		Map<String,String> result = new HashMap<>();
 		if(count==1) {
 			result.put("result", "success");

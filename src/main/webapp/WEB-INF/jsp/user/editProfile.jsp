@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>🍓Mbting - 회원 정보 수정🍓</title>
 <!-- 부트스트랩 -->
 
@@ -33,13 +34,13 @@
     	<h3 class ="ml-3">${userName}</h3>
     	<div class ="mt-3 mb-1 col-12">
     		<label class ="mr-4 col-2 mb-2">별명</label>
-    			<input type ="text" class ="col-8 form-control" placeholder ="${userName}">
+    			<input type ="text" class ="col-8 form-control" placeholder ="${userName}" id = "userNameInput" maxlength="10">
     		
 			<label class ="mr-4 col-3 mt-2">한줄소개</label>
-				<input type ="text" class ="col-8 form-control" placeholder ="${introduce}">
+				<input type ="text" class ="col-8 form-control" placeholder ="${introduce}" id = "introduceInput" maxlength="50">
 			
 			<label class ="mr-4 col-3 mt-2">MBTI</label>
-				<select class="col-8 form-control" name ="mbti">
+				<select class="col-8 form-control" name ="mbti" id = "mbtiInput">
 					  
 					<option value="${mbti}">${mbti}</option>
 					<option value ="ISTJ">ISTJ</option>
@@ -67,21 +68,73 @@
 			<!-- 자신의 장점/취미/성격 -->
 			<div>
 				<label class ="mr-4 col-8 mt-2">장점</label>
-				<button class ="btn my">+</button>
-				<div id="meritBoxWrap" class ="boxWrap col-10 mt-3 mb-3">
+				
+				<div id="merit" class =" col-10 mt-3 mb-3">
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >예쁜 눈</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >오똑한 코</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >섹시한 두뇌</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >머릿결</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >꿀같은 목소리</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >큰 키</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >애교쟁이</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >듬직한</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >날씬한</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >웃는게 예쁜</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >노래를 잘하는</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >패셔니스타</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >웃긴</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >좋은 향기가 나는</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >꿀피부</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >겉쌍</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >속쌍</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >무쌍</button>
 				</div>	
 			</div>
 				
 			<div>
 				<label class ="mr-4 col-8 mt-2">취미</label>
-				<button class ="btn my">+</button>
-				<div id="hobbyBoxWrap" class ="boxWrap col-10 mt-3 mb-3"></div>
+			
+				<div id="hobby" class =" col-10 mt-3 mb-3">
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >산책</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >악기 연주</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >운동</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >쇼핑</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >악기 연주</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >음악 감상</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >그림 그리기</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >노래 부르기</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >여행 가기</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >요리</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >사진 찍기</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >독서</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >넷플릭스</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >언어 공부</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >자격증 따기</button>
+			
+				</div>
 			</div>	
 				
 			<div>
 				<label class ="mr-4 col-8 mt-2">성격</label>
-				<button class ="btn my">+</button>
-				<div id="characterBoxWrap" class ="boxWrap col-10 mt-3 mb-3"></div>
+				
+				<div id="character" class =" col-10 mt-3 mb-3">
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >감성적인</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >내성적인</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >외향적인</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >열정적인</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >섬세한</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >배려깊은</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >센스있는</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >눈치있는</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >신중한</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >현실적인</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >당당한</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >적극적인</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >솔직한</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >4차원</button>
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >귀여운</button>
+	
+				</div>
 			</div>
 			
 		
@@ -94,8 +147,27 @@
 			
 				<div>
 					<label class ="mr-4 col-8 mt-2">장점</label>
-					<button class ="btn your" >+</button>
-					<div id="meritBoxWrap" class ="boxWrap col-10 mt-3 mb-3"></div>
+					
+					<div id="merit" class =" col-10 mt-3 mb-3">
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >예쁜 눈</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >오똑한 코</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >섹시한 두뇌</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >머릿결</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >꿀같은 목소리</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >큰 키</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >애교쟁이</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >듬직한</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >날씬한</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >웃는게 예쁜</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >노래를 잘하는</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >패셔니스타</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >웃긴</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >좋은 향기가 나는</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >꿀피부</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >겉쌍</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >속쌍</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >무쌍</button>
+					</div>
 				</div>
 		
 			
@@ -103,31 +175,58 @@
 		
 				<div>
 					<label class ="mr-4 col-8 mt-2">취미</label>
-					<button class ="btn your" >+</button>
-					<div id="hobbyBoxWrap" class ="boxWrap col-10 mt-3 mb-3"></div>
+					
+					<div id="hobby" class =" col-10 mt-3 mb-3">
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >산책</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >악기 연주</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >운동</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >쇼핑</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >악기 연주</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >음악 감상</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >그림 그리기</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >노래 부르기</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >여행 가기</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >요리</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >사진 찍기</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >독서</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >넷플릭스</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >언어 공부</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >자격증 따기</button>
+					</div>
 				</div>	
 				
 			
 			
 				<div>
 					<label class ="mr-4 col-8 mt-2">성격</label>
-					<button class ="btn your">+</button>
-					<div id="characterBoxWrap" class ="boxWrap col-10 mt-3 mb-3"></div>
+					
+					<div id="character" class =" col-10 mt-3 mb-3">
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >감성적인</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >내성적인</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >외향적인</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >열정적인</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >섬세한</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >배려깊은</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >센스있는</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >눈치있는</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >신중한</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >현실적인</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >당당한</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >적극적인</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >솔직한</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >4차원</button>
+						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >귀여운</button>
+					</div>
 				</div>
 				
 				
-				<div>
-					<label class ="mr-4 col-8 mt-2">기피형</label>
-					<button class ="btn your" id ="characterPlusBtn">+</button>
-					<div id="HateBoxWrap" class ="boxWrap col-10 mt-3 mb-3"></div>
-				</div>
 		
 		
 			<label class ="mr-4 col-8 mt-2">나이</label>
-			<div id="ageWrap" class ="boxWrap col-10 mt-3 mb-3 mt-3 mb-3">
-				<button type ='button'  class ='btn ml-2 mb-1 agebtn col-3' >연상</button>
-				<button type ='button'  class ='btn ml-2 mb-1 agebtn col-3' >연하</button>
-				<button type ='button'  class ='btn ml-2 mb-1 agebtn col-3' >동갑</button>
+			<div id="age" class =" col-10 mt-3 mb-3 mt-3 mb-3">
+				<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >연상</button>
+				<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >연하</button>
+				<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >동갑</button>
 			</div>	
 				
 		<button type ="button" class ="overlay__btn btn col-10 mt-5 " id ="saveBtn"> 
@@ -159,46 +258,22 @@ $(document).ready(function(){
 	});
 	
 	
-	$(".my").on("click",function(){
-		
-		  let one=1;
-		  let boxWrap = $(this).parent().children('.boxWrap');
-		  let btn = boxWrap.children('.btn');
-		  let btnLength =btn.length;
-		  boxWrap.append("<input type ='text'  maxlength = '8' class ='btn ml-2 mb-1 addbtn col-3' id = '"+one+"'>");
-		
-		    	if(btn.length>=5){
-		    		 $(this).attr('disabled', true);
-		    	}
-		    	
 
-
-
-
-		    	});  	
 		    	
 		    	
 	});
 	
-	$(".your").on("click",function(){
-		  let boxWrap = $(this).parent().children('.boxWrap');
-		  let btn = boxWrap.children('.btn');
-		  boxWrap.append("<input type ='text'  maxlength='8' class ='btn ml-2 mb-1 addbtn col-3'>"+"</button>");
-		
-		    	if(btn.length>=5){
-		    		 $(this).attr('disabled', true);
-		    	}
-	});
+
 	
 	
 	
 	
-	
-	
-	
-	
-	$(".agebtn").on("click",function(){
-		let age = $(this).text();
+	$(".txtbtn").on("click",function(){
+		let text = $(this).text();
+		alert(text);
+		let  myClass = $(this).closest("div").attr('id');
+		alert(myClass);
+
 	    if ($(this).hasClass("addbtn")) { 
 	    	$(this).removeClass("addbtn");
 	    	       }
