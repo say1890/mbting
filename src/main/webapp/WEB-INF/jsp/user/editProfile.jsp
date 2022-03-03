@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,19 @@
   <div class="container">
     <h1>나는 이런 사람이예요</h1>
     <section class ="d-flex mb-5 ml-5">
-    	<a href ="/user/mypage_edit_view"><i class="bi bi-person-circle myprofile-icon"></i></a>
+    	<a href ="#" id = "profileUpdateBtn">
+    	<c:choose>
+    		<c:when test = "${empty profile}">
+    			<i class="bi bi-person-circle myprofile-icon"></i>
+    		</c:when>
+    		<c:otherwise>
+    			<img src = "${profile}">
+    		</c:otherwise>
+    	</c:choose>
+    	</a>
+    	<input type ="file" id ="fileInput" class ="d-none">
+    	
+    	
     	<div class ="mt-5 ml-4 col-12">
     	<h3 class ="ml-3">${userName}</h3>
     	<div class ="mt-3 mb-1 col-12">
@@ -66,32 +79,30 @@
 			
 			
 			<!-- 자신의 장점/취미/성격 -->
-			<c:forEach var="c" items="${character}">
+			
 			<div>
 				
 					
 				<label class ="mr-4 col-8 mt-2">장점</label>
 				
 				<div id="MyMerit" class =" col-10 mt-3 mb-3">
+			
+				
+						<c:forEach var="m" items="${merit}">
+						<c:forEach var="s" items="${SelectedOptions}">
+							<c:choose>
+								<c:when test = "${fn:contains(s.myMerit,m)}">
+									<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3 selectedBtn' >${m}</button>
+								</c:when>
+								<c:otherwise>
+									<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >${m}</button>	
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>	
+						</c:forEach>
 					
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >예쁜 눈</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >오똑한 코</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >섹시한 두뇌</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >머릿결</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >꿀같은 목소리</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >큰 키</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >애교쟁이</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >듬직한</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >날씬한</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >웃는게 예쁜</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >노래를 잘하는</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >패셔니스타</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >웃긴</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >좋은 향기가 나는</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >꿀피부</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >겉쌍</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >속쌍</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >무쌍</button>
+				
+
 				</div>	
 			</div>
 				
@@ -99,21 +110,21 @@
 				<label class ="mr-4 col-8 mt-2">취미</label>
 			
 				<div id="MyHobby" class =" col-10 mt-3 mb-3">
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >산책</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >악기 연주</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >운동</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >쇼핑</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >악기 연주</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >음악 감상</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >그림 그리기</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >노래 부르기</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >여행 가기</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >요리</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >사진 찍기</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >독서</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >넷플릭스</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >언어 공부</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >자격증 따기</button>
+				
+				<c:forEach var="hobby" items="${hobby}">	
+						<c:forEach var="selected" items="${SelectedOptions}">
+							<c:choose>
+								<c:when test = "${fn:contains(selected.myHobby,hobby)}">
+									<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3 selectedBtn' >${hobby}</button>
+								</c:when>
+								<c:otherwise>
+									<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >${hobby}</button>	
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>	
+				</c:forEach>
+				
+				
 			
 				</div>
 			</div>	
@@ -122,21 +133,18 @@
 				<label class ="mr-4 col-8 mt-2">성격</label>
 				
 				<div id="MyCharacter" class =" col-10 mt-3 mb-3">
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >감성적인</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >내성적인</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >외향적인</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >열정적인</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >섬세한</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >배려깊은</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >센스있는</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >눈치있는</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >신중한</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >현실적인</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >당당한</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >적극적인</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >솔직한</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >4차원</button>
-					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >귀여운</button>
+				<c:forEach var="character" items="${character}">	
+						<c:forEach var="selected" items="${SelectedOptions}">
+							<c:choose>
+								<c:when test = "${fn:contains(selected.myCharacter,character)}">
+									<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3 selectedBtn' >${character}</button>
+								</c:when>
+								<c:otherwise>
+									<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >${character}</button>	
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>	
+				</c:forEach>
 	
 				</div>
 			</div>
@@ -153,24 +161,18 @@
 					<label class ="mr-4 col-8 mt-2">장점</label>
 					
 					<div id="YourMerit" class =" col-10 mt-3 mb-3">
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >예쁜 눈</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >오똑한 코</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >섹시한 두뇌</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >머릿결</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >꿀같은 목소리</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >큰 키</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >애교쟁이</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >듬직한</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >날씬한</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >웃는게 예쁜</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >노래를 잘하는</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >패셔니스타</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >웃긴</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >좋은 향기가 나는</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >꿀피부</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >겉쌍</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >속쌍</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >무쌍</button>
+					<c:forEach var="merit" items="${merit}">	
+						<c:forEach var="selected" items="${SelectedOptions}">
+							<c:choose>
+								<c:when test = "${fn:contains(selected.yourMerit,merit)}">
+									<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3 selectedBtn' >${merit}</button>
+								</c:when>
+								<c:otherwise>
+									<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >${merit}</button>	
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>	
+				</c:forEach>
 					</div>
 				</div>
 		
@@ -181,21 +183,18 @@
 					<label class ="mr-4 col-8 mt-2">취미</label>
 					
 					<div id="YourHobby" class =" col-10 mt-3 mb-3">
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >산책</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >악기 연주</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >운동</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >쇼핑</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >악기 연주</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >음악 감상</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >그림 그리기</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >노래 부르기</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >여행 가기</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >요리</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >사진 찍기</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >독서</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >넷플릭스</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >언어 공부</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >자격증 따기</button>
+					<c:forEach var="hobby" items="${hobby}">	
+						<c:forEach var="selected" items="${SelectedOptions}">
+							<c:choose>
+								<c:when test = "${fn:contains(selected.yourHobby,hobby)}">
+									<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3 selectedBtn' >${hobby}</button>
+								</c:when>
+								<c:otherwise>
+									<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >${hobby}</button>	
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>	
+				</c:forEach>
 					</div>
 				</div>	
 				
@@ -205,21 +204,18 @@
 					<label class ="mr-4 col-8 mt-2">성격</label>
 					
 					<div id="YourCharacter" class =" col-10 mt-3 mb-3">
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >감성적인</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >내성적인</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >외향적인</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >열정적인</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >섬세한</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >배려깊은</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >센스있는</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >눈치있는</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >신중한</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >현실적인</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >당당한</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >적극적인</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >솔직한</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >4차원</button>
-						<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >귀여운</button>
+					<c:forEach var="character" items="${character}">	
+							<c:forEach var="selected" items="${SelectedOptions}">
+								<c:choose>
+									<c:when test = "${fn:contains(selected.yourCharacter,character)}">
+										<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3 selectedBtn' >${character}</button>
+									</c:when>
+									<c:otherwise>
+										<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >${character}</button>	
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>	
+					</c:forEach>					
 					</div>
 				</div>
 				
@@ -228,12 +224,20 @@
 		
 			<label class ="mr-4 col-8 mt-2">나이</label>
 			<div id="age" class =" col-10 mt-3 mb-3 mt-3 mb-3">
-			
-				<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >연상</button>
-				<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >연하</button>
-				<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >동갑</button>
+			<c:forEach var="age" items="${age}">	
+						<c:forEach var="selected" items="${SelectedOptions}">
+							<c:choose>
+								<c:when test = "${fn:contains(selected.age,age)}">
+									<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3 selectedBtn' >${age}</button>
+								</c:when>
+								<c:otherwise>
+									<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >${age}</button>	
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>	
+				</c:forEach>
 			</div>	
-		</c:forEach>		
+				
 		<button type ="button" class ="overlay__btn btn col-8 mt-5 " id ="saveBtn"> 
 		
 		<b class ="text-white">저장하기</b> 
@@ -251,6 +255,16 @@
 </div>
 <script>
 $(document).ready(function(){
+	
+	
+	
+	
+	$("#profileUpdateBtn").on("click",function(){
+		$("#fileInput").click();
+		
+	})
+	
+	
 	
 	$("#saveBtn").on("click",function(){
 		
@@ -304,31 +318,68 @@ $(document).ready(function(){
 		
 		let ageArr=[];
 		$("#age").children('.selectedBtn').each(function(index){
-			yourCharacterArr.push($(this).text());
+			ageArr.push($(this).text());
 		})
 		
 
+		let formData = new FormData();
+		
+		formData.append("userName", userName);
+		formData.append("introduce", introduce);
+		formData.append("mbti", mbti);
 		
 		
 		
+		formData.append("myMeritArr",myMeritArr);
+		for(var i=0; i<myMeritArr.length;i++){
+			 formData.append('myMeritArr[]', myMeritArr[i]);
+		}
+		
+		formData.append("myHobbyArr",myHobbyArr);
+		for(var i=0; i<myHobbyArr.length;i++){
+			 formData.append('myHobbyArr[]', myHobbyArr[i]);
+		}
+		
+		
+		formData.append("myCharacterArr",myCharacterArr);
+		for(var i=0; i<myCharacterArr.length;i++){
+			 formData.append('myCharacterArr[]', myCharacterArr[i]);
+		}
+		
+		formData.append("yourMeritArr",yourMeritArr); 
+		for(var i=0; i<yourMeritArr.length;i++){
+			 formData.append('yourMeritArr[]', yourMeritArr[i]);
+		}
+		
+		
+		formData.append("yourHobbyArr",yourHobbyArr);
+		for(var i=0; i<yourHobbyArr.length;i++){
+			 formData.append('yourHobbyArr[]', yourHobbyArr[i]);
+		}
+		
+		formData.append("yourCharacterArr",yourCharacterArr);
+		for(var i=0; i<yourCharacterArr.length;i++){
+			 formData.append('yourCharacterArr[]', yourCharacterArr[i]);
+		}
+		
+		
+		formData.append("ageArr",ageArr);
+		for(var i=0; i<ageArr.length;i++){
+			 formData.append('ageArr[]', ageArr[i]);
+		}
+		
+		
+		formData.append("file", $("#fileInput")[0].files[0]);
+		alert()
 		$.ajax({
 			
 			
 			 type: 'post',
              url: "/user/editProfile",
-             data:{
-            	 
-            	"userName" : userName,
-            	"introduce" : introduce,
-            	"mbti" : mbti,
- 				"myMeritArr":myMeritArr,
- 				"myHobbyArr":myHobbyArr,
- 				"myCharacterArr":myCharacterArr,
- 				"yourMeritArr":yourMeritArr, 
- 				"yourHobbyArr":yourHobbyArr,
- 				"yourCharacterArr":yourCharacterArr,
- 				"ageArr":ageArr
- 				},
+             data:formData,
+             enctype:"mutipart/form-data",  // 파일 업로드 필수
+			 processData:false, // 파일 업로드 필수
+			 contentType:false, // 파일 업로드 필수
  			success:function(data){
  				location.reload();
  		

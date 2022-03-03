@@ -57,12 +57,27 @@ public class UserController {
 		String mbti = (String)session.getAttribute("mbti");
 		String introduce = (String)session.getAttribute("introduce");
 		int userId = (Integer)session.getAttribute("userId");
-		List<UserCharacter> character = userBO.getSelectOptions(userId);
 		
+		//장점
+		List<String> merit = userBO.getmeritContent();
+		model.addAttribute("merit", merit);
 		
-	
-		
+		//성격
+		List<String> character = userBO.getCharacterContent();
 		model.addAttribute("character", character);
+		
+		//취미
+		List<String> hobby = userBO.gethobbyContent();
+		model.addAttribute("hobby", hobby);
+		
+		//나이
+		List<String> age = userBO.getageContent();
+		model.addAttribute("age", age);
+	
+		// 사용자가 선택한 옵션
+		List<UserCharacter> SelectedOptions = userBO.getSelectOptions(userId);
+		model.addAttribute("SelectedOptions", SelectedOptions);
+		System.out.print(SelectedOptions);
 		
 		
 		return "user/editProfile";

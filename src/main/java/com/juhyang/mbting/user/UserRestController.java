@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.juhyang.mbting.user.bo.UserBO;
 import com.juhyang.mbting.user.model.User;
@@ -159,11 +160,13 @@ public class UserRestController {
 			@RequestParam(value ="yourHobbyArr[]", required = false) List<String> yourHobbyArr,
 			@RequestParam(value ="yourCharacterArr[]", required = false) List<String> yourCharacterArr,
 			@RequestParam(value ="ageArr[]", required = false) List<String> ageArr,
+			@RequestParam(value = "file", required = false) MultipartFile file,
 			HttpServletRequest request
 			) {
+		
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
-		userBO.editBasicInfo(userId,userName,introduce,mbti);
+		userBO.editBasicInfo(userId,userName,introduce,mbti,file);
 		return userBO.editMatchingProfile(userId,myMeritArr,myHobbyArr,myCharacterArr, yourMeritArr, yourHobbyArr,yourCharacterArr,ageArr);
 		
 	}
