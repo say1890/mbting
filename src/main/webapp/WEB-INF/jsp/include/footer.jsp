@@ -12,15 +12,11 @@
     <div class="container white">
       <div class="col four left">
         <h1>What?</h1>
-        <p>So that's it. This started out as 20 minutes of making fun of modern web dev. Then it turned into a few hours of it.</p>
-        <p>I hope you've enjoyed looking at every modern website ever.</p>
-        <p>I don't actually hate this style as long as the content is meaningful. In fact, I think this type of design is pretty cool and effective.</p>
+     	<p>요즘 인기 있는 성격 유형 검사를 소캐팅 사이트에 접목해보면 어떨까 해서 제작하게 된 홈페이지 입니다.</p>
       </div>
       <div class="col four left">
         <h1>How?</h1>
-        <p>CSS3 and HTML. JS for header shrinking; optional. Site works perfectly with JS disabled (another gripe of mine with modern web dev).</p>
-        <p>Only external libraries are GFonts.</p>
-        <p>Moderately responsive, should work on anything modern.</p>
+		<p>spring과 mysql을 이용하여 제작하였습니다.</p>
       </div>
       <div class="col four left">
         <h1>Why Mbting?</h1>
@@ -29,8 +25,10 @@
       </div>
       <div class="col four left">
         <h1>Who?</h1>
-        <p>최주향입니다.</p>
-        <p>깃허브 주소는 <a href="https://github.com/say1890/mbting">https://github.com/say1890/mbting</a> 이고,  이메일 주소는<a href="say1890@naver.com">say1890@naver.com</a>입니다.</p>
+        <p>이름 >  최주향</p>
+        <p>생일 > 2000.10.12</p>
+        <p>깃허브 주소 > <a href="https://github.com/say1890/mbting">https://github.com/say1890/mbting</a>  </p>
+        <p> 이메일 주소 > <a href="say1890@naver.com">say1890@naver.com</a></p>
       </div>
       <div class="group"></div>
     </div>

@@ -121,6 +121,7 @@
 		`userName` = #{userName},
 		`introduce` = #{introduce},
 		`mbti` = #{mbti},
+		`profile` =#{profile},
 		`updatedAt` = now()
 	WHERE
 		`id` = #{userId}
@@ -140,4 +141,34 @@
 	WHERE
 		`user_id` =  #{userId}
 	</select>
+	
+	
+	<select id ="selectMeritContent" resultType ="String">
+	SELECT
+		`content`
+	FROM
+		`merit`
+	</select>
+
+	<select id ="selectHobbyContent" resultType ="String">
+	SELECT
+		`content`
+	FROM
+		`hobby`
+	</select>
+	
+	<select id ="selectCharacterContent" resultType ="String">
+	SELECT
+		`content`
+	FROM
+		`character`
+	</select>
+	
+	<select id ="selectAgeContent" resultType="String">
+		SELECT
+		`content`
+	FROM
+		`age`
+	</select>
+	
 </mapper>

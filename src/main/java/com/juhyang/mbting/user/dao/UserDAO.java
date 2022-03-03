@@ -53,9 +53,16 @@ public interface UserDAO {
 			@Param("userId") int userId, 
 			@Param("userName") String userName, 
 			@Param("introduce") String introduce, 
-			@Param("mbti") String mbti);
+			@Param("mbti") String mbti,
+			@Param("profile") String filePath);
 	
 	public List<UserCharacter> selectOptions(@Param("userId")int userId);
+	
+	public List<String> selectMeritContent();
+	public List<String> selectCharacterContent();
+	public List<String> selectHobbyContent();
+	public List<String> selectAgeContent();
+	
 
 	
 

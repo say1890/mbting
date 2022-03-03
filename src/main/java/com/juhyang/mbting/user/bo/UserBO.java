@@ -6,8 +6,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.juhyang.mbting.common.EncryptUtils;
+import com.juhyang.mbting.common.FileManagerService;
 import com.juhyang.mbting.user.dao.UserDAO;
 import com.juhyang.mbting.user.model.User;
 import com.juhyang.mbting.user.model.UserCharacter;
@@ -151,7 +153,7 @@ public class UserBO {
 		}else {
 			before = ""; // 마지막 콤마 제거하기 전 문자열
 			
-			for(Object object : yourHobbyArr) {
+			for(Object object : yourCharacterArr) {
 			   
 				String element = (String) object + ",";
 				before +=element;
@@ -186,8 +188,10 @@ public class UserBO {
 
 	}
 
-	public int editBasicInfo(int userId, String userName, String introduce, String mbti) {
-		return userDAO.updateBasicProfile(userId, userName,introduce,mbti);
+	public int editBasicInfo(int userId, String userName, String introduce, String mbti, MultipartFile file) {
+		String filePath = FileManagerService.saveFile(userId, file);
+		
+		return userDAO.updateBasicProfile(userId, userName,introduce,mbti,filePath);
 		
 	}
 
@@ -195,6 +199,28 @@ public class UserBO {
 		return userDAO.selectOptions(userId);
 		
 	}
+	
+
+
+	
+	public List<String> getmeritContent() {
+		
+		return userDAO.selectMeritContent();
+	}
+	
+	public List<String> getCharacterContent() {
+		return userDAO.selectCharacterContent();
+	}
+
+	public List<String> gethobbyContent() {
+		
+		return userDAO.selectHobbyContent();
+	}
+
+	public List<String> getageContent() {
+		return userDAO.selectAgeContent();
+	}
+
 
 	
 	
