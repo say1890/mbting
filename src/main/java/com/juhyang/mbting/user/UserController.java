@@ -2,19 +2,27 @@ package com.juhyang.mbting.user;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.juhyang.mbting.user.bo.UserBO;
+import com.juhyang.mbting.user.model.UserCharacter;
 
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
-
+	
+	@Autowired
+	UserBO userBO;
 	
 	//view
 	@RequestMapping("/signin_view")
@@ -43,9 +51,20 @@ public class UserController {
 	
 	@RequestMapping("/mypage_edit_view")
 	public String editprofile_view(HttpServletRequest request
+			,Model model
 			) {
 		HttpSession session = request.getSession();
 		String mbti = (String)session.getAttribute("mbti");
+		String introduce = (String)session.getAttribute("introduce");
+		int userId = (Integer)session.getAttribute("userId");
+		List<UserCharacter> character = userBO.getSelectOptions(userId);
+		
+		
+	
+		
+		model.addAttribute("character", character);
+		
+		
 		return "user/editProfile";
 	}
 	

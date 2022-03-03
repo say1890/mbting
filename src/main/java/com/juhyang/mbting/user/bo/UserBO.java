@@ -1,5 +1,6 @@
 package com.juhyang.mbting.user.bo;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.juhyang.mbting.common.EncryptUtils;
 import com.juhyang.mbting.user.dao.UserDAO;
 import com.juhyang.mbting.user.model.User;
+import com.juhyang.mbting.user.model.UserCharacter;
 
 @Service
 public class UserBO {
@@ -49,38 +51,151 @@ public class UserBO {
 		return userDAO.updatePassword(loginId, encPw);
 	}
 
-	public String editProfile(String userName, String introduce, String mbti, List<String> myMeritArr,
+	public int editMatchingProfile(int userId, List<String> myMeritArr,
 			List<String> myHobbyArr, List<String> myCharacterArr, List<String> yourMeritArr, List<String> yourHobbyArr,
-			List<String> yourCharacterArr) {
+			List<String> yourCharacterArr, List<String> ageArr) {
+		
+		List<String> emptyArr = new ArrayList<>();
+		String before = ""; // 마지막 콤마 제거하기 전 문자열
+		String mymerit = "";
 		
 		if(myMeritArr== null) {
+			myMeritArr = emptyArr;
 		}else {
+			before = "";
+			for(Object object : myMeritArr) {
+			   
+				String element = (String) object + ",";
+				before +=element;
+				mymerit = before.replaceAll(",$", "");
+			}
 			
 		}
-		if(myHobbyArr.size() == 0) {
-			myHobbyArr.add("empty");
-		}
-		if(myCharacterArr.isEmpty()) {
-			myCharacterArr.add("empty");
-		}
-		if(yourMeritArr.isEmpty()) {
-			yourMeritArr.add("empty");
-		}
-		if(yourHobbyArr.isEmpty()) {
-			yourHobbyArr.add("empty");
-		}
-		if(yourCharacterArr.isEmpty()) {
-			yourCharacterArr.add("empty");
+		
+		
+		
+		String myHobby = "";
+		if(myHobbyArr== null) {
+			myHobbyArr = emptyArr;
+		
+		}else {
+			
+			before = "";
+			for(Object object : myHobbyArr) {
+			   
+				String element = (String) object + ",";
+				before +=element;
+				myHobby = before.replaceAll(",$", "");
+			}
+			System.out.print(myHobby);
 		}
 		
 		
-		for(Object object : myMeritArr) {
-		    String element = (String) object;
-		    System.out.print(element);
+		
+		
+		
+		String myCharacter = "";
+		if(myCharacterArr== null) {
+			myCharacterArr = emptyArr;
+			
+		}else {
+			before = ""; // 마지막 콤마 제거하기 전 문자열
+			
+			for(Object object : myCharacterArr) {
+			   
+				String element = (String) object + ",";
+				before +=element;
+				myCharacter = before.replaceAll(",$", "");
+			}
+			System.out.print(myCharacter);
 		}
 		
 		
-		return null;
+		String yourMerit = "";
+		if(yourMeritArr== null) {
+			yourMeritArr = emptyArr;
+			
+		}else {
+			before = ""; // 마지막 콤마 제거하기 전 문자열
+			
+			for(Object object : yourMeritArr) {
+			   
+				String element = (String) object + ",";
+				before +=element;
+				yourMerit = before.replaceAll(",$", "");
+			}
+			System.out.print(yourMerit);
+		}
+		
+		String yourHobby = "";
+		if(yourHobbyArr== null) {
+			yourHobbyArr = emptyArr;
+		
+		}else {
+			before = ""; // 마지막 콤마 제거하기 전 문자열
+			
+			for(Object object : yourHobbyArr) {
+			   
+				String element = (String) object + ",";
+				before +=element;
+				yourHobby = before.replaceAll(",$", "");
+			}
+			System.out.print(yourHobby);
+		}
+		
+		
+		String yourCharacter = "";
+		if(yourCharacterArr== null) {
+			yourCharacterArr = emptyArr;
+			
+		}else {
+			before = ""; // 마지막 콤마 제거하기 전 문자열
+			
+			for(Object object : yourHobbyArr) {
+			   
+				String element = (String) object + ",";
+				before +=element;
+				yourCharacter = before.replaceAll(",$", "");
+			}
+			
+		}
+		
+		
+		String age = "";
+		if(ageArr== null) {
+			ageArr = emptyArr;
+			
+		}else {
+			before = ""; // 마지막 콤마 제거하기 전 문자열
+			
+			for(Object object : ageArr) {
+			   
+				String element = (String) object + ",";
+				before +=element;
+				age = before.replaceAll(",$", "");
+			}
+			
+		}
+		
+		
+		
+		
+		return userDAO.updateMatchingProfile(userId,
+				mymerit,myHobby, myCharacter, 
+				yourMerit, yourHobby,yourCharacter,age);
+
 	}
+
+	public int editBasicInfo(int userId, String userName, String introduce, String mbti) {
+		return userDAO.updateBasicProfile(userId, userName,introduce,mbti);
+		
+	}
+
+	public List<UserCharacter> getSelectOptions(int userId) {
+		return userDAO.selectOptions(userId);
+		
+	}
+
+	
 	
 }

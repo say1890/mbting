@@ -34,10 +34,10 @@
     	<h3 class ="ml-3">${userName}</h3>
     	<div class ="mt-3 mb-1 col-12">
     		<label class ="mr-4 col-2 mb-2">별명</label>
-    			<input type ="text" class ="col-8 form-control" placeholder ="${userName}" id = "userNameInput" maxlength="10">
+    			<input type ="text" class ="col-8 form-control" value ="${userName}" id = "userNameInput" maxlength="10">
     			
 			<label class ="mr-4 col-3 mt-2">한줄소개</label>
-				<input type ="text" class ="col-8 form-control" placeholder ="${introduce}" id = "introduceInput" maxlength="50">
+				<input type ="text" class ="col-8 form-control" value ="${introduce}" id = "introduceInput" maxlength="50">
 			
 			<label class ="mr-4 col-3 mt-2">MBTI</label>
 				<select class="col-8 form-control" name ="mbti" id = "mbtiInput">
@@ -66,10 +66,14 @@
 			
 			
 			<!-- 자신의 장점/취미/성격 -->
+			<c:forEach var="c" items="${character}">
 			<div>
+				
+					
 				<label class ="mr-4 col-8 mt-2">장점</label>
 				
 				<div id="MyMerit" class =" col-10 mt-3 mb-3">
+					
 					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >예쁜 눈</button>
 					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >오똑한 코</button>
 					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >섹시한 두뇌</button>
@@ -224,12 +228,13 @@
 		
 			<label class ="mr-4 col-8 mt-2">나이</label>
 			<div id="age" class =" col-10 mt-3 mb-3 mt-3 mb-3">
+			
 				<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >연상</button>
 				<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >연하</button>
 				<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >동갑</button>
 			</div>	
-				
-		<button type ="button" class ="overlay__btn btn col-10 mt-5 " id ="saveBtn"> 
+		</c:forEach>		
+		<button type ="button" class ="overlay__btn btn col-8 mt-5 " id ="saveBtn"> 
 		
 		<b class ="text-white">저장하기</b> 
 		<span class="overlay__btn-emoji ">🎨</span>
@@ -297,8 +302,12 @@ $(document).ready(function(){
 			yourCharacterArr.push($(this).text());
 		})
 		
-		let age = $("#age").children('.selectedBtn').text();
+		let ageArr=[];
+		$("#age").children('.selectedBtn').each(function(index){
+			yourCharacterArr.push($(this).text());
+		})
 		
+
 		
 		
 		
@@ -318,12 +327,13 @@ $(document).ready(function(){
  				"yourMeritArr":yourMeritArr, 
  				"yourHobbyArr":yourHobbyArr,
  				"yourCharacterArr":yourCharacterArr,
- 				"age":age
+ 				"ageArr":ageArr
  				},
  			success:function(data){
+ 				location.reload();
  		
  			}, error:function(e){
- 				alert("error" + e);
+ 				alert("정보 수정 실패");
  			}
            	 	
 		});

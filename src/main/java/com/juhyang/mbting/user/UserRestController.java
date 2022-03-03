@@ -148,7 +148,7 @@ public class UserRestController {
 			
 		}
 	@PostMapping("/editProfile")
-	public String editProfile(
+	public int editProfile(
 			@RequestParam("userName") String userName,
 			@RequestParam("introduce") String introduce,
 			@RequestParam("mbti") String mbti,
@@ -158,24 +158,13 @@ public class UserRestController {
 			@RequestParam(value ="yourMeritArr[]", required = false) List<String> yourMeritArr,
 			@RequestParam(value ="yourHobbyArr[]", required = false) List<String> yourHobbyArr,
 			@RequestParam(value ="yourCharacterArr[]", required = false) List<String> yourCharacterArr,
-			@RequestParam("age") String age
-			
+			@RequestParam(value ="ageArr[]", required = false) List<String> ageArr,
+			HttpServletRequest request
 			) {
-		
-		try {
-			for(Object object : myMeritArr) {
-			    String element = (String) object;
-			    System.out.print(element);
-			}
-		}
-		catch(NullPointerException e) {
-			System.out.print("myMeritArr-선택된 값 없음");
-		}
-		finally {
-			
-		}
-		
-		return userBO.editProfile(userName,introduce,mbti,myMeritArr,myHobbyArr,myCharacterArr, yourMeritArr, yourHobbyArr,yourCharacterArr);
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		userBO.editBasicInfo(userId,userName,introduce,mbti);
+		return userBO.editMatchingProfile(userId,myMeritArr,myHobbyArr,myCharacterArr, yourMeritArr, yourHobbyArr,yourCharacterArr,ageArr);
 		
 	}
 	

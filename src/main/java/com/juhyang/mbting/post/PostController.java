@@ -40,7 +40,7 @@ public class PostController {
         
         List<post> questionList = postBO.getQuestionForMain(now);
        
-        Integer ifnull = null;
+
         try{ 
         	 Integer PostId = postBO.getPostId(now);
         	 List<post> commentList = commentBO.getCommentForMain(PostId);
