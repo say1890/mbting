@@ -6,7 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.juhyang.mbting.post.model.post;
+import com.juhyang.mbting.comment.model.Server_Comment;
+import com.juhyang.mbting.post.model.Post;
 
 @Repository
 public interface CommentDAO {
@@ -18,6 +19,15 @@ public interface CommentDAO {
 			@Param("userName") String userName
 			);
 
-	public List<post> selectComment(@Param("postId")int postId);
+	public List<Post> selectComment(@Param("postId")int postId);
+
+	public int deleteComment(@Param("commentId")int commentId);
+
+
+	public List<Server_Comment> selectCommentListForMypage(@Param("postId") int id, @Param("userId")int userId);
+
+	public List<Server_Comment> selectCommentedPost( @Param("userId") int userId);
+
+	public List<Integer> selectPostId(@Param("userId") int userId);
 
 }

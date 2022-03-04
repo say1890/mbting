@@ -2,7 +2,7 @@ package com.juhyang.mbting.post.model;
 
 import java.util.Date;
 
-public class post {
+public class Post {
 private int id;
 private String subject;
 private String content;

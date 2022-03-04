@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.juhyang.mbting.comment.bo.CommentBO;
-import com.juhyang.mbting.post.model.post;
+import com.juhyang.mbting.post.model.Post;
 
 @RestController
 @RequestMapping("/comment")
@@ -42,5 +42,23 @@ public class CommentRestController {
 		return result;
 		
 	}
+	
+	
+	@GetMapping("/deleteComment")
+	public Map<String,String> deleteComment(
+			@RequestParam("CommentId") int CommentId,
+			HttpServletRequest request) {
+		int count = commentBO.deleteComment(CommentId);
+		Map<String,String> result = new HashMap<>();
+		if(count==1) {
+			result.put("result", "success");
+		}
+		else {
+			result.put("result", "fail");
+		}
+		return result;
+		
+	}
+	
 	
 }

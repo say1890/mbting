@@ -21,7 +21,7 @@ INSERT INTO `server_post`
 	) 
 </insert>
 
-<select id ="selectPostList" resultType ="com.juhyang.mbting.post.model.post">
+<select id ="selectPostList" resultType ="com.juhyang.mbting.post.model.Post">
 SELECT 
 	`id`,
 	`subject`,
@@ -36,7 +36,7 @@ FROM
 </select>
 
 
-<select id ="selectPost" resultType = "com.juhyang.mbting.post.model.post">
+<select id ="selectPost" resultType = "com.juhyang.mbting.post.model.Post">
 SELECT 
 	`id`,
 	`subject`,
@@ -51,7 +51,7 @@ WHERE
 	`id` = #{postId}
 </select>
 
-<select id ="selectQuestion" resultType = "com.juhyang.mbting.post.model.post">
+<select id ="selectQuestion" resultType = "com.juhyang.mbting.post.model.Post">
 SELECT 
 	`id`,
 	`subject`,

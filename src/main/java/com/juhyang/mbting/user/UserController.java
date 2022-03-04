@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.juhyang.mbting.post.bo.PostBO;
+import com.juhyang.mbting.post.model.PostForMyPage;
 import com.juhyang.mbting.user.bo.UserBO;
 import com.juhyang.mbting.user.model.UserCharacter;
 
@@ -23,6 +25,8 @@ public class UserController {
 	
 	@Autowired
 	UserBO userBO;
+	@Autowired
+	PostBO postBO;
 	
 	//view
 	@RequestMapping("/signin_view")
@@ -44,8 +48,11 @@ public class UserController {
 	}
 	
 	@RequestMapping("/mypage_view")
-	public String myPage_view() {
-
+	public String myPage_view(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		List<PostForMyPage> postlist = postBO.getPostListForMypage(userId);
+		model.addAttribute("postlist", postlist);
 		return "user/myPage";
 	}
 	

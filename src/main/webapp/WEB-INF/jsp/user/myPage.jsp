@@ -37,43 +37,32 @@
     	</div>
     </section>
    
-    <div class="col three bg nopad pointer">
-      <div class="imgholder"></div>
-      <h1 class="feature">Wow</h1>
-      <p>Wow wow</p>
-    </div>
-    <div class="col three bg nopad pointer">
-      <div class="imgholder"></div>
-      <h1 class="feature">Wow</h1>
-      <p>Wow wow wow</p>
-    </div>
-    <div class="col three bg nopad pointer">
-      <div class="imgholder"></div>
-      <h1 class="feature">Wow</h1>
-      <p>Wow wow wow</p>
-    </div>
-    <div class="group margin"></div>
-    <div class="col three bg nopad pointer">
-      <div class="imgholder"></div>
-      <h1 class="feature">Wow</h1>
-      <p>Wow wow</p>
-    </div>
-    <div class="col three bg nopad pointer">
-      <div class="imgholder"></div>
-      <h1 class="feature">Wow</h1>
-      <p>Wow wow wow</p>
-    </div>
     
-	<div class="col three bg nopad pointer">
-      <div class="imgholder"></div>
-      <h1 class="feature">Wow</h1>
-      <p>Wow wow wow</p>
-    </div> 
+    <c:forEach var="post" items="${postlist}">
+    	
+    	<c:if test="${not empty post.post.subject}">
+    		<div class="col three bg nopad pointer">
+		      <div class="imgholder d-flex align-items-center justify-content-center">
+		      <p class ="questionText">"${post.post.subject}"</p>
+		      </div>
+		      <h1 class="feature">${post.commentList}</h1>
+			   
+		    </div>  
+   		</c:if>  
+    </c:forEach>  
+    
+
     
     <div class="group"></div>
   </div>
 </div>
 
+<script>
+$(document).ready(function(){
 
+
+});
+
+</script>
 </body>
 </html>

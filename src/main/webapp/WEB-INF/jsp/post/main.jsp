@@ -104,16 +104,31 @@
 			
 		</c:choose>
 		<div class ="mt-5 row col-12">
+		
 			<!-- 댓글 -->
-			<c:forEach var="c" items="${commentList}">	
+			
+			
+			<c:forEach var="comment" items="${commentList}">	
 				<label class ="mb-3 col-3">
-					<h5>${c.user_name}</h5>
+					<h5>${comment.user_name}</h5>
 				</label>
 				<label class ="col-7">
-					<h5>${c.comment}</h5>
+					<h5>${comment.comment}</h5>
 				</label>
+
+					<!-- 아이디가 같을 경우 댓글 삭제 기능 추가 -->
+					<c:choose>
+						<c:when test="${userId eq comment.user_id}">
+							<a href ="#"   class ="ml-5 col-1 deleteCommentBtn"  data-comment-id ="${comment.id}">
+									<i class="bi bi-trash-fill"></i>
+							</a>   	
+						</c:when>
+					</c:choose>
+				
 			</c:forEach>
-	
+			
+			
+			<!-- 댓글 -->
 			
 			
 	
@@ -294,6 +309,28 @@ $(document).ready(function(){
 		
 	});
 	
+	$(".deleteCommentBtn").on("click", function(e){
+		
+		e.preventDefault();
+		let CommentId = $(this).data("comment-id");
+		$.ajax({
+			type:"get",
+			url:"/comment/deleteComment", 
+			data:{"CommentId":CommentId},
+			success:function(data) {
+				if(data.result=="success") {
+					alert("삭제 성공");
+					location.reload();
+				} else {
+					alert("삭제 실패");
+				}
+			},
+			error:function() {
+				alert("에러발생");
+			}
+			
+		}); // ajax end
+	});
 	
 	
 });

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.juhyang.mbting.comment.bo.CommentBO;
 import com.juhyang.mbting.post.bo.PostBO;
-import com.juhyang.mbting.post.model.post;
+import com.juhyang.mbting.post.model.Post;
 
 @Controller
 @RequestMapping("/post")
@@ -34,16 +34,16 @@ public class PostController {
 		String userName = (String)session.getAttribute("userName");	
 		String profile = (String)session.getAttribute("profile");
 		String mbti = (String)session.getAttribute("mbti");
-		post post;
+		Post post;
 		
 		LocalDate now = LocalDate.now();
         
-        List<post> questionList = postBO.getQuestionForMain(now);
+        List<Post> questionList = postBO.getQuestionForMain(now);
        
 
         try{ 
         	 Integer PostId = postBO.getPostId(now);
-        	 List<post> commentList = commentBO.getCommentForMain(PostId);
+        	 List<Post> commentList = commentBO.getCommentForMain(PostId);
         	 model.addAttribute("commentList", commentList);
         }
         catch(NullPointerException e) { 

@@ -7,7 +7,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.juhyang.mbting.post.model.post;
+import com.juhyang.mbting.post.model.Post;
+import com.juhyang.mbting.post.model.PostForMyPage;
 
 @Repository
 public interface PostDAO {
@@ -18,13 +19,14 @@ public interface PostDAO {
 			@Param("date") Date date, 
 			@Param("imagePath") String imagePath);
 
-	public List<post> selectPostList();
+	public List<Post> selectPostList();
 
-	public post selectPost(@Param("postId") int postId);
+	public Post selectPost(@Param("postId") int postId);
 
-	public List<post> selectQuestion(@Param("today") LocalDate now);
+	public List<Post> selectQuestion(@Param("today") LocalDate now);
 
 	public Integer selectPostId(@Param("today") LocalDate now);
+
 
 	
 }
