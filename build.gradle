@@ -12,6 +12,8 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+
+
 }
 
 repositories {
@@ -31,11 +33,18 @@ dependencies {
 	// 이메일
 	implementation 'org.springframework.boot:spring-boot-starter-mail' 
 
-	//lombok
-	implementation 'org.projectlombok:lombok:1.12.2'
+	//채팅
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	
+	implementation('org.projectlombok:lombok')
+	testImplementation('org.projectlombok:lombok')
+	annotationProcessor('org.projectlombok:lombok')
+	testAnnotationProcessor('org.projectlombok:lombok')
+	
+	//mongodb
+	implementation('org.springframework.boot:spring-boot-starter-data-mongodb')
+	
 
-	//json
-	implementation 'com.google.code.gson:gson:2.8.7'
 
 
 }

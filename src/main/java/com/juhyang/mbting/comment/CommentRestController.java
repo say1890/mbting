@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.juhyang.mbting.comment.bo.CommentBO;
-import com.juhyang.mbting.post.model.Post;
 
 @RestController
 @RequestMapping("/comment")

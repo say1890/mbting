@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -27,11 +26,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.juhyang.mbting.user.bo.UserBO;
 import com.juhyang.mbting.user.model.User;
 
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/user")
-@RequiredArgsConstructor
 public class UserRestController {
 	@Autowired
 	UserBO userBO;

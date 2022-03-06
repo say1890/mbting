@@ -8,7 +8,6 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.juhyang.mbting.post.model.Post;
-import com.juhyang.mbting.post.model.PostForMyPage;
 
 @Repository
 public interface PostDAO {
