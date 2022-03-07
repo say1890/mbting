@@ -26,6 +26,9 @@ public interface UserDAO {
 			@Param("loginId") String loginId,
 			@Param("password")String password);
 	
+	public User selectUserById(
+			@Param("userId") int userId
+		);
 	
 	public boolean IsDuplicate( @Param("loginId") String loginId);
 	
@@ -62,6 +65,11 @@ public interface UserDAO {
 	public List<String> selectCharacterContent();
 	public List<String> selectHobbyContent();
 	public List<String> selectAgeContent();
+	public List<UserCharacter> selectRecommendedUser(@Param("userId")int userId);
+	public List<UserCharacter> getMyInfo(int userId);
+	public List<UserCharacter> selectUsers( @Param("myage") int myage, @Param("chooseAge") String chooseAge, @Param("sex") String sex);
+	public int getMyage(@Param("userId") int userId);
+	public String getAge(@Param("userId") int userId);
 	
 
 	

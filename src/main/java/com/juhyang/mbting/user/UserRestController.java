@@ -76,6 +76,7 @@ public class UserRestController {
 			session.setAttribute("userName", user.getUserName());
 			session.setAttribute("birthday", user.getBirthday());
 			session.setAttribute("mbti", user.getMbti());
+			session.setAttribute("sex", user.getSex());
 			session.setAttribute("introduce", user.getIntroduce());
 			session.setAttribute("profile", user.getProfile());
 		} else {

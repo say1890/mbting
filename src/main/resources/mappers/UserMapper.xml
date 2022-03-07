@@ -27,6 +27,7 @@
 	)
 	</insert>
 	
+	<!-- 로그인 아이디, 비밀번호로 사용자 조회 -->
 	<select id="selectUser" parameterType="map" resultType="com.juhyang.mbting.user.model.User">
 		SELECT 
 			`id`
@@ -37,6 +38,7 @@
 			,`introduce`
 			, `createdAt`
 			, `updatedAt`
+			, `sex`
 		FROM
 			`user`
 		WHERE
@@ -44,6 +46,27 @@
 			AND `password` = #{password}
 	
 	</select>
+	<select id = "selectUserById" resultType="com.juhyang.mbting.user.model.User">
+	
+		SELECT 
+			`id`
+			, `loginId`
+			, `mbti`
+			, `userName`
+			, `email`
+			,`introduce`
+			, `createdAt`
+			, `updatedAt`
+			, `sex`
+		FROM
+			`user`
+		WHERE
+			`id` = #{userId} 
+	
+	</select>
+	
+	
+	
 	<select id = "IsDuplicate" parameterType = "String" resultType ="boolean">
 	SELECT count(1) FROM `user` where  `loginId` = #{loginId}; 
 	</select>
@@ -170,5 +193,49 @@
 	FROM
 		`age`
 	</select>
+	<select id ="selectUsers" resultType = "com.juhyang.mbting.user.model.UserCharacter">
+
+	SELECT DISTINCT
+		user.id,
+        user.sex,
+		user_character.myMerit,
+		user_character.myHobby,
+		user_character.myCharacter,
+		user_character.yourMerit,
+		user_character.yourHobby,
+		user_character.yourCharacter,
+		user_character.user_id,
+		user_character.age
+	FROM
+		`user_character`
+	INNER JOIN
+		`user`
+		
+	ON user.id = user_character.user_id
+    where sex != #{sex}
+    AND
+    year(current_date())-year(user.birthday)+1  ${chooseAge}  #{myage}	
+	</select>
+	
+	
+	<select id = "getMyage" resultType = "int">
+	SELECT 
+		year(current_date())-year(birthday)+1
+	FROM 
+		`user`
+	WHERE
+		`id` = #{userId}
+	</select>
+	
+	<select id = "getAge"  resultType="String">
+	SELECT		
+		`age`
+	FROM
+		`user_character`
+	WHERE
+		`user_id` =#{userId}	
+	</select>
+	
+	
 	
 </mapper>

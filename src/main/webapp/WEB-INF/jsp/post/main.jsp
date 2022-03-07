@@ -37,39 +37,7 @@
 
 <div class="section">
 <!-- 이성 추천란 -->
-  <div class="slider">
-    <div class="container slidercontent">
-      <h1 class="hero">오늘의 MBTING</h1>
-      <div class ="d-flex justify-content-center ">
-	      <div id="profile-box" class ="col-5 bg-white justify-content-center">
-	   
-	      		<div id = "mbti" class=" bg-white mt-3 text-center">
-	      			INTP
-	      		</div>
-	      		<!--  추천 상대 프로필 이미지 -->
-	      		<img id ="recommended-profile-image" 
-	      			 class="mt-3  mx-auto mt-4"
-	      			 src ="https://file.mk.co.kr/meet/neds/2021/07/image_readtop_2021_701158_16268346804724209.jpg">
-	      		<h4 id ="recommended-profile-name" class ="mt-1">멍멍이(24)</h4>
-	      		<div id="recommended-profile-introduce" class="mx-auto mt-4">
-	      		연상이 좋아요zzzzzzzzzzzzzzzz
-	      		흡연합니다.
-	      		</div>
-	      		<hr>
-	      		<div class ="d-flex justify-content-around">
-		      		<a href ="#">
-		      			<i class="bi bi-suit-heart-fill menu-icon text-danger"></i>
-		      		</a>
-		      		<a href ="#">
-		      			<i class="bi bi-trash-fill menu-icon text-dark"></i>
-		      		</a>
-		      		
-	      		</div>
-	      </div>
-      </div>
-     
-    </div>
-  </div>
+	<c:import url ="/WEB-INF/jsp/post/recommend.jsp" />
 </div>
 <div class="section mt-5" id = "QuestionForToday">
 

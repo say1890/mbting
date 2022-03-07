@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.juhyang.mbting.comment.bo.CommentBO;
 import com.juhyang.mbting.post.bo.PostBO;
 import com.juhyang.mbting.post.model.Post;
+import com.juhyang.mbting.user.bo.UserBO;
+import com.juhyang.mbting.user.model.UserCharacter;
+import com.juhyang.mbting.user.model.UserDetail;
 
 @Controller
 @RequestMapping("/post")
@@ -24,6 +27,8 @@ public class PostController {
 	PostBO postBO;
 	@Autowired
 	CommentBO commentBO;
+	@Autowired
+	UserBO userBO;
 	
 	@GetMapping("/main")
 	public String main_view(
@@ -34,10 +39,12 @@ public class PostController {
 		String userName = (String)session.getAttribute("userName");	
 		String profile = (String)session.getAttribute("profile");
 		String mbti = (String)session.getAttribute("mbti");
+		String sex = (String)session.getAttribute("sex");
 		Post post;
 		
+		
+		/* 오늘의 질문 받아오기 */
 		LocalDate now = LocalDate.now();
-        
         List<Post> questionList = postBO.getQuestionForMain(now);
        
 
@@ -56,6 +63,12 @@ public class PostController {
         model.addAttribute("questionList", questionList);
 		
 		
+        
+        /* 오늘의 추천 받아오기 */
+        List<UserDetail> userList = userBO.getRecommendedUser(userId,sex);
+        model.addAttribute("userList", userList);
+
+        
 		return "/post/main";
 	}
 	

@@ -10,9 +10,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.juhyang.mbting.common.EncryptUtils;
 import com.juhyang.mbting.common.FileManagerService;
+import com.juhyang.mbting.post.model.PostForMyPage;
 import com.juhyang.mbting.user.dao.UserDAO;
 import com.juhyang.mbting.user.model.User;
 import com.juhyang.mbting.user.model.UserCharacter;
+import com.juhyang.mbting.user.model.UserDetail;
 
 @Service
 public class UserBO {
@@ -219,6 +221,198 @@ public class UserBO {
 
 	public List<String> getageContent() {
 		return userDAO.selectAgeContent();
+	}
+
+	public List<UserDetail> getRecommendedUser(int userId, String sex) {
+		//나의 정보를 가져옴
+		List<UserCharacter> myInfo = userDAO.selectOptions(userId);
+
+		
+		// 내가 원하는 나이
+		String ageString = userDAO.getAge(userId);
+		String[] age = ageString.split(",");
+		
+
+		// 부등호 
+		String chooseAge = "";
+		
+		// 나의 나이
+		int myage = userDAO.getMyage(userId);
+		
+		for(String ageTitle: age) {
+			if(ageTitle.equals("동갑")) {
+				chooseAge = "=";
+			}
+			if(ageTitle.equals("연상")) {
+				chooseAge = ">";
+			}
+			if(ageTitle.equals("연하")) {
+				chooseAge = "<";
+			}
+		}
+		
+
+		
+		//	사용자가 원하는 나이의 user 정보를 가져옴
+		List<UserCharacter> yourInfo = userDAO.selectUsers(myage,chooseAge,sex);
+		
+		
+		
+		
+		// 최종 매칭될 user의 character list
+		List<UserDetail> MatchingList = new ArrayList<>();
+
+		
+
+		
+		for(UserCharacter your:yourInfo) {
+			int point = 0;
+			// 상대의 장점
+			String yourMeritString = your.getMyMerit();
+			String[] yourMerit = yourMeritString.split(",");
+			
+			// 상대의 취미
+			String yourHobbyString = your.getMyHobby();
+			String[] yourHobby = yourHobbyString.split(",");
+			
+			// 상대의 성격
+			String yourCharacterString = your.getMyCharacter();
+			String[] yourCharacter = yourCharacterString.split(",");
+			
+			
+			//상대가 바라는 당신의 장점
+			String yourIdealMeritString = your.getYourMerit();
+			String[] yourIdealMerit = yourIdealMeritString.split(",");
+			
+			//상대가 바라는 당신의 취미
+			String yourIdealHobbyString = your.getYourHobby();
+			String[] yourIdealHobby = yourIdealMeritString.split(",");
+			
+			
+			//상대가 바라는 당신의 성격
+			String yourIdealCharacterString = your.getYourCharacter();
+			String[] yourIdealCharacter = yourIdealCharacterString.split(",");
+			
+			
+			//상대가 원하는 나이
+			String yourIdealAge = userDAO.getAge(your.getUser_id());
+			
+			for(UserCharacter my:myInfo) {
+				// 나의 장점
+				String myMeritString = my.getMyMerit();
+				String[]  myMerit= myMeritString.split(",");
+				
+				// 나의 취미
+				String myHobbyString = my.getMyHobby();
+				String[] myHobby = myHobbyString.split(",");
+				
+				// 나의 성격
+				String myCharacterString = my.getMyCharacter();
+				String[] myCharacter= myCharacterString.split(",");
+				
+				
+				//이상형의 장점
+				String  myIdealMeritString = my.getYourMerit();
+				String[]  myIdealMerit= myIdealMeritString.split(",");
+				
+				// 이상형의 취미
+				String myIdealHobbyString = my.getYourHobby();
+				String[] myIdealHobby = myIdealHobbyString.split(",");
+				
+				// 이상형의 성격
+				String myIdealCharacterString = my.getMyCharacter();
+				String[] myIdealCharacter= myIdealCharacterString.split(",");
+				
+				
+				// 장점 비교 반복문 ( 상대 기준 )
+				for(int i=0;i<myMerit.length;i++) {
+					for(int j=0; j< yourIdealMerit.length;j++) {
+						// 만약 내 i번째 장점과 상대가 원하는 나의 j번째 장점이 일치한다면
+						if(myMerit[i].equals(yourIdealMerit[j])) {
+							point++;
+						}
+					}
+				}
+				
+				// 장점 비교 반복문 ( 사용자 기준 )
+				for(String i:myIdealMerit) {
+					
+					for(String j:yourMerit) {
+						// 만약 내 이상형의 장점과 상대의 장점이 일치할 경우
+						if(i.equals(j)) {
+							point++;
+						}
+					}
+				}
+				
+				
+				
+				// 취미 비교 반복문 ( 상대 기준 )
+				for(String i:myHobby) {
+					
+					for(String j:yourIdealHobby) {
+						// 만약 내 i번째 취미와 상대가 원하는 나의 j번째 취미가 일치한다면
+						if(i.equals(j)) {
+							point++;
+						}
+					}
+				}
+				
+				
+				// 취미 비교 반복문 ( 사용자 기준 )
+				for(String i:myIdealHobby) {
+					
+					for(String j:yourHobby) {
+						// 만약 내 이상형의 취미와 상대의 취미가 일치할 경우
+						if(i.equals(j)) {
+							point++;
+						}
+					}
+				}
+				
+				
+				
+				
+			 // 성격 비교 반복문
+				for(String i:myCharacter) {
+					
+					for(String j:yourIdealCharacter) {
+						// 만약 내 i번째 성격과 상대가 원하는 나의 j번째 성격이 일치한다면
+						if(i.equals(j)) {
+							point++;
+						}
+					}
+				}
+			// 성격 비교 반복문  ( 사용자 기준 )
+				for(String i:myIdealCharacter) {
+					
+					for(String j:yourCharacter) {
+						// 만약 내 i번째 성격과 상대가 원하는 나의 j번째 성격이 일치한다면
+						if(i.equals(j)) {
+							point++;
+						}
+					}
+				}		
+				
+		 
+			if(point>=4) {
+			UserDetail userDetail = new UserDetail();
+			userDetail.setUserCharacter(your);
+			User user = userDAO.selectUserById(your.getUser_id());
+			int ageForProfile = userDAO.getMyage(your.getUser_id());
+			user.setAgeForProfile(ageForProfile);
+			userDetail.setUser(user);
+			userDetail.setPoint(point);
+			MatchingList.add(userDetail);
+			}
+				
+				
+			}
+		}
+		
+		
+		return MatchingList;
+
 	}
 
 

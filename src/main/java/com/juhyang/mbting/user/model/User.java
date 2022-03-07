@@ -15,6 +15,15 @@ public class User {
 	private String profile;
 	private Date createdAt;
 	private Date updatedAt;
+	private int ageForProfile;
+	
+	
+	public int getAgeForProfile() {
+		return ageForProfile;
+	}
+	public void setAgeForProfile(int ageForProfile) {
+		this.ageForProfile = ageForProfile;
+	}
 	public int getId() {
 		return id;
 	}
