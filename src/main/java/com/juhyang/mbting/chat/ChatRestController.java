@@ -18,7 +18,7 @@ import reactor.core.scheduler.Schedulers;
 @RestController
 public class ChatRestController {
 
-	private final ChatRepository chatRepository;
+	private final ChatRepository chatRepository = null;
 	@GetMapping(value = "/sender/{sender}/receiver/{receiver}", produces = MediaType.TEXT_EVENT_STREAM_VALUE) // 데이터가 생길때마다 계속해서 데이터를 보내줄 수 있음
 	public Flux<Chat> getMsg(@PathVariable String sender, @PathVariable String receiver) {
 		return chatRepository.mFindBySender(sender, receiver)
