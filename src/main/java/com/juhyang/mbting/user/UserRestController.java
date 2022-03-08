@@ -17,12 +17,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.juhyang.mbting.like.bo.LikeBO;
 import com.juhyang.mbting.user.bo.UserBO;
 import com.juhyang.mbting.user.model.User;
 
@@ -35,7 +37,8 @@ public class UserRestController {
 	User user;
 	@Autowired
 	JavaMailSender mailSender;
-
+	@Autowired
+	LikeBO likeBO;
 	
 	// 회원가입
 	@RequestMapping("/signup")
@@ -166,6 +169,27 @@ public class UserRestController {
 		int userId = (Integer)session.getAttribute("userId");
 		userBO.editBasicInfo(userId,userName,introduce,mbti,file);
 		return userBO.editMatchingProfile(userId,myMeritArr,myHobbyArr,myCharacterArr, yourMeritArr, yourHobbyArr,yourCharacterArr,ageArr);
+		
+	}
+	
+	
+	
+	@GetMapping("/like")
+	public Map<String,String> SendLike(
+			@RequestParam("receiver") int receiver,
+			HttpServletRequest request
+			) {
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		int num = likeBO.sendLike(userId,receiver);
+		Map<String,String> result = new HashMap<>();
+		if(num==1) {
+			result.put("result", "success");
+		}
+		else {
+			result.put("result", "fail");
+		}
+		return result;
 		
 	}
 	

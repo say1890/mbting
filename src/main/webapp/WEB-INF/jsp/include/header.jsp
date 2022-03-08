@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,7 @@
 
 <!-- css -->
  	<link href="/static/css/main.css" rel="stylesheet">
+ 	<link href = "/static/css/badge.css" rel="stylesheet">
 <!--  부트스트랩 아이콘 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 	 
@@ -29,10 +31,19 @@
       <ul class="nav" id ="main-menu">
         <li>
          <!-- 좋아요 -->
-	        <a href="#">
-	        	<i class="bi bi-suit-heart menu-icon"></i>
-	        	<!-- <i class="bi bi-suit-heart-fill"></i> -->
-	        </a>
+	        
+	       <c:choose>
+		        <c:when test = "${countLike!=0}">
+		        <!-- 알람이 왔을때만 -->
+		        		 <a href="#"><i class="bi bi-suit-heart-fill menu-icon text-danger"><i class ="h4">${countLike}</i></i></a>
+		        </c:when>
+		        <c:otherwise>
+					<!-- 평상시 -->
+		        	<a href = "#"><i class="bi bi-suit-heart menu-icon"></i></a>
+		        </c:otherwise>
+	        </c:choose>
+			
+	       
         </li>
         
          <!-- 홈 화면 -->
@@ -73,5 +84,6 @@
 
 
 <script type="module" src ="/static/js/header.js"></script>
+
 </body>
 </html>

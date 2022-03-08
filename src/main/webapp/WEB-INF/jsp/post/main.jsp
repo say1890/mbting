@@ -37,7 +37,11 @@
 
 <div class="section">
 <!-- 이성 추천란 -->
-	<c:import url ="/WEB-INF/jsp/post/recommend.jsp" />
+		
+			<c:import url ="/WEB-INF/jsp/post/recommend.jsp" />
+
+
+	
 </div>
 <div class="section mt-5" id = "QuestionForToday">
 

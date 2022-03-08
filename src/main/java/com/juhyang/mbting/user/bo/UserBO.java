@@ -231,6 +231,9 @@ public class UserBO {
 		
 		// 내가 원하는 나이
 		String ageString = userDAO.getAge(userId);
+		if(ageString==null) {
+			ageString = "=";
+		}
 		String[] age = ageString.split(",");
 		
 
@@ -244,12 +247,16 @@ public class UserBO {
 			if(ageTitle.equals("동갑")) {
 				chooseAge = "=";
 			}
-			if(ageTitle.equals("연상")) {
+			else if(ageTitle.equals("연상")) {
 				chooseAge = ">";
 			}
-			if(ageTitle.equals("연하")) {
+			else if(ageTitle.equals("연하")) {
 				chooseAge = "<";
 			}
+			else {
+				chooseAge = "=";
+			}
+			
 		}
 		
 

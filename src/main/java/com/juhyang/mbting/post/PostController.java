@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.juhyang.mbting.comment.bo.CommentBO;
+import com.juhyang.mbting.like.bo.LikeBO;
 import com.juhyang.mbting.post.bo.PostBO;
 import com.juhyang.mbting.post.model.Post;
 import com.juhyang.mbting.user.bo.UserBO;
+import com.juhyang.mbting.user.dao.UserDAO;
 import com.juhyang.mbting.user.model.UserCharacter;
 import com.juhyang.mbting.user.model.UserDetail;
 
@@ -29,6 +31,11 @@ public class PostController {
 	CommentBO commentBO;
 	@Autowired
 	UserBO userBO;
+	@Autowired
+	UserDAO userDAO;
+	@Autowired
+	LikeBO likeBO;
+	
 	
 	@GetMapping("/main")
 	public String main_view(
@@ -65,9 +72,15 @@ public class PostController {
 		
         
         /* 오늘의 추천 받아오기 */
-        List<UserDetail> userList = userBO.getRecommendedUser(userId,sex);
-        model.addAttribute("userList", userList);
+        // 사용자가 사용자 정보를 다 입력했을 경우 추천을 받아온다.
 
+        	List<UserDetail> userList = userBO.getRecommendedUser(userId,sex);
+            model.addAttribute("userList", userList);
+
+            /* 날 좋아하는 사람의 정보 가져오기 */
+            int countLike = likeBO.countSender(userId); // 나를 좋아하는 사람의 수 
+            model.addAttribute("countLike",countLike);
+        
         
 		return "/post/main";
 	}

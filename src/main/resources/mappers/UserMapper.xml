@@ -194,7 +194,6 @@
 		`age`
 	</select>
 	<select id ="selectUsers" resultType = "com.juhyang.mbting.user.model.UserCharacter">
-
 	SELECT DISTINCT
 		user.id,
         user.sex,
@@ -214,7 +213,7 @@
 	ON user.id = user_character.user_id
     where sex != #{sex}
     AND
-    year(current_date())-year(user.birthday)+1  ${chooseAge}  #{myage}	
+    year(current_date())-year(user.birthday)+1  ${chooseAge}  ${myage}	
 	</select>
 	
 	
