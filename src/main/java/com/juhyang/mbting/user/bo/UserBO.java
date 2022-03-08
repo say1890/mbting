@@ -3,6 +3,7 @@ package com.juhyang.mbting.user.bo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -262,7 +263,7 @@ public class UserBO {
 		// 최종 매칭될 user의 character list
 		List<UserDetail> MatchingList = new ArrayList<>();
 
-		
+		UserDetail userDetail = new UserDetail();
 
 		
 		for(UserCharacter your:yourInfo) {
@@ -278,6 +279,8 @@ public class UserBO {
 			// 상대의 성격
 			String yourCharacterString = your.getMyCharacter();
 			String[] yourCharacter = yourCharacterString.split(",");
+
+			
 			
 			
 			//상대가 바라는 당신의 장점
@@ -341,6 +344,7 @@ public class UserBO {
 						// 만약 내 이상형의 장점과 상대의 장점이 일치할 경우
 						if(i.equals(j)) {
 							point++;
+							userDetail.setMerit(j);
 						}
 					}
 				}
@@ -366,6 +370,7 @@ public class UserBO {
 						// 만약 내 이상형의 취미와 상대의 취미가 일치할 경우
 						if(i.equals(j)) {
 							point++;
+							userDetail.setHobby(j);
 						}
 					}
 				}
@@ -380,6 +385,7 @@ public class UserBO {
 						// 만약 내 i번째 성격과 상대가 원하는 나의 j번째 성격이 일치한다면
 						if(i.equals(j)) {
 							point++;
+							userDetail.setCharacter(j);
 						}
 					}
 				}
@@ -395,8 +401,8 @@ public class UserBO {
 				}		
 				
 		 
-			if(point>=4) {
-			UserDetail userDetail = new UserDetail();
+			if(point>=6) {
+			
 			userDetail.setUserCharacter(your);
 			User user = userDAO.selectUserById(your.getUser_id());
 			int ageForProfile = userDAO.getMyage(your.getUser_id());

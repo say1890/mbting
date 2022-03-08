@@ -9,6 +9,30 @@ public class UserDetail {
 	private int point;
 	private boolean isLike;
 	private boolean isHate;
+	private String character;
+	private String merit;
+	private String hobby;
+	
+
+
+	public String getHobby() {
+		return hobby;
+	}
+	public void setHobby(String hobby) {
+		this.hobby = hobby;
+	}
+	public String getCharacter() {
+		return character;
+	}
+	public void setCharacter(String character) {
+		this.character = character;
+	}
+	public String getMerit() {
+		return merit;
+	}
+	public void setMerit(String merit) {
+		this.merit = merit;
+	}
 	public User getUser() {
 		return user;
 	}
