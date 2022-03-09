@@ -39,16 +39,14 @@
 	WHERE
 		`id` = #{commentId}
 	</delete>
-	<select id ="selectCommentListForMypage" resultType = "String">
+	<select id ="selectCommentListForMypage" resultType = "com.juhyang.mbting.comment.model.Server_Comment">
 	SELECT
-		`comment`
+		`comment`,`server_postId`
 	FROM
 		`server_comment`
 	WHERE
-		`server_postId`=#{postId}
-	AND 
+
 		`user_id` = #{userId}
-	LIMIT 1;
 	</select>
 	<select id ="selectPostId" resultType = "int">
 	SELECT

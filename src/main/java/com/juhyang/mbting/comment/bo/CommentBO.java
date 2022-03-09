@@ -28,8 +28,8 @@ public class CommentBO {
 		return commentDAO.selectCommentedPost(userId);
 	}
 	
-	public List<Server_Comment> getCommentListForMyPage(int postId, int userId ) {
-		return commentDAO.selectCommentListForMypage(postId, userId);
+	public List<Server_Comment> getCommentListForMyPage(int userId ) {
+		return commentDAO.selectCommentListForMypage(userId);
 	}
 	public List<Integer> getPostId(int userId) {
 		return commentDAO.selectPostId(userId);

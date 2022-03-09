@@ -49,29 +49,30 @@ public class PostBO {
 
 	public List<PostForMyPage> getPostListForMypage(int userId) {
 
-		List<Post> postList = postDAO.selectPostList(); //post를 전부 선택
+
 		List<PostForMyPage> postForMyPage = new ArrayList<>();
-		for(Post post:postList) {
+
 			
-			// 해당하는 post id로 댓글 가져오기 
-			List<Server_Comment> commentList = commentBO.getCommentListForMyPage(post.getId(), userId);
-			List<Integer> postId = commentBO.getPostId(userId);
 			PostForMyPage postDetail = new PostForMyPage();
-			for(int p:postId) {
-				if(p==post.getId()) {
-					postDetail.setPost(post);
-				}
 			
+			// 해당하는 user id로 댓글 가져오기 
+			List<Server_Comment> commentList = commentBO.getCommentListForMyPage(userId);
+			for(Server_Comment Comment:commentList) {
+				String comment = String.valueOf(Comment.getComment());
+				int postId = Comment.getServer_postId(); 
+				Post post = postDAO.selectPost(postId);
+				String subject = post.getSubject();
+				
+				postDetail.setComment(comment);
+				postDetail.setPostId(postId);
+				postDetail.setSubject(subject);
 			}
 			
+			
+
+			
+		postForMyPage.add(postDetail);
 	
-			
-			postDetail.setCommentList(commentList);
-		
-			
-			postForMyPage.add(postDetail);
-		}
-		
 		
 		return postForMyPage;
 	};

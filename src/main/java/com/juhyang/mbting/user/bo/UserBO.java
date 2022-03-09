@@ -270,38 +270,75 @@ public class UserBO {
 		// 최종 매칭될 user의 character list
 		List<UserDetail> MatchingList = new ArrayList<>();
 
-		UserDetail userDetail = new UserDetail();
+		
 
 		
 		for(UserCharacter your:yourInfo) {
+			UserDetail userDetail = new UserDetail();
 			int point = 0;
 			// 상대의 장점
 			String yourMeritString = your.getMyMerit();
-			String[] yourMerit = yourMeritString.split(",");
+			String[] yourMerit = null;
+			if(yourMeritString==null) {
+				yourMeritString ="기본값,";	
+			}
+			yourMerit = yourMeritString.split(",");
+			
+			
 			
 			// 상대의 취미
 			String yourHobbyString = your.getMyHobby();
-			String[] yourHobby = yourHobbyString.split(",");
+			String[] yourHobby = null;
+			if(yourHobbyString==null) {
+				yourHobbyString ="기본값,";
+			}
+				yourHobby= yourHobbyString.split(",");
+			
+			
 			
 			// 상대의 성격
 			String yourCharacterString = your.getMyCharacter();
-			String[] yourCharacter = yourCharacterString.split(",");
-
+			String[] yourCharacter = null;
+			if(yourCharacterString==null) {
+				yourCharacterString ="기본값,";
+			}
+			 yourCharacter = yourCharacterString.split(",");
+				
+			
 			
 			
 			
 			//상대가 바라는 당신의 장점
 			String yourIdealMeritString = your.getYourMerit();
-			String[] yourIdealMerit = yourIdealMeritString.split(",");
+			String[] yourIdealMerit =null;
+			if(yourIdealMeritString==null) {
+				yourIdealMeritString ="기본값,";
+			}
+			 yourIdealMerit  = yourIdealMeritString.split(",");
+			
+			
 			
 			//상대가 바라는 당신의 취미
 			String yourIdealHobbyString = your.getYourHobby();
-			String[] yourIdealHobby = yourIdealMeritString.split(",");
+			String[] yourIdealHobby= null;
+			if(yourIdealHobbyString==null) {
+				yourIdealHobbyString ="기본값,";
+			}
+				yourIdealHobby= yourIdealHobbyString.split(",");
+			
+			
 			
 			
 			//상대가 바라는 당신의 성격
 			String yourIdealCharacterString = your.getYourCharacter();
-			String[] yourIdealCharacter = yourIdealCharacterString.split(",");
+			String[] yourIdealCharacter = null;
+			if(yourIdealCharacterString==null) {
+				yourIdealCharacterString ="기본값,";
+			}
+				yourIdealCharacter = yourIdealCharacterString.split(",");
+			
+			
+			
 			
 			
 			//상대가 원하는 나이
@@ -310,28 +347,74 @@ public class UserBO {
 			for(UserCharacter my:myInfo) {
 				// 나의 장점
 				String myMeritString = my.getMyMerit();
-				String[]  myMerit= myMeritString.split(",");
+				String[]  myMerit= null;
+				if(myMeritString==null) {
+					myMeritString = "기본값,";
+				}
+			
+					myMerit= myMeritString.split(",");
+			
 				
 				// 나의 취미
 				String myHobbyString = my.getMyHobby();
-				String[] myHobby = myHobbyString.split(",");
+				String[] myHobby = null;
+				if(myHobbyString==null) {
+					myHobbyString = "기본값,";
+				}
+	
+					 myHobby = myHobbyString.split(",");
+	
+				
 				
 				// 나의 성격
 				String myCharacterString = my.getMyCharacter();
-				String[] myCharacter= myCharacterString.split(",");
+				String[] myCharacter = null;
+				if(myCharacterString==null) {
+					myCharacterString = "기본값,";
+				}
+		
+					myCharacter = myCharacterString.split(",");
+			
+				
 				
 				
 				//이상형의 장점
 				String  myIdealMeritString = my.getYourMerit();
-				String[]  myIdealMerit= myIdealMeritString.split(",");
+				String[] myIdealMerit = null;
+				if(myIdealMeritString==null) {
+					myIdealMeritString = "기본값,";
+				}
+		
+					myIdealMerit = myIdealMeritString.split(",");
+		
+				
+				
 				
 				// 이상형의 취미
 				String myIdealHobbyString = my.getYourHobby();
-				String[] myIdealHobby = myIdealHobbyString.split(",");
+				String[] myIdealHobby = null;
+				if(myIdealHobbyString==null) {
+					myIdealHobbyString = "기본값,";
+				}
+	
+					myIdealHobby = myIdealHobbyString.split(",");
+		
+				
+				
+			
 				
 				// 이상형의 성격
 				String myIdealCharacterString = my.getMyCharacter();
-				String[] myIdealCharacter= myIdealCharacterString.split(",");
+				String[] myIdealCharacter = null;
+				if(myIdealCharacterString==null) {
+					myIdealCharacterString = "기본값,";
+				}
+
+					myIdealCharacter = myIdealCharacterString.split(",");
+				
+				
+				
+			
 				
 				
 				// 장점 비교 반복문 ( 상대 기준 )
@@ -418,7 +501,7 @@ public class UserBO {
 			userDetail.setPoint(point);
 			MatchingList.add(userDetail);
 			}
-				
+		
 				
 			}
 		}

@@ -40,12 +40,12 @@
     
     <c:forEach var="post" items="${postlist}">
     	
-    	<c:if test="${not empty post.post.subject}">
+    	<c:if test="${not empty post.subject}">
     		<div class="col three bg nopad pointer">
 		      <div class="imgholder d-flex align-items-center justify-content-center">
-		      <p class ="questionText">"${post.post.subject}"</p>
+		      <p class ="questionText">"${post.subject}"</p>
 		      </div>
-		      <h1 class="feature">${post.commentList}</h1>
+		      <h1 class="feature">${post.comment}</h1>
 			   
 		    </div>  
    		</c:if>  

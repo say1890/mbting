@@ -24,7 +24,7 @@ public interface CommentDAO {
 	public int deleteComment(@Param("commentId")int commentId);
 
 
-	public List<Server_Comment> selectCommentListForMypage(@Param("postId") int id, @Param("userId")int userId);
+	public List<Server_Comment> selectCommentListForMypage(@Param("userId") int id);
 
 	public List<Server_Comment> selectCommentedPost( @Param("userId") int userId);
 

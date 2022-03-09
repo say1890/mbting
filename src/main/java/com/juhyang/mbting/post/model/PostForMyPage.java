@@ -1,24 +1,31 @@
 package com.juhyang.mbting.post.model;
 
-import java.util.List;
 
-import com.juhyang.mbting.comment.model.Server_Comment;
 
 public class PostForMyPage {
-private Post post;
-private List<Server_Comment> commentList;
-public Post getPost() {
-	return post;
+private String comment;
+private String subject;
+private int postId;
+public String getComment() {
+	return comment;
 }
-public void setPost(Post post) {
-	this.post = post;
+public void setComment(String comment) {
+	this.comment = comment;
 }
-public List<Server_Comment> getCommentList() {
-	return commentList;
+public String getSubject() {
+	return subject;
 }
-public void setCommentList(List<Server_Comment> commentList) {
-	this.commentList = commentList;
+public void setSubject(String subject) {
+	this.subject = subject;
 }
+public int getPostId() {
+	return postId;
+}
+public void setPostId(int postId) {
+	this.postId = postId;
+}
+
+
 
 
 

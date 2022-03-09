@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.juhyang.mbting.like.bo.LikeBO;
 import com.juhyang.mbting.post.bo.PostBO;
 import com.juhyang.mbting.post.model.PostForMyPage;
 import com.juhyang.mbting.user.bo.UserBO;
@@ -25,6 +26,10 @@ public class UserController {
 	
 	@Autowired
 	UserBO userBO;
+	
+	@Autowired
+	LikeBO likeBO;
+	
 	@Autowired
 	PostBO postBO;
 	
@@ -53,6 +58,11 @@ public class UserController {
 		int userId = (Integer)session.getAttribute("userId");
 		List<PostForMyPage> postlist = postBO.getPostListForMypage(userId);
 		model.addAttribute("postlist", postlist);
+		
+		
+        int countLike = likeBO.countSender(userId); // 나를 좋아하는 사람의 수 
+        model.addAttribute("countLike",countLike);
+		
 		return "user/myPage";
 	}
 	
