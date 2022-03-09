@@ -168,6 +168,7 @@ public class UserRestController {
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
 		userBO.editBasicInfo(userId,userName,introduce,mbti,file);
+		session.setAttribute("profile", user.getProfile());
 		return userBO.editMatchingProfile(userId,myMeritArr,myHobbyArr,myCharacterArr, yourMeritArr, yourHobbyArr,yourCharacterArr,ageArr);
 		
 	}

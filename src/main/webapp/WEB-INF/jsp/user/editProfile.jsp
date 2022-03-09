@@ -18,8 +18,8 @@
 
 <!-- css -->
 
- 	<link href="/static/css/btn.css" rel="stylesheet">
- 	
+<link href="/static/css/btn.css" rel="stylesheet"> 	
+<link href="/static/css/smallImg.css" rel="stylesheet"> 	
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 	
 	
@@ -33,7 +33,8 @@
     	<a href ="#" id = "profileUpdateBtn">
     	<c:choose>
     		<c:when test = "${empty profile}">
-    			<i class="bi bi-person-circle myprofile-icon"></i>
+    			<i class="bi bi-person-circle myprofile-icon" id = "basicIcon"></i>
+    			<img src = "#" id="smallProfile" class ="d-none rounded-circle img-responsive">
     		</c:when>
     		<c:otherwise>
     			<img src = "${profile}">
@@ -261,8 +262,29 @@ $(document).ready(function(){
 	
 	$("#profileUpdateBtn").on("click",function(){
 		$("#fileInput").click();
-		
+
 	})
+	
+	
+	
+	 $("#fileInput").on("change", function() {
+        	setImageFromFile(this, '#smallProfile');
+ 			$("#smallProfile").removeClass("d-none");
+ 			$("#basicIcon").addClass("d-none");
+		});
+         
+        function setImageFromFile(input, expression) {
+        	    if (input.files && input.files[0]) {
+        	        var reader = new FileReader();
+        	        reader.onload = function (e) {
+        	            $(expression).attr('src', e.target.result);
+        	        }
+        	        reader.readAsDataURL(input.files[0]);
+        	    }
+        }
+	
+	
+	
 	
 	
 	

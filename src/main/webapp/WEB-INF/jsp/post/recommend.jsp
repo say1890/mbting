@@ -73,8 +73,8 @@
 
 		      	</div> <!--  slider wrapper 끝 -->
 		     
-		      <div class="swiper-button-prev"></div>
- 			  <div class="swiper-button-next"></div>
+		      <div class="swiper-button-prev mb-5"></div>
+ 			  <div class="swiper-button-next mb-5"></div>
 			      	
 		    
 			      	</div> <!-- swiper 끝 -->
@@ -125,7 +125,6 @@
 				}
 				
 			});
-
 		  
 	  });
 	  

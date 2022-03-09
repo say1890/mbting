@@ -22,7 +22,7 @@ public class UserBO {
 
 	@Autowired
 	UserDAO userDAO;
-
+	//사용자 추가
 	public void addUser(String loginId,
 			String password,
 			String userName,			
@@ -34,11 +34,11 @@ public class UserBO {
 		String encPw = EncryptUtils.md5(password);
 		userDAO.InsertUser(loginId, encPw, userName, birthday, sex, mbti, email);
 	}
-
+	//사용자 로그인 과정
 	public User getUser(String loginId,String password) {
 		return userDAO.selectUser(loginId,  EncryptUtils.md5(password));
 	}
-	
+	//로그인 아이디 중복 체크
 	public boolean CountUser(String loginId) {
 		return userDAO.IsDuplicate(loginId);
 	}
@@ -51,11 +51,12 @@ public class UserBO {
 		return userDAO.selectUserByEmail(email);
 		
 	}
+	//비밀번호 설정
 	public int setPassword(String loginId, String password) {
 		String encPw = EncryptUtils.md5(password);
 		return userDAO.updatePassword(loginId, encPw);
 	}
-
+	// 매칭 프로필 변경
 	public int editMatchingProfile(int userId, List<String> myMeritArr,
 			List<String> myHobbyArr, List<String> myCharacterArr, List<String> yourMeritArr, List<String> yourHobbyArr,
 			List<String> yourCharacterArr, List<String> ageArr) {

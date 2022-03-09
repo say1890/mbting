@@ -74,7 +74,7 @@ public class UserController {
 		String mbti = (String)session.getAttribute("mbti");
 		String introduce = (String)session.getAttribute("introduce");
 		int userId = (Integer)session.getAttribute("userId");
-		
+		String profile = (String)session.getAttribute("profile");
 		//장점
 		List<String> merit = userBO.getmeritContent();
 		model.addAttribute("merit", merit);
