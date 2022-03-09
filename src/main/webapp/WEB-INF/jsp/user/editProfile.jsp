@@ -37,7 +37,7 @@
     			<img src = "#" id="smallProfile" class ="d-none rounded-circle img-responsive">
     		</c:when>
     		<c:otherwise>
-    			<img src = "${profile}">
+    			<img src = "${profile}" id="smallProfile" class =" rounded-circle img-responsive">
     		</c:otherwise>
     	</c:choose>
     	</a>

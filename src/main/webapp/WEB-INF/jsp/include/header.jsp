@@ -15,7 +15,6 @@
 
 <!-- css -->
  	<link href="/static/css/main.css" rel="stylesheet">
- 	<link href = "/static/css/badge.css" rel="stylesheet">
 <!--  부트스트랩 아이콘 -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 	 

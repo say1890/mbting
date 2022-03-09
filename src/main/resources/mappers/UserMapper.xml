@@ -39,6 +39,7 @@
 			, `createdAt`
 			, `updatedAt`
 			, `sex`
+			,`profile`
 		FROM
 			`user`
 		WHERE

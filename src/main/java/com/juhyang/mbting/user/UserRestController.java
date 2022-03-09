@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.juhyang.mbting.like.bo.LikeBO;
 import com.juhyang.mbting.user.bo.UserBO;
+import com.juhyang.mbting.user.dao.UserDAO;
 import com.juhyang.mbting.user.model.User;
 
 
@@ -39,7 +40,8 @@ public class UserRestController {
 	JavaMailSender mailSender;
 	@Autowired
 	LikeBO likeBO;
-	
+	@Autowired
+	UserDAO userDAO;
 	// 회원가입
 	@RequestMapping("/signup")
 	public Map<String,String> signUp(@RequestParam("loginId") String loginId, 
@@ -168,6 +170,7 @@ public class UserRestController {
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
 		userBO.editBasicInfo(userId,userName,introduce,mbti,file);
+		User user = userDAO.selectUserById(userId);
 		session.setAttribute("profile", user.getProfile());
 		return userBO.editMatchingProfile(userId,myMeritArr,myHobbyArr,myCharacterArr, yourMeritArr, yourHobbyArr,yourCharacterArr,ageArr);
 		
