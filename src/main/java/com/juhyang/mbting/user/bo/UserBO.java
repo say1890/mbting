@@ -3,7 +3,6 @@ package com.juhyang.mbting.user.bo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.juhyang.mbting.common.EncryptUtils;
 import com.juhyang.mbting.common.FileManagerService;
-import com.juhyang.mbting.post.model.PostForMyPage;
+import com.juhyang.mbting.like.bo.LikeBO;
 import com.juhyang.mbting.user.dao.UserDAO;
 import com.juhyang.mbting.user.model.User;
 import com.juhyang.mbting.user.model.UserCharacter;
@@ -22,6 +21,8 @@ public class UserBO {
 
 	@Autowired
 	UserDAO userDAO;
+	@Autowired
+	LikeBO likeBO;
 	//사용자 추가
 	public void addUser(String loginId,
 			String password,
@@ -191,7 +192,7 @@ public class UserBO {
 				yourMerit, yourHobby,yourCharacter,age);
 
 	}
-
+	// 기본 프로필 변경
 	public int editBasicInfo(int userId, String userName, String introduce, String mbti, MultipartFile file) {
 		String filePath = FileManagerService.saveFile(userId, file);
 		
@@ -500,6 +501,8 @@ public class UserBO {
 			user.setAgeForProfile(ageForProfile);
 			userDetail.setUser(user);
 			userDetail.setPoint(point);
+			boolean isLike = likeBO.isLike(userId, your.getUser_id());
+			userDetail.setLike(isLike);
 			MatchingList.add(userDetail);
 			}
 		

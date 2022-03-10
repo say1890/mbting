@@ -23,5 +23,16 @@ WHERE
 `receiver` = #{userId}
 </select>
 
+<select id ="selectLikeCountByUserId"  parameterType="map"  resultType ="int">
+SELECT COUNT(*)
+FROM
+`like`
+WHERE
+`receiver` = #{receiver}
+AND
+`sender` = #{userId}
+</select>
+
+
 
 </mapper>

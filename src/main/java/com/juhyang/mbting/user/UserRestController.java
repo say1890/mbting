@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -179,20 +180,17 @@ public class UserRestController {
 	
 	
 	@GetMapping("/like")
-	public Map<String,String> SendLike(
+	public Map<String, Boolean> SendLike(
 			@RequestParam("receiver") int receiver,
-			HttpServletRequest request
+			HttpServletRequest request,
+			Model model
 			) {
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
-		int num = likeBO.sendLike(userId,receiver);
-		Map<String,String> result = new HashMap<>();
-		if(num==1) {
-			result.put("result", "success");
-		}
-		else {
-			result.put("result", "fail");
-		}
+		boolean isLike = likeBO.sendLike(userId,receiver);
+		
+		Map<String, Boolean> result = new HashMap<>();
+		result.put("isLike", isLike);
 		return result;
 		
 	}

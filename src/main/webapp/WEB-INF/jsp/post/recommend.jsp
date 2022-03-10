@@ -32,15 +32,23 @@
 						      			${user.user.mbti}
 						      		</div>
 						      		<!--  추천 상대 프로필 이미지 -->
-						      		<img id ="recommended-profile-image" 
-						      			 class="mt-3  mx-auto mt-4"
-						      			 src ="https://file.mk.co.kr/meet/neds/2021/07/image_readtop_2021_701158_16268346804724209.jpg">
+						      		<c:choose>
+							      		<c:when test = "${not empty user.user.profile}">
+							      			<img id ="recommended-profile-image"  class="mt-3  mx-auto mt-4" src ="${user.user.profile}">
+							      		</c:when>
+							      		<c:otherwise>
+							      			<img id ="recommended-profile-image"  class="mt-3  mx-auto mt-4" src ="/static/image/noprofile.png">
+							      		</c:otherwise>
+	
+						      		</c:choose>
+						      		<!--  추천 상대 프로필 이미지 끝 -->
 						      		<h4 id ="recommended-profile-name" class ="mt-1">${user.user.userName}(${user.user.ageForProfile})</h4>
 						      		<div id="recommended-profile-introduce" class="mx-auto mt-4 mb-5">
 						      			<p class = "recommended-profile-introduce-font">
 							      			
 							      			<c:if test="${not empty user.merit}">
-							      			#${user.merit}  
+							      			#${user.merit}
+							      			
 							      			</c:if>
 							      			<c:if test="${not empty user.character}">
 							      			#${user.character}  
@@ -58,9 +66,22 @@
 						      		<hr class ="mt-5">
 						      		<div class ="d-flex justify-content-around">
 						      			<!-- 좋아요 -->
-							      		<a href ="#">
-							      			<i class="bi bi-suit-heart-fill menu-icon text-danger likeBtn" data-your-id="${user.user.id}"></i>
-							      		</a>
+						      			
+						      			<c:choose>
+						      			
+							      			<c:when test="${user.like}">
+									      		<a href ="#">
+									      			<i class="bi bi-suit-heart-fill menu-icon text-danger likedBtn" data-your-id="${user.user.id}"></i>
+									      		</a>
+								      		</c:when>
+								      		<c:otherwise>
+									      		<a href ="#">
+									      			<i class="bi bi-suit-heart menu-icon text-danger likeBtn" data-your-id="${user.user.id}"></i>
+									      		</a>
+								      		</c:otherwise>
+								      		
+							      		</c:choose>
+							      		<!-- 좋아요  끝-->
 							      		<a href ="#">
 							      			<i class="bi bi-trash-fill menu-icon text-dark "></i>
 							      		</a>
@@ -112,12 +133,8 @@
 				url:"/user/like",
 				data:{"receiver":matchedPersonId},
 				success:function(data) {
-					
-					if(data.result == "success") {
-						alert("좋아요 성공");
 						location.reload();
-					} else {
-						alert("좋아요 실패");
+						alert("좋아요 성공");
 					}
 					
 				}, error:function() {
