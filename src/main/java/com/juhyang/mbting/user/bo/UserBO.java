@@ -514,6 +514,37 @@ public class UserBO {
 		return MatchingList;
 
 	}
+	public UserDetail getUserProfile(int userId) {
+		UserDetail userDetailForSeeProfile = new UserDetail();
+		UserCharacter userCharacter =userDAO.selectOptionsForSeeProfile(userId);
+		User user =userDAO.selectUserById(userId); 
+		userDetailForSeeProfile.setUser(user);
+		userDetailForSeeProfile.setUserCharacter(userCharacter);
+		return userDetailForSeeProfile;
+	}
+	
+	
+	// 날 좋아하는 사람의 프로필 가져오기
+	public List<UserDetail> getProfileWhoLikesMe(List<Integer> idList, int myId) {
+		List<UserDetail> PeopleWhoLikesYou = new ArrayList<>();
+		UserDetail userDetail = new UserDetail();
+		for(int id :idList) {
+			User user = userDAO.selectUserById(id);
+			UserCharacter userCharacter =userDAO.selectOptionsForSeeProfile(id);
+			//	나이
+			int ageForProfile = user.getAgeForProfile();
+			user.setAgeForProfile(ageForProfile);
+			userDetail.setUser(user);
+			userDetail.setUserCharacter(userCharacter);
+			// 좋아요 여부
+			boolean isLike = likeBO.isLike(id, myId);
+			userDetail.setLike(isLike);
+			PeopleWhoLikesYou.add(userDetail);
+		}
+		return PeopleWhoLikesYou;
+		
+		
+	}
 
 
 	

@@ -14,27 +14,30 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 
-
+<!-- css -->
+<link href="/static/css/smallImg.css" rel="stylesheet">
 
 </head>
 <body>
-<c:choose>
-<c:when test = "${userLoginId eq 'admin' }">
-	<c:import url ="/WEB-INF/jsp/admin/include/header.jsp" />
-</c:when>
-
-<c:otherwise>
-	<c:import url ="/WEB-INF/jsp/include/header.jsp" />
-</c:otherwise>
-</c:choose>
+<c:import url="/WEB-INF/jsp/include/header.jsp" />
 <div class="section bg">
   <div class="container">
     <h1>My page</h1>
     <section class ="d-flex mb-5">
-    	<a href ="/user/mypage_edit_view"><i class="bi bi-person-circle myprofile-icon"></i></a>
-    	<div class ="mt-5 ml-4 col-12">
+    	<c:choose>
+    		<c:when test= "${not empty profile }">
+    			<a href ="#"><img src = "${profile}" class ="rounded-circle img-responsive" id="smallProfile"></a>
+    		</c:when>
+    		<c:otherwise>
+    			<a href ="#"><i class="bi bi-person-circle myprofile-icon"></i></a>
+    		</c:otherwise>
+    	</c:choose>
+    	
+    	<div class ="mt-4 ml-4 col-12">
     	<h3>${userName}</h3>
+    	<a href="/user/mypage_edit_view"><button type = "button" class ="btn mt-1">프로필 편집</button></a>
     	</div>
+    	
     </section>
    
     

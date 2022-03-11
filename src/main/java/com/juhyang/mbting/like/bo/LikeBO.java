@@ -1,5 +1,7 @@
 package com.juhyang.mbting.like.bo;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +37,12 @@ public class LikeBO {
 		return likeDAO.countLike(userId);
 		
 	}
+
+	public List<Integer> getHowLikesMe(int userId) {
+		return likeDAO.selectHowLikesMe(userId);
+		
+		
+	}
+
 
 }

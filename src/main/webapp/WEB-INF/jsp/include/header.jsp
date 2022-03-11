@@ -28,22 +28,27 @@
     <div class="container">
       <div id="logo">MBTING</div>
       <ul class="nav" id ="main-menu">
-        <li>
+        
          <!-- 좋아요 -->
 	        
 	       <c:choose>
-		        <c:when test = "${countLike!=0}">
-		        <!-- 알람이 왔을때만 -->
-		        		 <a href="#"><i class="bi bi-suit-heart-fill menu-icon text-danger"><i class ="h4">${countLike}</i></i></a>
-		        </c:when>
-		        <c:otherwise>
-					<!-- 평상시 -->
-		        	<a href = "#"><i class="bi bi-suit-heart menu-icon"></i></a>
-		        </c:otherwise>
+		       <c:when test="${userLoginId eq 'admin'}">
+		       	
+		       </c:when>
+		       <c:otherwise>
+			       <c:if test = "${countLike!=0}">
+				        <!-- 알람이 왔을때만 -->
+				        		 <li><a href="/like/see_like_view"><i class="bi bi-suit-heart-fill menu-icon text-danger"><i class ="h4">${countLike}</i></i></a></li>
+				   </c:if>
+				   <c:if test = "${countLike==0}">
+							<!-- 평상시 -->
+				        	<li><a href = "/like/see_like_view"><i class="bi bi-suit-heart menu-icon"></i></a></li>
+				   </c:if>
+		       </c:otherwise>
 	        </c:choose>
 			
 	       
-        </li>
+        
         
          <!-- 홈 화면 -->
         <li>
@@ -53,9 +58,22 @@
         </li>
          <!-- 오늘의 질문 -->
         <li>
-	        <a href="#QuestionForToday">
+        <c:choose>
+		  <c:when test = "${userLoginId eq 'admin' }">
+			<a href="/admin/question_view">
 	        	<i class="bi bi-question-circle-fill menu-icon"></i>
 	        </a>
+		</c:when>
+		
+		<c:otherwise>
+			<a href="#QuestionForToday">
+	        	<i class="bi bi-question-circle-fill menu-icon"></i>
+	        </a>
+		</c:otherwise>
+        </c:choose>
+        
+        
+
         </li>
         
         <!-- 마이페이지 -->

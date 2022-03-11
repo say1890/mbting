@@ -80,16 +80,15 @@
 			
 			
 			<!-- 자신의 장점/취미/성격 -->
-			
+			<c:choose>
+					<c:when test= "${not empty SelectedOptions}">	
 			<div>
-				
-					
 				<label class ="mr-4 col-8 mt-2">장점</label>
 				
 				<div id="MyMerit" class =" col-10 mt-3 mb-3">
-			
 				
-						<c:forEach var="m" items="${merit}">
+					
+					<c:forEach var="m" items="${merit}">
 						<c:forEach var="s" items="${SelectedOptions}">
 							<c:choose>
 								<c:when test = "${fn:contains(s.myMerit,m)}">
@@ -149,11 +148,40 @@
 	
 				</div>
 			</div>
+			</c:when>
+			<c:otherwise>
 			
+			<label class ="mr-4 col-8 mt-2">장점</label>
+				
+				<div id="MyMerit" class ="col-10 mt-3 mb-3">
+					<c:forEach var="m" items="${merit}">
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >${m}</button>
+					</c:forEach>
+				</div>
+				
+			<label class ="mr-4 col-8 mt-2">취미</label>	
+				<div id="MyHobby" class ="col-10 mt-3 mb-3">
+					<c:forEach var="h" items="${hobby}">
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >${h}</button>
+					</c:forEach>
+				</div>
+			<label class ="mr-4 col-8 mt-2">성격</label>		
+				<div id="MyCharacter" class ="col-10 mt-3 mb-3">
+					<c:forEach var="c" items="${character}">
+					<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >${c}</button>
+					</c:forEach>
+				</div>
+			
+			</c:otherwise>
+	</c:choose>
+	
+	
 		
 			
 			
 			<h1 class ="ml-5 mt-5 mb-5">❤️ 이런 분이 좋아요</h1>
+			
+			<c:if test = "${not empty  SelectedOptions}">
 			
 			<!-- 이상형의 장점/취미/성격  -->
 			<!-- 장점 -->
@@ -220,25 +248,36 @@
 					</div>
 				</div>
 				
+
+				
+						
 				
 		
 		
 			<label class ="mr-4 col-8 mt-2">나이</label>
 			<div id="age" class =" col-10 mt-3 mb-3 mt-3 mb-3">
-			<c:forEach var="age" items="${age}">	
+			<c:forEach var="age" items="${age}">
+			
 						<c:forEach var="selected" items="${SelectedOptions}">
-							<c:choose>
-								<c:when test = "${fn:contains(selected.age,age)}">
-									<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3 selectedBtn' >${age}</button>
-								</c:when>
-								<c:otherwise>
-									<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >${age}</button>	
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>	
+								<c:choose>
+									<c:when test = "${fn:contains(selected.age,age)}">
+										<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3 selectedBtn' >${age}</button>
+									</c:when>
+									<c:otherwise>
+										<button type ='button'  class ='btn ml-2 mb-1 txtbtn col-3' >${age}</button>	
+									</c:otherwise>
+								</c:choose>
+						</c:forEach>
+
+
+
+			
 				</c:forEach>
 			</div>	
-				
+			</c:if>
+			<c:if test = "${empty  SelectedOptions}">
+				<h2 class ="mr-5">이 부분은 정보 저장 후 수정 가능합니다 :)</h2>
+			</c:if>	
 		<button type ="button" class ="overlay__btn btn col-8 mt-5 " id ="saveBtn"> 
 		
 		<b class ="text-white">저장하기</b> 
@@ -425,9 +464,9 @@ $(document).ready(function(){
 	
 	$(".txtbtn").on("click",function(){
 		let text = $(this).text();
-		alert(text);
+		
 		let  myClass = $(this).closest("div").attr('id');
-		alert(myClass);
+
 
 	    if ($(this).hasClass("selectedBtn")) { 
 	    	$(this).removeClass("selectedBtn");

@@ -17,21 +17,15 @@
 
 
 
-<title>🍓Mbting - main🍓</title>
+<title>🍓Mbting🍓</title>
 </head>
 
 
 <body>
 
-<c:choose>
-<c:when test = "${userLoginId eq 'admin' }">
-	<c:import url ="/WEB-INF/jsp/admin/include/header.jsp" />
-</c:when>
 
-<c:otherwise>
 	<c:import url ="/WEB-INF/jsp/include/header.jsp" />
-</c:otherwise>
-</c:choose>
+
 
 
 
@@ -157,8 +151,7 @@
 </div>
 <div class="section">
   <div class="container">
-    <h1>Wow? Wow wow wow wow!</h1>
-    <h2>Wow</h2>
+    <h1>MBTI 이모저모</h1>
     <div class="col three">
       <h1 class="icon side">[]</h1>
       <h1 class="feature side">Wow</h1>
@@ -228,27 +221,6 @@
 
 
 
-<div class="section">
-  <div class="container">
-    <div class="col two">
-      <h1 class="icon">[]</h1>
-      <h1 class="service">Wow</h1>
-      <p>Wow wow wow wow wow wow wow wow wow wow wow wow wow</p>
-    </div>
-    <div class="col two">
-      <h1 class="icon">[]</h1>
-      <h1 class="service">Wow</h1>
-      <p>Wow wow wow wow wow wow wow wow wow</p>
-    </div>
-    <div class="group"></div>
-  </div>
-</div>
-
-<div class="section">
-  <div class="container">
-    <h1 class="reset">Terrible.</h1>
-  </div>
-</div>
 
 
 <c:import url ="/WEB-INF/jsp/include/footer.jsp" />

@@ -11,12 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.juhyang.mbting.like.bo.LikeBO;
 import com.juhyang.mbting.post.bo.PostBO;
 import com.juhyang.mbting.post.model.PostForMyPage;
 import com.juhyang.mbting.user.bo.UserBO;
 import com.juhyang.mbting.user.model.UserCharacter;
+import com.juhyang.mbting.user.model.UserDetail;
 
 
 @Controller
@@ -65,7 +67,7 @@ public class UserController {
 		
 		return "user/myPage";
 	}
-	
+	// 프로필 편집 화면
 	@RequestMapping("/mypage_edit_view")
 	public String editprofile_view(HttpServletRequest request
 			,Model model
@@ -94,13 +96,20 @@ public class UserController {
 		// 사용자가 선택한 옵션
 		List<UserCharacter> SelectedOptions = userBO.getSelectOptions(userId);
 		model.addAttribute("SelectedOptions", SelectedOptions);
+		
+		
+        /* 날 좋아하는 사람의 정보 가져오기 */
+        int countLike = likeBO.countSender(userId); // 나를 좋아하는 사람의 수 
+        model.addAttribute("countLike",countLike);
+		
+		
 		System.out.print(SelectedOptions);
 		
 		
 		return "user/editProfile";
 	}
 	
-	//id 중복 확인
+	// 로그아웃
 		@RequestMapping("/sign_out")
 		public String signOut(HttpServletRequest request) {
 			
@@ -114,4 +123,20 @@ public class UserController {
 			
 			return "redirect:/user/signin_view";
 		}
+		
+		
+	// 프로필 보기
+		@RequestMapping("/see_profile")
+		public String seeProfile(
+				HttpServletRequest request,
+				@RequestParam("userId") int userId, 
+				Model model) {
+			HttpSession session = request.getSession();
+			int myId = (Integer)session.getAttribute("userId");
+			UserDetail userdetail = userBO.getUserProfile(myId);
+			model.addAttribute("userdetail", userdetail);
+			
+			return "user/seeProfile";
+		}
+		
 }

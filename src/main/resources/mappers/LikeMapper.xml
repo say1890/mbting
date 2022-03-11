@@ -33,6 +33,14 @@ AND
 `sender` = #{userId}
 </select>
 
+<select id ="selectHowLikesMe" resultType ="int">
+SELECT
+	`sender`
+FROM
+	`like`
+WHERE
+	`receiver` = #{userId}
+</select>
 
 
 </mapper>

@@ -166,7 +166,20 @@
 		`user_id` =  #{userId}
 	</select>
 	
-	
+	<select id ="selectOptionsForSeeProfile" resultType ="com.juhyang.mbting.user.model.UserCharacter">
+	SELECT
+		`myMerit`,
+		`myHobby`,
+		`myCharacter`,
+		`yourMerit`,
+		`yourHobby`,
+		`yourCharacter`,
+		`age`
+	FROM
+		`user_character`
+	WHERE
+		`user_id` =  #{userId}
+	</select>
 	<select id ="selectMeritContent" resultType ="String">
 	SELECT
 		`content`

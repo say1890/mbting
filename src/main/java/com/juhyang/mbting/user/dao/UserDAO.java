@@ -60,7 +60,7 @@ public interface UserDAO {
 			@Param("profile") String filePath);
 	
 	public List<UserCharacter> selectOptions(@Param("userId")int userId);
-	
+
 	public List<String> selectMeritContent();
 	public List<String> selectCharacterContent();
 	public List<String> selectHobbyContent();
@@ -70,6 +70,7 @@ public interface UserDAO {
 	public List<UserCharacter> selectUsers( @Param("myage") int myage, @Param("chooseAge") String chooseAge, @Param("sex") String sex);
 	public int getMyage(@Param("userId") int userId);
 	public String getAge(@Param("userId") int userId);
+	public UserCharacter selectOptionsForSeeProfile(@Param("userId") int userId);
 	
 
 	

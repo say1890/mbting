@@ -152,6 +152,9 @@ public class UserRestController {
 		}
 			
 		}
+	
+	
+	//프로필 수정
 	@PostMapping("/editProfile")
 	public int editProfile(
 			@RequestParam("userName") String userName,
