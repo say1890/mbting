@@ -33,15 +33,45 @@ public class LikeController {
         int countLike = likeBO.countSender(userId); // 나를 좋아하는 사람의 수
         model.addAttribute("countLike",countLike);
 
-       
-       
+        List<UserDetail> ListWhoLikesMe = new ArrayList<>();
+        // 나를 좋아하는 사람 리스트
         if(countLike!=0) {
-        	 List<Integer> idList = likeBO.getHowLikesMe(userId);
-        	 List<UserDetail> ListWhoLikesMe = userBO.getProfileWhoLikesMe(idList,userId);
+        	 List<Integer> idList = likeBO.getWhoLikesMe(userId);
+        	 ListWhoLikesMe = userBO.getProfileWhoLikesMe(idList,userId);
         	 model.addAttribute("likeList", ListWhoLikesMe);
         }
+       
+        // 내가 좋아하는 사람 리스트
+        List<UserDetail> ListWhoILike = new ArrayList<>();
+        int SendLike = likeBO.countSendLike(userId);
+        if(SendLike!=0) {
+        	List<Integer> idList = likeBO.getWhoILike(userId); 
+        	ListWhoILike = userBO.getProfileWhoILike(idList,userId);
+        	model.addAttribute("likedList", ListWhoILike);
+        }
+        
+        
+  
+      
+        
+        
+        
         
 		return "/like/seeLike";
 	}
 	
+	
+	
+	
+	
+	
+	
+	/*
+	int userId = (Integer)session.getAttribute("userId");
+	String sex = (String)session.getAttribute("sex");
+	if(sex.equals("여")) {
+		ChatBO.makeRoom();
+	}
+	*/
 }
+

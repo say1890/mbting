@@ -5,7 +5,7 @@
 <html>
 
 <head>
-  <title>What's App</title>
+  <title>🍓Mbting - 채팅🍓</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -52,7 +52,7 @@
   </div>
 
   </div>
-<script src="static/js/chat.js"></script>
+<script type="module" src="static/js/chat.js"></script>
 
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -128,12 +128,10 @@ public class UserController {
 	// 프로필 보기
 		@RequestMapping("/see_profile")
 		public String seeProfile(
-				HttpServletRequest request,
 				@RequestParam("userId") int userId, 
 				Model model) {
-			HttpSession session = request.getSession();
-			int myId = (Integer)session.getAttribute("userId");
-			UserDetail userdetail = userBO.getUserProfile(myId);
+
+			UserDetail userdetail = userBO.getUserProfile(userId);
 			model.addAttribute("userdetail", userdetail);
 			
 			return "user/seeProfile";

@@ -11,7 +11,13 @@
 *{
  font-family: 'IBMPlexSansKR-Regular';
 
+
 }
+a{
+	 text-decoration-line: none;
+}
+
+
 html,
 body {
   margin: 0;

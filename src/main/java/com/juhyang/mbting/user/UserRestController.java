@@ -191,9 +191,15 @@ public class UserRestController {
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
 		boolean isLike = likeBO.sendLike(userId,receiver);
+		int checkIfHeLikesMe = likeBO.checkIfHeLikesMe(userId,receiver);
+		
+		
 		
 		Map<String, Boolean> result = new HashMap<>();
 		result.put("isLike", isLike);
+		if(checkIfHeLikesMe==1) {
+			result.put("WeLikeEachOther",true);
+		}
 		return result;
 		
 	}

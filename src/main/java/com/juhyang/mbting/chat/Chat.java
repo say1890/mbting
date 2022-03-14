@@ -10,11 +10,7 @@ import lombok.Data;
 @Data
 @Document(collection="chat")
 public class Chat {
-	
-	
-	
-	
-	
+
 	
 	@Id
 	private String id;

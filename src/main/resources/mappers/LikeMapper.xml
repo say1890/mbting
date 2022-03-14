@@ -33,7 +33,7 @@ AND
 `sender` = #{userId}
 </select>
 
-<select id ="selectHowLikesMe" resultType ="int">
+<select id ="selectWhoLikesMe" resultType ="int">
 SELECT
 	`sender`
 FROM
@@ -41,6 +41,49 @@ FROM
 WHERE
 	`receiver` = #{userId}
 </select>
+
+<select id ="selectHisLike" resultType ="int">
+SELECT COUNT(*)
+FROM
+`like`
+WHERE
+`receiver` = #{userId}
+AND
+`sender` = #{receiver}
+</select>
+
+<select id = "selectSendLike" resultType = "int">
+SELECT COUNT(*)
+FROM
+`like`
+WHERE
+`sender` = #{userId}
+</select>
+
+<select id ="selectWhoILike"  resultType = "int">
+SELECT
+	`receiver`
+FROM
+	`like`
+WHERE
+	`sender` = #{userId}
+</select>
+
+<delete id = "deleteLike">
+DELETE
+FROM
+	`like`
+WHERE
+(`sender`, `receiver`)
+IN(
+(#{HisId},#{myId}),
+(#{myId},#{HisId})
+)
+
+</delete>
+
+
+
 
 
 </mapper>

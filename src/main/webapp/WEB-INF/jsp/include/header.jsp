@@ -29,6 +29,27 @@
       <div id="logo">MBTING</div>
       <ul class="nav" id ="main-menu">
         
+        
+        <!--  채팅  -->
+        <c:choose>
+        	<c:when test = "${not empty chattingList}">
+        		<li>
+	        		<a href ="/chattingList">
+	        			<i class="bi bi-chat-square-heart-fill menu-icon "></i>
+	        		</a>
+        		</li>
+        	</c:when>
+        	<c:otherwise>
+        		<li>
+	        		<a href = "/chattingList">
+	        			<i class="bi bi-chat-square menu-icon "></i>
+	        		</a>
+        		</li>
+        	</c:otherwise>
+        </c:choose>
+        
+        
+        
          <!-- 좋아요 -->
 	        
 	       <c:choose>

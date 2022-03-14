@@ -5,6 +5,7 @@
 <html>
 <head>
 <link rel="stylesheet"  href="/static/css/main.css"/>
+<link rel="stylesheet"  href="/static/css/smallImg.css"/>
 <meta charset="UTF-8">
 <!-- 부트스트랩 -->
 
@@ -15,17 +16,62 @@
 </head>
 
 <body>
-<div class ="section">
-	<div class="slider">
-    	<div class="container slidercontent">
-		<h1 class ="hero">보낸 좋아요😏</h1>
-		
+	<div class="section">
+		<div class="slider">
+			<div class="container slidercontent">
+				<h1 class="hero">보낸 좋아요😏</h1>
+				<c:forEach var="user" items="${likedList}">
+				<div class ="d-flex">
+					<div class ="col-3">
+						<!--  추천 상대 프로필 이미지 -->
+						<c:choose>
+							<c:when test="${not empty user.user.profile}">
+								<a href="/user/see_profile?userId=${user.user.id}"> 
+									<img id="smallProfile" class="mt-3  mx-auto mt-4 rounded-circle img-responsive" src="${user.user.profile}">
+								</a>
+							</c:when>
+							<c:otherwise>
+								<a href="/user/see_profile?userId=${user.user.id}"> 
+									<img id="smallProfile" class="mt-3  mx-auto mt-4  rounded-circle img-responsive" src="/static/image/noprofile.png">
+								</a>
+							</c:otherwise>
+	
+						</c:choose>
+						<!--  추천 상대 프로필 이미지 끝 -->
+	
+	
+	
+	
+						<h4 id="recommended-profile-name" class="mt-1 text-white">${user.user.userName}(${user.user.ageForProfile})</h4>
+						<div  class="text-white mt-1 text-center introduceText">${user.user.mbti}</div>
+						
+						
+
+					</div>
+					<div class ="text-white mx-auto my-auto col-9">
+						<c:if test="${not empty user.user.introduce}">
+							<h3>
+							❝${user.user.introduce}❞
+							</h3>
+						</c:if>
+					</div>
+
+					
+
+					</div>
+					<hr class="mt-5">
+
+				</c:forEach>
+			</div>
 		</div>
-	</div>	
-</div>
+	</div>
+
+	<script type="module" src ="/static/js/swiper.js"></script>
+ <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>			   
+<script>
 
 
-
+</script>
 
 
 </body>

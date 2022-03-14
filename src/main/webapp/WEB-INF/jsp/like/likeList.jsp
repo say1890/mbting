@@ -123,6 +123,7 @@
 				success:function(data) {
 						location.reload();
 						alert("좋아요 성공");
+						
 					}
 				, error:function() {
 					alert("좋아요 실패!!");

@@ -3,7 +3,7 @@
 let username =  document.querySelector("#username").innerHTML;
 
 
-let roomNum = prompt("채팅방 번호를 입력하세요");
+import {roomNum} from "/WEB-INF/jsp/chat/ChattingList.jsp";
 
 // SSE 연결하기
 const eventSource = new EventSource(`http://localhost:8080/chat/roomNum/${roomNum}`);

@@ -38,11 +38,27 @@ public class LikeBO {
 		
 	}
 
-	public List<Integer> getHowLikesMe(int userId) {
-		return likeDAO.selectHowLikesMe(userId);
+	public List<Integer> getWhoLikesMe(int userId) {
+		return likeDAO.selectWhoLikesMe(userId);
 		
 		
 	}
+
+	// 내가 좋아하는 사람도 날 좋아하는지 체크
+	public int checkIfHeLikesMe(int userId, int receiver) {
+		return likeDAO.selectHisLike(userId, receiver);
+	}
+	// 내가 보낸 좋아요 갯수 세기
+	public int countSendLike(int userId) {
+		return likeDAO.selectSendLike(userId);
+	}
+
+	// 내가 좋아요 보낸 id 리스트
+	public List<Integer> getWhoILike(int userId) {
+		return likeDAO.selectWhoILike(userId);
+	}
+	
+
 
 
 }

@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.juhyang.mbting.chat.ChatRestController;
+import com.juhyang.mbting.chat.bo.ChatBO;
 import com.juhyang.mbting.common.EncryptUtils;
 import com.juhyang.mbting.common.FileManagerService;
 import com.juhyang.mbting.like.bo.LikeBO;
+import com.juhyang.mbting.like.dao.LikeDAO;
 import com.juhyang.mbting.user.dao.UserDAO;
 import com.juhyang.mbting.user.model.User;
 import com.juhyang.mbting.user.model.UserCharacter;
@@ -522,28 +525,84 @@ public class UserBO {
 		userDetailForSeeProfile.setUserCharacter(userCharacter);
 		return userDetailForSeeProfile;
 	}
-	
+	@Autowired
+	ChatBO chatBO;
+	@Autowired
+	ChatRestController chat;
+	@Autowired
+	LikeDAO likeDAO;
 	
 	// 날 좋아하는 사람의 프로필 가져오기
 	public List<UserDetail> getProfileWhoLikesMe(List<Integer> idList, int myId) {
 		List<UserDetail> PeopleWhoLikesYou = new ArrayList<>();
-		UserDetail userDetail = new UserDetail();
+		
 		for(int id :idList) {
+			UserDetail userDetail = new UserDetail();
 			User user = userDAO.selectUserById(id);
 			UserCharacter userCharacter =userDAO.selectOptionsForSeeProfile(id);
 			//	나이
-			int ageForProfile = user.getAgeForProfile();
+			int ageForProfile = userDAO.getMyage(id);
 			user.setAgeForProfile(ageForProfile);
 			userDetail.setUser(user);
 			userDetail.setUserCharacter(userCharacter);
 			// 좋아요 여부
 			boolean isLike = likeBO.isLike(id, myId);
+			if(isLike) {
+				likeDAO.deleteLike(id, myId);
+				User me = userDAO.selectUserById(myId);
+				if(me.getSex().equals("여")) {
+					chatBO.makeRoomInfo(id, myId);
+					
+					
+				}
+				else {
+					chatBO.makeRoomInfo(myId, id);
+					
+					
+				}
+				
+			}
+			
+			
+			
+			
+			
 			userDetail.setLike(isLike);
 			PeopleWhoLikesYou.add(userDetail);
 		}
 		return PeopleWhoLikesYou;
 		
 		
+	}
+	
+
+	
+	// 내가 좋아하는 사람의 프로필 가져오기
+	public List<UserDetail> getProfileWhoILike(List<Integer> idList, int myId) {
+		List<UserDetail> PeopleWhoILiked = new ArrayList<>();
+		
+		for(int id :idList) {
+			UserDetail userDetail = new UserDetail();
+			User user = userDAO.selectUserById(id);
+			UserCharacter userCharacter =userDAO.selectOptionsForSeeProfile(id);
+			//	나이
+			int ageForProfile = userDAO.getMyage(id);
+			user.setAgeForProfile(ageForProfile);
+			userDetail.setUser(user);
+			userDetail.setUserCharacter(userCharacter);
+			// 좋아요 여부
+			boolean isLike = likeBO.isLike(id, myId);
+			
+			userDetail.setLike(isLike);
+			PeopleWhoILiked.add(userDetail);
+			
+		
+			
+			
+			
+			
+		}
+		return PeopleWhoILiked;
 	}
 
 

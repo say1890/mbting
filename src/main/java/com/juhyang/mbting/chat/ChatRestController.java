@@ -1,7 +1,6 @@
 package com.juhyang.mbting.chat;
 
 import java.time.LocalDateTime;
-
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
@@ -19,6 +19,7 @@ import reactor.core.scheduler.Schedulers;
 public class ChatRestController {
 
 private final ChatRepository chatRepository;
+
 	
 	
 	@CrossOrigin
@@ -34,6 +35,9 @@ private final ChatRepository chatRepository;
 		return chatRepository.mFindByRoomNum(roomNum)
 				.subscribeOn(Schedulers.boundedElastic());
 	}
+	
+	
+
 	
 	@CrossOrigin
 	@PostMapping("/chat") 

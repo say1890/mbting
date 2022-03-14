@@ -17,6 +17,15 @@ public interface LikeDAO {
 			@Param("userId")int userId,
 			@Param("receiver")int receiver);
 
-	public List<Integer> selectHowLikesMe(@Param("userId")int userId);
+	public List<Integer> selectWhoLikesMe(@Param("userId")int userId);
+
+	public int selectHisLike(@Param("userId")int userId,
+			@Param("receiver")int receiver);
+
+	public int selectSendLike(@Param("userId")int userId);
+
+	public List<Integer> selectWhoILike(@Param("userId")int userId);
+
+	public int deleteLike(@Param("HisId") int id, @Param("myId") int myId);
 
 }
