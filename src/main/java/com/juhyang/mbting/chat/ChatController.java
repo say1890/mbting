@@ -10,12 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.juhyang.mbting.chat.bo.ChatBO;
 import com.juhyang.mbting.chat.model.ChatDetail;
 import com.juhyang.mbting.chat.model.ChatOriginal;
 import com.juhyang.mbting.user.bo.UserBO;
-import com.juhyang.mbting.user.model.User;
 import com.juhyang.mbting.user.model.UserDetail;
 
 
@@ -28,11 +29,17 @@ public class ChatController {
 	UserBO userBO;
 	
 	@GetMapping("/chat")
-	public String chat(HttpServletRequest request,  Model model) {
-		HttpSession session = request.getSession();
+	public String chat(@RequestParam("roomNum")int roomNum,
+			Model model) {
+		
+		ChatOriginal chat =  chatBO.getRoomInfo(roomNum);
+		model.addAttribute("chat", chat);
 		
 		return "/chat/chat";
 	}
+	
+
+	
 	
 	
 	@GetMapping("/chattingList")

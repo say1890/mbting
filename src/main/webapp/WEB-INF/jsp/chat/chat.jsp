@@ -23,12 +23,35 @@
     <div class="row">
 
       <div class="col-sm-12">
+	  <div id = "roomNum" class ="d-none">${chat.id}</div>
+
 
 
         <div id="user_chat_data" class="user_chat_data">
           <div class="profile_name">
-            &nbsp;&nbsp;&nbsp;&nbsp;<img src="./img/profile.png" class="mr-3 rounded-circle"> &nbsp;&nbsp;
-            <span id="username">${userName}</span>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <c:choose>
+            	<c:when test = "${sex eq '남'}">
+            		<c:if test="${not empty chat.womanProfile}">
+            			<img src="${chat.womanProfile}" class="mr-3 rounded-circle img-responsive" id="smallProfile"> &nbsp;&nbsp;
+            		</c:if>
+            		<c:if test ="${empty chat.womanProfile}">
+            			<i class="bi bi-person-circle myprofile-icon"></i>
+            		</c:if>
+            		
+            	</c:when>
+            </c:choose>
+            <img src="./img/profile.png" class="mr-3 rounded-circle"> &nbsp;&nbsp;
+            <c:choose>
+            <c:when test = "${sex eq '남'}">
+            	<span id="username">${chat.womanName}</span>
+            </c:when>
+            <c:otherwise>
+            	<span id="username">${chat.manName}</span>
+            </c:otherwise>
+            	 
+            </c:choose>
+           
           </div>
 
           <div class="container-fluid chat_section" id="chat-box">

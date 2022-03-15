@@ -1,9 +1,8 @@
 
-// 로그인 시스템 대신 임시 방편
 let username =  document.querySelector("#username").innerHTML;
 
-
-import {roomNum} from "/WEB-INF/jsp/chat/ChattingList.jsp";
+// let roomNum = document.querySelector("#roomNum").innerHTML;
+let roomNum = prompt("채팅방 번호를 입력하세요");
 
 // SSE 연결하기
 const eventSource = new EventSource(`http://localhost:8080/chat/roomNum/${roomNum}`);
@@ -23,7 +22,7 @@ function getSendMsgBox(data) {
 
 	let md = data.createdAt.substring(5, 10)
 	let tm = data.createdAt.substring(11, 16)
-	convertTime = tm + " | " + md
+	let convertTime = tm + " | " + md
 
 	return `<div class="sent_msg">
 	<p>${data.msg}</p>
@@ -36,7 +35,7 @@ function getReceiveMsgBox(data) {
 
 	let md = data.createdAt.substring(5, 10)
 	let tm = data.createdAt.substring(11, 16)
-	convertTime = tm + " | " + md
+	let convertTime = tm + " | " + md
 
 	return `<div class="received_withd_msg">
 	<p>${data.msg}</p>

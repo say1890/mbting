@@ -17,4 +17,12 @@ public interface ChatDAO {
 
 	List<ChatOriginal> selectRoomList(@Param("UserId") int userId);
 
+	int updateChatData(@Param("id")int id, 
+			@Param("manName")String manName, 
+			@Param("womanName")String womanName, 
+			@Param("manProfile")String manProfile, 
+			@Param("womanProfile")String womanProfile);
+
+	ChatOriginal selectRoomInfo(@Param("id")int roomNum);
+
 }

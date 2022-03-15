@@ -30,6 +30,28 @@
 		`woman`
 	= #{UserId}
 	</select>
+	<update id ="updateChatData" parameterType = "map">
+	UPDATE `chat`
+	SET
 	
+	`manName` = #{manName},
+	`womanName` = 	#{womanName},
+	`manProfile` = 	#{manProfile},
+	`womanProfile` = #{womanProfile},
+	`updatedAt` = 	now()
+
+	WHERE
+	`id` =${id}
+ 
+	</update>
+	<select id ="selectRoomInfo" resultType = "com.juhyang.mbting.chat.model.ChatOriginal">
+	SELECT
+		*
+	FROM
+		`chat`
+	WHERE
+		`id` = #{id}
+	
+	</select>
 	
 </mapper>

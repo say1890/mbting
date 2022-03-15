@@ -29,6 +29,20 @@ public int makeRoomInfo(int man, int woman) {
 
 public List<ChatOriginal> getRoomList(int userId ){
 	return chatDAO.selectRoomList(userId);
+}
+
+
+
+public int addChatData(int id, String manName, String womanName, String manProfile, String womanProfile) {
+	return chatDAO.updateChatData(id,manName,womanName,manProfile,womanProfile);
+}
+
+
+
+public ChatOriginal getRoomInfo(int roomNum) {
+
+	return	chatDAO.selectRoomInfo(roomNum);
+	
 };
 
 
