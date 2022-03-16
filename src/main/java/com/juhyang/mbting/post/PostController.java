@@ -13,13 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.juhyang.mbting.chat.bo.ChatBO;
+import com.juhyang.mbting.chat.model.ChatOriginal;
 import com.juhyang.mbting.comment.bo.CommentBO;
 import com.juhyang.mbting.like.bo.LikeBO;
 import com.juhyang.mbting.post.bo.PostBO;
 import com.juhyang.mbting.post.model.Post;
 import com.juhyang.mbting.user.bo.UserBO;
 import com.juhyang.mbting.user.dao.UserDAO;
-import com.juhyang.mbting.user.model.UserCharacter;
 import com.juhyang.mbting.user.model.UserDetail;
 
 @Controller
@@ -35,7 +36,8 @@ public class PostController {
 	UserDAO userDAO;
 	@Autowired
 	LikeBO likeBO;
-	
+	@Autowired
+	ChatBO chatBO; 
 	
 	@GetMapping("/main")
 	public String main_view(
@@ -82,6 +84,12 @@ public class PostController {
             model.addAttribute("countLike",countLike);
         
         
+        /*채팅 상대가 있는지 확인*/
+            List<ChatOriginal> room = chatBO.getRoomList(userId);
+    		if(!room.isEmpty()) {
+    			session.setAttribute("IsRoomExist", "yes");
+    		}
+    		
 		return "/post/main";
 	}
 	

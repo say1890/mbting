@@ -1,9 +1,9 @@
 
 let username =  document.querySelector("#username").innerHTML;
 
-// let roomNum = document.querySelector("#roomNum").innerHTML;
-let roomNum = prompt("채팅방 번호를 입력하세요");
+let roomNum = document.querySelector("#roomNum").innerHTML;
 
+history.replaceState({},null,location.pathname);
 // SSE 연결하기
 const eventSource = new EventSource(`http://localhost:8080/chat/roomNum/${roomNum}`);
 eventSource.onmessage = (event) => {
@@ -17,7 +17,7 @@ eventSource.onmessage = (event) => {
 	}
 }
 
-// 파란박스 만들기
+// 내가 보낸 메시지
 function getSendMsgBox(data) {
 
 	let md = data.createdAt.substring(5, 10)
@@ -25,25 +25,31 @@ function getSendMsgBox(data) {
 	let convertTime = tm + " | " + md
 
 	return `<div class="sent_msg">
-	<p>${data.msg}</p>
-	<span class="time_date"> ${convertTime} / <b>${data.sender}</b> </span>
+	<p>${data.msg}</p>Num
+	<span class="time_date"> ${convertTime}  </span>
 </div>`;
 }
 
-// 회식박스 만들기
+// 상대가 보낸 메시지
 function getReceiveMsgBox(data) {
 
 	let md = data.createdAt.substring(5, 10)
-	let tm = data.createdAt.substring(11, 16)
-	let convertTime = tm + " | " + md
-
+	let hour = data.createdAt.substring(11, 13) // 시
+	let convertedHour = hour>12?hour%12:hour
+	let minute = data.createdAt.substring(14, 16)
+	let division = hour<12 ? "오전 " : "오후 "
+	//(11, 16)
+	let convertTime = division + convertedHour + ":" + minute 
+	
+	
 	return `<div class="received_withd_msg">
+	
 	<p>${data.msg}</p>
-	<span class="time_date"> ${convertTime} / <b>${data.sender}</b> </span>
+	<span class="time_date"> ${convertTime}  </span>
 </div>`;
 }
 
-// 최초 초기화될 때 1번방 3건이 있으면 3건을 다 가져와요
+// 최초 초기화될 때 1번방 3건이 있으면 3건을 다 가져옴
 // addMessage() 함수 호출시 DB에 insert 되고, 그 데이터가 자동으로 흘러들어온다(SSE)
 // 파란박스 초기화하기
 function initMyMessage(data) {

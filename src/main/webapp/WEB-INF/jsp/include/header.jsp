@@ -16,7 +16,7 @@
 <!-- css -->
  	<link href="/static/css/main.css" rel="stylesheet">
 <!--  부트스트랩 아이콘 -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 	 
  
  
@@ -29,22 +29,26 @@
       <div id="logo">MBTING</div>
       <ul class="nav" id ="main-menu">
         
-        
         <!--  채팅  -->
         <c:choose>
-        	<c:when test = "${not empty chattingList}">
+        	<c:when test = "${not empty IsRoomExist}">	
         		<li>
-	        		<a href ="/chattingList">
-	        			<i class="bi bi-chat-square-heart-fill menu-icon "></i>
+	        		<a href = "/chattingList">
+	        			<i class="bi bi-envelope-paper-heart menu-icon"></i> 
 	        		</a>
         		</li>
         	</c:when>
         	<c:otherwise>
         		<li>
 	        		<a href = "/chattingList">
-	        			<i class="bi bi-chat-square menu-icon "></i>
+	        			<i class="bi bi-envelope-open menu-icon"></i>
 	        		</a>
         		</li>
+        	
+        	
+        	
+        	
+        	
         	</c:otherwise>
         </c:choose>
         

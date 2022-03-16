@@ -10,8 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.juhyang.mbting.chat.bo.ChatBO;
 import com.juhyang.mbting.chat.model.ChatDetail;
@@ -28,8 +29,9 @@ public class ChatController {
 	@Autowired
 	UserBO userBO;
 	
-	@GetMapping("/chat")
-	public String chat(@RequestParam("roomNum")int roomNum,
+	@GetMapping("/chatting")
+	public String chat(
+			@RequestParam("roomNum") int roomNum,
 			Model model) {
 		
 		ChatOriginal chat =  chatBO.getRoomInfo(roomNum);
@@ -50,7 +52,9 @@ public class ChatController {
 		String userName = (String)session.getAttribute("userName");
 		// 사용자의 채팅방 번호 조회
 		List<ChatOriginal> room = chatBO.getRoomList(userId);
-		
+		if(!room.isEmpty()) {
+			
+		}
 		
 		
 		List<ChatDetail> chatDetail = new ArrayList<>();

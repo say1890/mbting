@@ -120,7 +120,9 @@ public class UserController {
 			session.removeAttribute("userLoginId");
 			session.removeAttribute("userName");
 			session.removeAttribute("profile");
-			
+			session.removeAttribute("mbti");
+			session.removeAttribute("sex");
+			session.removeAttribute("IsRoomExist");
 			return "redirect:/user/signin_view";
 		}
 		

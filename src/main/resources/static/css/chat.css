@@ -17,7 +17,7 @@ body{
 .profile_name{
 	background-color: #f8f9fa!important;
 	width:100%;
-	padding: 25px;
+	height:10%;
 	border-bottom: 3px solid #ffeef2;
 }
 .user a:hover{

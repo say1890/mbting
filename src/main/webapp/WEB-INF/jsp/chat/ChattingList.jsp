@@ -12,9 +12,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
 <!-- css -->
 <link href="/static/css/main.css" rel="stylesheet">
@@ -44,10 +42,10 @@
 		<div class="container row">
 
 			<c:forEach var="chat" items="${chatDetail}">
-				<button class="col-11 btn ml-2" data-room-num ="${chat.chat.id}">
+				<button class="col-11 btn ml-2" type="button" data-room-num ="${chat.chat.id}">
 				<div class="p-1 d-flex">
 					
-						<div id="roomNum">${chat.chat.id}</div> 
+						
 						<c:forEach var="user" items="${chat.user}">
 							
 							<!--  사용자가 남자일때 -->
@@ -127,6 +125,15 @@
 				</button>
 
 			</c:forEach>
+			
+			<c:if test = "${empty chatDetail }">
+			<div class ="col-12 d-flex justify-content-center p-5 mt-5">
+				<h1 class ="p-5 mt-5"> 아직 매칭된 분이 없습니다 ㅜ _ ㅜ </h1>
+			</div>
+			
+			</c:if>
+			
+					
 
 		</div>
 	</div>
@@ -155,12 +162,18 @@ $(document).ready(function(){
 			"womanProfile":womanProfile
 			},
 			success:function(data) {
-				location.href= "/chat?roomNum="+ roomNum;
-				},
+			location.href = "/chatting?roomNum="+roomNum;	
+					},
 			error:function() {
 				alert("에러발생");
 			}
 		});
+		
+		
+		
+		
+		
+		
 	});
 
 });

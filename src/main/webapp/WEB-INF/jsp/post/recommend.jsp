@@ -106,8 +106,8 @@
 
 			      </c:when>
 			     <c:otherwise>
-		     		<div class ="row justify-content-center mt-5">
-			      		<h1 class ="text-white mt-5"> 회원 정보를 더 입력하고 추천을 받아보세요 :)</h1>
+		     		<div class ="row justify-content-center mt-5 col-12">
+			      		<h1 class ="text-white mt-5 col-12"> 회원 정보를 더 입력하고 추천을 받아보세요 :)</h1>
 			      		<a href ="/user/mypage_edit_view"><button class ="btn col-12 mt-5">정보 입력하러 가기</button></a>
 		      		</div>
 	     		</c:otherwise>

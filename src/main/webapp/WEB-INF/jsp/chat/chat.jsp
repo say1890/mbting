@@ -14,6 +14,11 @@
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  
+  	<!--  Bootstrap 아이콘 -->
+  	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+  <!-- css -->
+  <link rel="stylesheet" type="text/css" href="static/css/smallImg.css">
   <link rel="stylesheet" type="text/css" href="static/css/chat.css">
 </head>
 
@@ -24,33 +29,44 @@
 
       <div class="col-sm-12">
 	  <div id = "roomNum" class ="d-none">${chat.id}</div>
-
+	  <div id = "username"class ="d-none">${userName}</div>
 
 
         <div id="user_chat_data" class="user_chat_data">
-          <div class="profile_name">
-            &nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="profile_name d-flex align-items-center">
+        
             <c:choose>
             	<c:when test = "${sex eq '남'}">
             		<c:if test="${not empty chat.womanProfile}">
-            			<img src="${chat.womanProfile}" class="mr-3 rounded-circle img-responsive" id="smallProfile"> &nbsp;&nbsp;
+            			<img src="${chat.womanProfile}" class="mr-3 rounded-circle img-responsive">
             		</c:if>
             		<c:if test ="${empty chat.womanProfile}">
-            			<i class="bi bi-person-circle myprofile-icon"></i>
+            			<h1><i class="bi bi-person-circle myprofile-icon my-auto" ></i></h1>
             		</c:if>
             		
             	</c:when>
+            	<c:otherwise>
+            	<c:if test="${not empty chat.manProfile}">
+            			<img src="${chat.manProfile}" class="mr-3 rounded-circle img-responsive">
+            		</c:if>
+            		<c:if test ="${empty chat.manProfile}">
+            			<h1><i class="bi bi-person-circle myprofile-icon my-auto" ></i></h1>
+            	</c:if>
+            	
+            	</c:otherwise>
             </c:choose>
-            <img src="./img/profile.png" class="mr-3 rounded-circle"> &nbsp;&nbsp;
-            <c:choose>
-            <c:when test = "${sex eq '남'}">
-            	<span id="username">${chat.womanName}</span>
-            </c:when>
-            <c:otherwise>
-            	<span id="username">${chat.manName}</span>
-            </c:otherwise>
-            	 
-            </c:choose>
+           	<div class ="ml-4">
+	            <c:choose>
+		            
+			            <c:when test = "${sex eq '남'}">
+			            	<span id="referralName">${chat.womanName}</span>
+			            </c:when>
+			            <c:otherwise>
+			            	<span id="referralName">${chat.manName}</span>
+			            </c:otherwise>
+			        
+	            </c:choose>
+            </div>
            
           </div>
 
