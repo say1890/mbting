@@ -64,6 +64,11 @@ public class LikeBO {
 		 
 		
 	}
+
+	public void deleteLike(int id, int myId) {
+		likeDAO.deleteLike(id, myId);
+		
+	}
 	
 
 

@@ -1,6 +1,6 @@
 package com.juhyang.mbting.user.model;
 
-
+import java.util.Date;
 
 public class UserDetail {
 
@@ -12,6 +12,25 @@ public class UserDetail {
 	private String character;
 	private String merit;
 	private String hobby;
+	private long passedDay;
+	private long passedTime;
+	
+	
+	
+
+	
+	public long getPassedDay() {
+		return passedDay;
+	}
+	public void setPassedDay(long passedDay) {
+		this.passedDay = passedDay;
+	}
+	public long getPassedTime() {
+		return passedTime;
+	}
+	public void setPassedTime(long passedTime) {
+		this.passedTime = passedTime;
+	}
 	public User getUser() {
 		return user;
 	}
@@ -60,6 +79,7 @@ public class UserDetail {
 	public void setHobby(String hobby) {
 		this.hobby = hobby;
 	}
+
 	
 
 

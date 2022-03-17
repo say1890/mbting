@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Date" %>
+<%Date now = new Date();%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,12 +65,31 @@
 
 
 				</div>
-				<div class="text-white mx-auto my-auto col-9">
+				
+				<!-- 자기 소개 -->
+				<div class="text-white mx-auto my-auto col-12 d-flex">
 					<c:if test="${not empty user.user.introduce}">
-						<h3>❝${user.user.introduce}❞</h3>
+						<h3 class="col-6">❝${user.user.introduce}❞</h3>
 					</c:if>
+					
+					
+					
+					<h5 class="mt-3 col-3 mb-3">
+					<c:choose>
+					<c:when test = "${24-user.passedTime%24 eq 24}">
+					${5-user.passedDay}일  0시간 남음
+					</c:when>
+					<c:otherwise>
+					${4-user.passedDay}일  ${24-user.passedTime%24}시간 남음
+					</c:otherwise> 
+					</c:choose>
+					</h5>
 				</div>
-
+				
+				<div class ="text-white col-3">
+				
+				
+				</div>
 
 
 			</div>
@@ -94,7 +116,10 @@
 
 	<script type="module" src="/static/js/swiper.js"></script>
 	<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-	<script>
+<script>
+$(document).ready(function(){
+
+});
 
 
 </script>

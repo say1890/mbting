@@ -1,5 +1,9 @@
 package com.juhyang.mbting.user.bo;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -578,18 +582,44 @@ public class UserBO {
 
 	
 	// 내가 좋아하는 사람의 프로필 가져오기
-	public List<UserDetail> getProfileWhoILike(List<Integer> idList, int myId) {
+	public List<UserDetail> getProfileWhoILike(List<Integer> idList, int myId) throws ParseException {
 		List<UserDetail> PeopleWhoILiked = new ArrayList<>();
+		
+		// 현재 시간
+	
+		Date today=new Date();
+
 		
 		for(int id :idList) {
 			UserDetail userDetail = new UserDetail();
+			String likedAt = likeDAO.selectLikeTime(id,myId);
+			Date likedTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(likedAt);
+			long diffSec = (today.getTime() - likedTime.getTime()) / 1000; //초 차이
+			long diffDays = diffSec / (24*60*60); //일자수 차이
+			long diffHour = (today.getTime() - likedTime.getTime()) / 3600000;
+			if(diffDays>=5) {
+				likeBO.deleteLike(id,myId);
+			}
+			else {
+				userDetail.setPassedDay(diffDays);
+				userDetail.setPassedTime(diffHour);
+			
+			}
+			
 			User user = userDAO.selectUserById(id);
+			
+			
+			
 			UserCharacter userCharacter =userDAO.selectOptionsForSeeProfile(id);
 			//	나이
 			int ageForProfile = userDAO.getMyage(id);
 			user.setAgeForProfile(ageForProfile);
+			
+			// 사용자 기본 정보
 			userDetail.setUser(user);
 			userDetail.setUserCharacter(userCharacter);
+			
+			
 			// 좋아요 여부
 			boolean isLike = likeBO.isLike(id, myId);
 			

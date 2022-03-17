@@ -1,9 +1,21 @@
-
+// roomNum 안뜨게끔
+history.replaceState({},null,location.pathname);
 let username =  document.querySelector("#username").innerHTML;
 
 let roomNum = document.querySelector("#roomNum").innerHTML;
 
-history.replaceState({},null,location.pathname);
+
+
+
+
+
+
+
+
+
+
+
+
 // SSE 연결하기
 const eventSource = new EventSource(`http://localhost:8080/chat/roomNum/${roomNum}`);
 eventSource.onmessage = (event) => {

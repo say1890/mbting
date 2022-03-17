@@ -53,12 +53,8 @@ public class ChatController {
 		// 사용자의 채팅방 번호 조회
 		List<ChatOriginal> room = chatBO.getRoomList(userId);
 		if(!room.isEmpty()) {
+			List<ChatDetail> chatDetail = new ArrayList<>();
 			
-		}
-		
-		
-		List<ChatDetail> chatDetail = new ArrayList<>();
-		
 			for(ChatOriginal original: room) {
 				List<UserDetail> userDetail = new ArrayList<>();
 				List<ChatOriginal> chatOriginal =  new ArrayList<>();
@@ -75,6 +71,10 @@ public class ChatController {
 					}
 				
 		model.addAttribute("chatDetail", chatDetail);
+		}
+		
+		
+		
 	
 		
 		

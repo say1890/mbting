@@ -1,6 +1,8 @@
 package com.juhyang.mbting.chat;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.juhyang.mbting.chat.bo.ChatBO;
+import com.mongodb.client.model.CreateCollectionOptions;
+import com.mongodb.reactivestreams.client.MongoClient;
+import com.mongodb.reactivestreams.client.MongoClients;
+import com.mongodb.reactivestreams.client.MongoDatabase;
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
@@ -48,8 +54,11 @@ ChatBO chatBO;
 	@PostMapping("/chat") 
 	public Mono<Chat> setMsg(@RequestBody Chat chat){
 		chat.setCreatedAt(LocalDateTime.now());
+		
 		return chatRepository.save(chat); // Object를 리턴하면 자동으로 JSON 변환 (MessageConverter)
 	}
+	
+	
 	
 	
 	@PostMapping("/addChatData")
@@ -69,5 +78,7 @@ ChatBO chatBO;
 	}
 	
 	
-	
+	  
+
 }
+

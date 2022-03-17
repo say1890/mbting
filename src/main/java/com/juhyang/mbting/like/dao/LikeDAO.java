@@ -1,5 +1,6 @@
 package com.juhyang.mbting.like.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -29,5 +30,8 @@ public interface LikeDAO {
 	public int deleteLike(@Param("HisId") int id, @Param("myId") int myId);
 
 	public boolean insertDislike(@Param("userId")int userId, @Param("receiver")int receiver);
+
+	public String selectLikeTime(@Param("receiver")int receiver,
+			@Param("userId")int userId);
 
 }

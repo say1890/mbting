@@ -2,6 +2,7 @@ package com.juhyang.mbting.like;
 
 
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class LikeController {
 	@Autowired
 	UserBO userBO;
 	@GetMapping("/see_like_view")
-	public String likeView(HttpServletRequest request,Model model) {
+	public String likeView(HttpServletRequest request,Model model) throws ParseException {
 	    /* 날 좋아하는 사람의 정보 가져오기 */
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
