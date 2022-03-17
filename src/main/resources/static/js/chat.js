@@ -15,17 +15,27 @@ eventSource.onmessage = (event) => {
 		// 회색박스(왼쪽)
 		initYourMessage(data);
 	}
+	
+	let createdAt =  data.createdAt.substring(0,10) // 날짜
+	let countMsg = 1;
+	
+
 }
 
 // 내가 보낸 메시지
 function getSendMsgBox(data) {
 
 	let md = data.createdAt.substring(5, 10)
-	let tm = data.createdAt.substring(11, 16)
-	let convertTime = tm + " | " + md
+	let hour = data.createdAt.substring(11, 13) // 시
+	
+	let convertedHour = hour>12?hour%12:hour
+	let minute = data.createdAt.substring(14, 16)
+	let division = hour<12 ? "오전 " : "오후 "
+	//(11, 16)
+	let convertTime = division + convertedHour + ":" + minute  
 
 	return `<div class="sent_msg">
-	<p>${data.msg}</p>Num
+	<p>${data.msg}</p>
 	<span class="time_date"> ${convertTime}  </span>
 </div>`;
 }

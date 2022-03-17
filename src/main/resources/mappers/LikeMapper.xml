@@ -82,6 +82,20 @@ IN(
 
 </delete>
 
+<insert id ="insertDislike"  parameterType = "map" >
+INSERT INTO `dislike`(
+`sender`,
+`receiver`,
+`createdAt`
+)
+VALUES(
+	#{userId},
+	#{receiver},
+	now()
+)
+
+
+</insert>
 
 
 

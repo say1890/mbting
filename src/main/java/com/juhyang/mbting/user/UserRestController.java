@@ -182,27 +182,11 @@ public class UserRestController {
 	
 	
 	
-	@GetMapping("/like")
-	public Map<String, Boolean> SendLike(
-			@RequestParam("receiver") int receiver,
-			HttpServletRequest request,
-			Model model
-			) {
-		HttpSession session = request.getSession();
-		int userId = (Integer)session.getAttribute("userId");
-		boolean isLike = likeBO.sendLike(userId,receiver);
-		int checkIfHeLikesMe = likeBO.checkIfHeLikesMe(userId,receiver);
-		
-		
-		
-		Map<String, Boolean> result = new HashMap<>();
-		result.put("isLike", isLike);
-		if(checkIfHeLikesMe==1) {
-			result.put("WeLikeEachOther",true);
-		}
-		return result;
-		
-	}
+	
+	
+	
+	
+	
 	
 	
 	

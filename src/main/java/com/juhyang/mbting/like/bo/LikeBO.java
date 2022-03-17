@@ -57,6 +57,13 @@ public class LikeBO {
 	public List<Integer> getWhoILike(int userId) {
 		return likeDAO.selectWhoILike(userId);
 	}
+
+	//  싫어요 보내기
+	public boolean sendDislike(int userId, int receiver) {
+		return likeDAO.insertDislike(userId, receiver);
+		 
+		
+	}
 	
 
 

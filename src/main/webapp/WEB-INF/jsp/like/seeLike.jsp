@@ -26,20 +26,30 @@
 <div class = "section">
 <div class="slider">
     <div class="container slidercontent">
+    <h1 class="hero">받은 좋아요</h1>
       <c:choose>
       	<c:when test ="${countLike!=0}">
-      		<h1 class="hero">회원님을 좋아하는 분이 있어요❤️</h1>
+      		
       		<c:import url ="/WEB-INF/jsp/like/likeList.jsp" />
       		
       	</c:when>
       	<c:otherwise>
-      		<h1 class="hero">아직은 소식이 없네요 ㅠ.ㅠ</h1>
+      		<p class ="text-white mt-5 mb-5 p-5">.　　　　　　　　　　 ✦ 　　　　   　 　　　˚　　　　　　　　　　　　　　*　　　　　　   　　　　　　　　　　　　　　　.　　　　　　　　　　　　　　. 　　 　　　　　　　 ✦ 　　　　　　　　　　 　 ‍ ‍ ‍ ‍ 　　　　 　　　　　　　　　　　　,　　   　
+
+.　　　　　　　　　　　　　.　　　ﾟ　  　　　.　　                         　　　　　　　　　　　.
+
+　　　　　　,　　　　　　　.　　　　　　    　　　　 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　    　      　　　　　        　　　　*　　　　　　　　　. 　　　　　　　　　　.　　　　　　　　　　　　　. 　　　　　　　　　　　　　　　　       　   　　　　 　　　　　　　　　　　　　　　　       　   　　　　　　　　　　　　　　　　       　    ✦ 　   　　　,　　　　　　　　　*　　　　　 　　,　　　 ‍ ‍ ‍ ‍ 　 　　　　　　　　　　　　.　　　　　 　　 　　　.　　　　　　　　　　　　　 　           　　　　　　　　　　　　　　　　　　　˚　　　 　   　　　　,　　　　　　　　　　　       　    　　　　　　　　　　　　　　　　.　　　  　　    　　　　　 　　　　　.　　　　　　　　　　　　　.　　　　　　　　　　　　　　　* 　　   　　　　　 ✦ 　　　　　　　         　        　　　　 　　 　　　　　　　 　　　　　.　　　　　　　　　　　　　　　　　　.　　　　　    　　. 　 　　　　　.　　　　  　　　　　   　　　　　.　　　　　　　　　　　.　　　　　　　　　　   　
+
+　˚　　　　　　　　　　　　　　　　　　　　　ﾟ　　　　　.　　　　　　　　　　　　　　　. 　　 　  ‍ ‍ ‍ ‍ ‍ ‍ ‍ ‍ ‍ ,　 　　　* .　　　　　 　　　　　　　　　　　　　　.　　　　　　　　　　 ✦ 　　　　   　 　　　˚　　　　　　　　　　　　　　*　　　　　　   　　　　　　　　　　　　　　　.　　　　　　　　　　　　　　.
+			</p>
       	</c:otherwise>
       </c:choose>
+      
+      <c:import url ="/WEB-INF/jsp/like/likedList.jsp" />
 	</div>
       </div>
 </div>   
-<c:import url ="/WEB-INF/jsp/like/likedList.jsp" />
+
 
 
 </body>

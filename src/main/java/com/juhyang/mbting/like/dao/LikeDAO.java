@@ -28,4 +28,6 @@ public interface LikeDAO {
 
 	public int deleteLike(@Param("HisId") int id, @Param("myId") int myId);
 
+	public boolean insertDislike(@Param("userId")int userId, @Param("receiver")int receiver);
+
 }

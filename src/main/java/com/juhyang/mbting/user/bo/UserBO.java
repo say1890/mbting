@@ -267,7 +267,7 @@ public class UserBO {
 
 		
 		//	사용자가 원하는 나이의 user 정보를 가져옴
-		List<UserCharacter> yourInfo = userDAO.selectUsers(myage,chooseAge,sex);
+		List<UserCharacter> yourInfo = userDAO.selectUsers(userId, myage,chooseAge,sex);
 		
 		
 		

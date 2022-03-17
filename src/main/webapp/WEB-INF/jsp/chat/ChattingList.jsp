@@ -40,7 +40,7 @@
 	<c:import url="/WEB-INF/jsp/include/header.jsp" />
 	<div class="section mt-5">
 		<div class="container row">
-
+			<div class ="col-12"><h1>채팅🐰</h1></div>
 			<c:forEach var="chat" items="${chatDetail}">
 				<button class="col-11 btn ml-2" type="button" data-room-num ="${chat.chat.id}">
 				<div class="p-1 d-flex">

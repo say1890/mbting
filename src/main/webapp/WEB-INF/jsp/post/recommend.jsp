@@ -49,10 +49,9 @@
 						      		<h4 id ="recommended-profile-name" class ="mt-1">${user.user.userName}(${user.user.ageForProfile})</h4>
 						      		<div id="recommended-profile-introduce" class="mx-auto mt-4 mb-5">
 						      			<p class = "recommended-profile-introduce-font">
-							      			
+							      			<div>내 이상형과 일치하는 부분은</div>
 							      			<c:if test="${not empty user.merit}">
 							      			#${user.merit}
-							      			
 							      			</c:if>
 							      			<c:if test="${not empty user.character}">
 							      			#${user.character}  
@@ -86,9 +85,12 @@
 								      		
 							      		</c:choose>
 							      		<!-- 좋아요  끝-->
+							      		
+							      		<!-- 싫어요 -->
 							      		<a href ="#">
-							      			<i class="bi bi-trash-fill menu-icon text-dark "></i>
+							      			<i class="bi bi-trash-fill menu-icon text-dark dislikeBtn" data-your-id="${user.user.id}"></i>
 							      		</a>
+							      		<!-- 싫어요 끝 -->
 							      		
 						      		</div>
 						  </div>  		<!-- profile box 끝 -->
@@ -137,7 +139,7 @@
 		  
 		  $.ajax({
 				type:"get",
-				url:"/user/like",
+				url:"/like",
 				data:{"receiver":matchedPersonId},
 				success:function(data) {
 						location.reload();
@@ -150,6 +152,28 @@
 				
 			});
 		  
+	  });
+	  
+	  
+	  $(".dislikeBtn").on("click",function(e){
+		  e.preventDefault();
+		  let matchedPersonId = $(this).data("your-id");
+		  alert(matchedPersonId);
+		  
+		  $.ajax({
+				type:"get",
+				url:"/dislike",
+				data:{"receiver":matchedPersonId},
+				success:function(data) {
+						location.reload();
+						alert("싫어요 성공");
+					}
+					
+				, error:function() {
+					alert("싫어요 실패!!");
+				}
+				
+			});
 	  });
 	  
   });

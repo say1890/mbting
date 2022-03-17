@@ -38,19 +38,19 @@
             <c:choose>
             	<c:when test = "${sex eq '남'}">
             		<c:if test="${not empty chat.womanProfile}">
-            			<img src="${chat.womanProfile}" class="mr-3 rounded-circle img-responsive">
+            			<a href ="user/see_profile?userId=${chat.woman}"><img src="${chat.womanProfile}" class="mr-3 rounded-circle img-responsive"></a>
             		</c:if>
             		<c:if test ="${empty chat.womanProfile}">
-            			<h1><i class="bi bi-person-circle myprofile-icon my-auto" ></i></h1>
+            			<a href ="user/see_profile?userId=${chat.woman}"><h1><i class="bi bi-person-circle myprofile-icon my-auto" ></i></h1></a>
             		</c:if>
             		
             	</c:when>
             	<c:otherwise>
             	<c:if test="${not empty chat.manProfile}">
-            			<img src="${chat.manProfile}" class="mr-3 rounded-circle img-responsive">
+            			<a href ="user/see_profile?userId=${chat.man}"><img src="${chat.manProfile}" class="mr-3 rounded-circle img-responsive"></a>
             		</c:if>
             		<c:if test ="${empty chat.manProfile}">
-            			<h1><i class="bi bi-person-circle myprofile-icon my-auto" ></i></h1>
+            			<a href ="user/see_profile?userId=${chat.man}"><h1><i class="bi bi-person-circle myprofile-icon my-auto" ></i></h1></a>
             	</c:if>
             	
             	</c:otherwise>
