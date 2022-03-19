@@ -160,7 +160,7 @@
     </div>
     <div class="col three bg nopad pointer">
       <div class="imgholder">
-      <img src = "https://post-phinf.pstatic.net/MjAyMDA0MTZfMTEw/MDAxNTg3MDIyNjg4OTA4.IMVgYDhysBtYfNYevQyUqzcbMuPRt3KADmxXCHn58VEg.VL3HHjB4TpReVeFFmESqSBQkpYeoN4hMAKU1H8U6XHEg.PNG/%2Cbti16-E.png?type=w1200">
+      <img src = "https://post-phinf.pstatic.net/MjAyMDA0MTZfMTEw/MDAxNTg3MDIyNjg4OTA4.IMVgYDhysBtYfNYevQyUqzcbMuPRt3KADmxXCHn58VEg.VL3HHjB4TpReVeFFmESqSBQkpYeoN4hMAKU1H8U6XHEg.PNG/%2Cbti16-E.png?type=w1200"
       </div>
       <h1 class="feature">Wow</h1>
       <p>Wow wow wow</p>

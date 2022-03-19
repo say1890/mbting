@@ -1,9 +1,9 @@
 package com.juhyang.mbting.user.bo;
 
-import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -236,52 +236,67 @@ public class UserBO {
 	public List<UserDetail> getRecommendedUser(int userId, String sex) {
 		//나의 정보를 가져옴
 		List<UserCharacter> myInfo = userDAO.selectOptions(userId);
-
-		
+		// 나의 나이
+		int myage = userDAO.getMyage(userId);
 		// 내가 원하는 나이
 		String ageString = userDAO.getAge(userId);
-		if(ageString==null) {
-			ageString = "=";
-		}
+				if(ageString==null) {
+					ageString = "=";
+				}
+				
 		String[] age = ageString.split(",");
-		
-
 		// 부등호 
 		String chooseAge = "";
 		
-		// 나의 나이
-		int myage = userDAO.getMyage(userId);
-		
+		List<UserCharacter> yourInfo = new ArrayList<>();
+		// 최종 매칭될 user의 character list
+		List<UserDetail> MatchingList = new ArrayList<>();
+		List<UserDetail>  list =  new ArrayList<>();
 		for(String ageTitle: age) {
 			if(ageTitle.equals("동갑")) {
 				chooseAge = "=";
+//				사용자가 원하는 나이의 user 정보를 가져옴
+				yourInfo = userDAO.selectUsers(userId, myage,chooseAge,sex);
+				list =returnRecommendedUser(yourInfo,myInfo,userId);
+				MatchingList.addAll(list);
 			}
 			else if(ageTitle.equals("연상")) {
 				chooseAge = ">";
+//				사용자가 원하는 나이의 user 정보를 가져옴
+			yourInfo = userDAO.selectUsers(userId, myage,chooseAge,sex);
+			list =returnRecommendedUser(yourInfo,myInfo,userId);
+			MatchingList.addAll(list);
 			}
 			else if(ageTitle.equals("연하")) {
 				chooseAge = "<";
+//				사용자가 원하는 나이의 user 정보를 가져옴
+				yourInfo = userDAO.selectUsers(userId, myage,chooseAge,sex);
+				list =returnRecommendedUser(yourInfo,myInfo,userId);
+				MatchingList.addAll(list);
 			}
 			else {
 				chooseAge = "=";
+//				사용자가 원하는 나이의 user 정보를 가져옴
+				yourInfo = userDAO.selectUsers(userId, myage,chooseAge,sex);
+				list =returnRecommendedUser(yourInfo,myInfo,userId);
+				MatchingList.addAll(list);
+				break;
 			}
 			
 		}
-		
+		return MatchingList;
 
 		
-		//	사용자가 원하는 나이의 user 정보를 가져옴
-		List<UserCharacter> yourInfo = userDAO.selectUsers(userId, myage,chooseAge,sex);
-		
-		
-		
+
+	}
+	
+	
+	
+	public List<UserDetail> returnRecommendedUser(List<UserCharacter> yourInfo, List<UserCharacter> myInfo, int userId){
+
 		
 		// 최종 매칭될 user의 character list
 		List<UserDetail> MatchingList = new ArrayList<>();
-
-		
-
-		
 		for(UserCharacter your:yourInfo) {
 			UserDetail userDetail = new UserDetail();
 			int point = 0;
@@ -519,8 +534,10 @@ public class UserBO {
 		
 		
 		return MatchingList;
-
 	}
+	
+	
+	
 	public UserDetail getUserProfile(int userId) {
 		UserDetail userDetailForSeeProfile = new UserDetail();
 		UserCharacter userCharacter =userDAO.selectOptionsForSeeProfile(userId);

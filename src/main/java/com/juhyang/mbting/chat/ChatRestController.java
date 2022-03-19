@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.juhyang.mbting.chat.bo.ChatBO;
-import com.mongodb.client.model.CreateCollectionOptions;
-import com.mongodb.reactivestreams.client.MongoClient;
-import com.mongodb.reactivestreams.client.MongoClients;
-import com.mongodb.reactivestreams.client.MongoDatabase;
+
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;

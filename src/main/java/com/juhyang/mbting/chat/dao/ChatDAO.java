@@ -5,8 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.juhyang.mbting.chat.Chat;
-import com.juhyang.mbting.chat.model.ChatDetail;
 import com.juhyang.mbting.chat.model.ChatOriginal;
 
 @Repository
