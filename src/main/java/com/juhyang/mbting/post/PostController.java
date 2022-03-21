@@ -52,6 +52,15 @@ public class PostController {
 		Post post;
 		
 		
+		/*첫 접속인지 확인 */
+		int count = userBO.countLogin(userId);
+		if(count==1) {
+			likeBO.sendDislike(userId, 1); // 관리자가 추천에 안 뜨게끔
+			
+			session.setAttribute("firstconnection", "yes");
+			
+		}
+		
 		/* 오늘의 질문 받아오기 */
 		LocalDate now = LocalDate.now();
         List<Post> questionList = postBO.getQuestionForMain(now);
@@ -65,9 +74,7 @@ public class PostController {
         catch(NullPointerException e) { 
         	System.out.print("post 없음"); 
         } 	
-        
-        
-        
+  
         model.addAttribute("today", now);
         model.addAttribute("questionList", questionList);
 		

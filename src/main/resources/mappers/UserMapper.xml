@@ -256,6 +256,29 @@
 		`user_id` =#{userId}	
 	</select>
 	
+	<insert id= "insertLoginTime" >
+	INSERT INTO
+	`tracelogin`
+	(
+	`user_id`,
+	`createdAt`
+	)
+	VALUES
+	(
+	#{userId},
+	now()
+	)
 	
+	
+	</insert>
+	<select id ="selectLogin" resultType="int">
+	SELECT
+		count(1)
+	FROM
+		`tracelogin`
+	WHERE
+		`user_id` =#{userId}	
+	
+	</select>
 	
 </mapper>

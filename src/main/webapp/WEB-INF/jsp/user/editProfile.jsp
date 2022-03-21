@@ -17,8 +17,8 @@
 
 
 <!-- css -->
-
 <link href="/static/css/btn.css" rel="stylesheet"> 	
+<link href="/static/css/welcome.css" rel="stylesheet"> 	
 <link href="/static/css/smallImg.css" rel="stylesheet"> 	
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 	
@@ -27,8 +27,17 @@
 <body>
 <c:import url ="/WEB-INF/jsp/include/header.jsp" />
 <div class="section bg">
+
+<c:if test ="${firstconnection eq 'yes'}">
+  	<div id = "welcome">
+  	<div class = "h1"><h1>환영합니다 <strong>${userName}님 :)</strong></h1></div>
+  	</div>
+  </c:if>
   <div class="container">
+  
+  
     <h1>나는 이런 사람이예요</h1>
+    
     <section class ="d-flex mb-5 ml-5">
     	<a href ="#" id = "profileUpdateBtn">
     	<c:choose>
@@ -45,7 +54,7 @@
     	
     	
     	<div class ="mt-5 ml-4 col-12">
-    	<h3 class ="ml-3">${userName}</h3>
+    	<h3 class ="ml-3">${userName}</h3> 
     	<div class ="mt-3 mb-1 col-12">
     		<label class ="mr-4 col-2 mb-2">별명</label>
     			<input type ="text" class ="col-8 form-control" value ="${userName}" id = "userNameInput" maxlength="10">
@@ -295,8 +304,16 @@
 </div>
 <script>
 $(document).ready(function(){
-	
-	
+	if($("#welcome").length){
+		
+		$(".container").hide();
+		$("#welcome").animate({opacity:'0'}
+		,6000,function(){
+			$(".container").show();	
+		});
+		
+		
+	}
 	
 	
 	$("#profileUpdateBtn").on("click",function(){

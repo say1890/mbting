@@ -651,6 +651,13 @@ public class UserBO {
 		}
 		return PeopleWhoILiked;
 	}
+	public void setLoginTime(int userId) {
+		userDAO.insertLoginTime(userId);
+		
+	}
+	public int countLogin(int userId) {
+		return userDAO.selectLogin(userId);
+	}
 
 
 	

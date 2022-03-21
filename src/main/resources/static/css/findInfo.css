@@ -1,24 +1,48 @@
 @charset "UTF-8";
 
-html, body * { box-sizing: border-box; font-family: 'Open Sans', sans-serif; }
+@font-face {
+    font-family: 'IBMPlexSansKR-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/IBMPlexSansKR-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+*{
+ font-family: 'IBMPlexSansKR-Regular';
+
+
+}
+
+
+html, body * {
+ height: 100%;
+ width: 100%;
+ margin: 0;
+ padding: 0;
+	}
 
 body {
   background:
-    linear-gradient(
-    rgba(246,247,249,0.8),
-    rgba(246,247,249,0.8)),
+linear-gradient(
+    rgb(255 255 255 / 50%),
+    rgb(227 182 255 / 80%)),
     url(https://dl.dropboxusercontent.com/u/22006283/preview/codepen/sky-clouds-cloudy-mountain.jpg) no-repeat center center fixed;
   background-size: cover;
+  overflow: hidden;
+  text-align:center;
+  align-items: center;
+  justify-content: center; 
 }
 
 .container {
   width: 100%;
-  padding-top: 60px;
+  padding-top: 232px;
   padding-bottom: 100px;
 }
 
 .frame {
-  height: 430px;
+  height: 250px;
   width: 430px;
  background: linear-gradient(
     rgb(255 224 242 / 75%),
@@ -171,8 +195,8 @@ li {
 }
 
 .form-signin input, .form-signup input {
-  color: #ffffff;
-  font-size: 13px;
+  color: rgb(0 0 0);
+  font-size: 15px;
 }
 
 .form-styling {
@@ -191,7 +215,7 @@ label {
   font-size: 13px;
   padding-left: 15px;
   padding-bottom: 10px;
-  color: rgba(255,255,255,.7);
+  color: rgb(0 0 0 / 70%);
   display: block;
 }
 
@@ -265,7 +289,7 @@ label {
 
 a.btn-signup:hover, a.btn-signin:hover {
     cursor: pointer; 
-    background-color: #0F4FE6;
+    background-color:rgb(184 173 253);
     transition: background-color .5s; 
 }
 

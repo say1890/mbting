@@ -58,6 +58,7 @@ public class UserRestController {
 		
 		  
 		userBO.addUser(loginId, password, userName, date, sex, mbti,email);
+		
 		result.put("result", "가입이 완료됐습니다.");
 		return result;
 	}
@@ -85,6 +86,7 @@ public class UserRestController {
 			session.setAttribute("sex", user.getSex());
 			session.setAttribute("introduce", user.getIntroduce());
 			session.setAttribute("profile", user.getProfile());
+			userBO.setLoginTime(user.getId());
 		} else {
 			// 로그인 실패
 			result.put("result", "fail");
