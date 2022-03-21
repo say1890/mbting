@@ -47,5 +47,10 @@ public class AdminController {
 		return "admin/PostDetail";
 		
 	}
+	@RequestMapping("/calender_view")
+	public String calender_view() {
+		return "admin/calender";
+	}
+	
 	
 }
