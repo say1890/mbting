@@ -3,17 +3,7 @@ history.replaceState({},null,location.pathname);
 let username =  document.querySelector("#username").innerHTML;
 
 let roomNum = document.querySelector("#roomNum").innerHTML;
-
-
-
-
-
-
-
-
-
-
-
+var createdAt="2022-03-21";
 
 
 // SSE 연결하기
@@ -28,10 +18,45 @@ eventSource.onmessage = (event) => {
 		initYourMessage(data);
 	}
 	
-	let createdAt =  data.createdAt.substring(0,10) // 날짜
-	let countMsg = 1;
+	let currentDay = data.createdAt.substring(0,10) // 최신 들어온거  
+	if(currentDay!=createdAt){
+		console.log(currentDay + " " + createdAt);
+		makeLine(currentDay);
+	}
+	
+	createdAt =  data.createdAt.substring(0,10) // 날짜
+	
 	
 
+	
+	let countMsg = 1;
+	
+}
+
+
+function makeLine(currentDay){
+	let chatBox = document.querySelector("#chat-box");
+	let dateBox = document.createElement("div");
+	dateBox.className =  "date_box";
+	dateBox.innerHTML = getDate(currentDay);
+	
+	let lefthr = document.createElement("hr");
+	lefthr.className = "left_hr";
+	chatBox.append(lefthr);
+
+	chatBox.append(dateBox);
+	
+	let righthr = document.createElement("hr");
+	righthr.className = "right_hr";
+	chatBox.append(righthr);
+
+		}
+
+
+function getDate(currentDay){
+	return `<div class="contour_date">
+	<p>${currentDay} </p>
+	</div>`;
 }
 
 // 내가 보낸 메시지
@@ -45,7 +70,7 @@ function getSendMsgBox(data) {
 	let division = hour<12 ? "오전 " : "오후 "
 	//(11, 16)
 	let convertTime = division + convertedHour + ":" + minute  
-
+	
 	return `<div class="sent_msg">
 	<p>${data.msg}</p>
 	<span class="time_date"> ${convertTime}  </span>
@@ -86,7 +111,7 @@ function initMyMessage(data) {
 	document.documentElement.scrollTop = document.body.scrollHeight;
 }
 
-// 회색박스 초기화하기
+// 받은 박스 초기화하기
 function initYourMessage(data) {
 	let chatBox = document.querySelector("#chat-box");
 

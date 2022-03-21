@@ -91,7 +91,7 @@
 		</c:when>
 		
 		<c:otherwise>
-			<a href="#QuestionForToday">
+			<a href="/post/main#QuestionForToday">
 	        	<i class="bi bi-question-circle-fill menu-icon"></i>
 	        </a>
 		</c:otherwise>

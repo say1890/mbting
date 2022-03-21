@@ -31,6 +31,26 @@ color: #212529;
 .chat_section{
 	padding-top: 15px;
 }
+.date_box{
+	  text-align: center; 
+	  margin-left: 10%;
+}
+
+.left_hr{
+	 text-align: left;
+	 margin-left: 0;
+	 width: 30%;
+}
+
+.right_hr{
+	text-align: right;
+	 margin-right: 0;
+	 width: 30%;
+}
+
+
+
+
 .incoming_msg_img {
   display: inline-block;
   width: 6%;

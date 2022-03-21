@@ -178,6 +178,8 @@ public class UserRestController {
 		userBO.editBasicInfo(userId,userName,introduce,mbti,file);
 		User user = userDAO.selectUserById(userId);
 		session.setAttribute("profile", user.getProfile());
+		session.removeAttribute("firstconnection");
+		
 		return userBO.editMatchingProfile(userId,myMeritArr,myHobbyArr,myCharacterArr, yourMeritArr, yourHobbyArr,yourCharacterArr,ageArr);
 		
 	}

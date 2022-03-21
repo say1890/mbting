@@ -21,6 +21,7 @@ import com.juhyang.mbting.post.bo.PostBO;
 import com.juhyang.mbting.post.model.Post;
 import com.juhyang.mbting.user.bo.UserBO;
 import com.juhyang.mbting.user.dao.UserDAO;
+import com.juhyang.mbting.user.model.UserCharacter;
 import com.juhyang.mbting.user.model.UserDetail;
 
 @Controller
@@ -52,13 +53,15 @@ public class PostController {
 		Post post;
 		
 		
-		/*첫 접속인지 확인 */
-		int count = userBO.countLogin(userId);
-		if(count==1) {
+		/*사용자가 정보 수정을 했는지 확인 */
+		List<UserCharacter> list = userBO.checkUserInfo(userId); 
+		if(list.isEmpty()) {
 			likeBO.sendDislike(userId, 1); // 관리자가 추천에 안 뜨게끔
 			
-			session.setAttribute("firstconnection", "yes");
-			
+			 session.setAttribute("firstconnection", "yes");	
+		}
+		else {
+			session.removeAttribute("firstconnection");
 		}
 		
 		/* 오늘의 질문 받아오기 */
@@ -100,6 +103,11 @@ public class PostController {
 		return "/post/main";
 	}
 	
+	@GetMapping("/question")
+	public String question_view(Model model)
+	{	
+		return "/post/question";
+	}
 	
 	
 }

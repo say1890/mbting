@@ -63,6 +63,7 @@
 			            </c:when>
 			            <c:otherwise>
 			            	<span id="referralName">${chat.manName}</span>
+			            	${chat.man}
 			            </c:otherwise>
 			        
 	            </c:choose>
@@ -71,9 +72,9 @@
           </div>
 
           <div class="container-fluid chat_section" id="chat-box">
-
+		  	
           </div>
-
+		
           <div class="type_msg">
             <div class="input_msg_write">
               <input id="chat-outgoing-msg" type="text" class="write_msg" placeholder="Type a message" />

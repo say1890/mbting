@@ -541,7 +541,7 @@ public class UserBO {
 	public UserDetail getUserProfile(int userId) {
 		UserDetail userDetailForSeeProfile = new UserDetail();
 		UserCharacter userCharacter =userDAO.selectOptionsForSeeProfile(userId);
-		User user =userDAO.selectUserById(userId); 
+		User user = userDAO.selectUserById(userId); 
 		userDetailForSeeProfile.setUser(user);
 		userDetailForSeeProfile.setUserCharacter(userCharacter);
 		return userDetailForSeeProfile;
@@ -655,8 +655,8 @@ public class UserBO {
 		userDAO.insertLoginTime(userId);
 		
 	}
-	public int countLogin(int userId) {
-		return userDAO.selectLogin(userId);
+	public  List<UserCharacter> checkUserInfo(int userId) {
+		return userDAO.selectOptions(userId);
 	}
 
 
