@@ -17,12 +17,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.juhyang.mbting.common.FileManagerService;
 import com.juhyang.mbting.like.bo.LikeBO;
 import com.juhyang.mbting.user.bo.UserBO;
 import com.juhyang.mbting.user.dao.UserDAO;
@@ -185,8 +187,15 @@ public class UserRestController {
 	
 	
 	
-	
-	
+	@GetMapping("/deleteProfile")
+	public void deleteProfile(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		User user = userDAO.selectUserById(userId);
+		String userProfile = user.getProfile();
+		FileManagerService.removeFile(userProfile);
+		
+	}
 	
 	
 	

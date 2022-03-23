@@ -1,16 +1,17 @@
 package com.juhyang.mbting.user.model;
 
+import java.util.List;
 
-public class UserDetail {
+public class UserDetail implements Comparable<UserDetail>{
 
 	private User user;
 	private UserCharacter userCharacter;
 	private int point;
 	private boolean isLike;
 	private boolean isHate;
-	private String character;
-	private String merit;
-	private String hobby;
+	private List<String> character;
+	private List<String> merit;
+	private List<String> hobby;
 	private long passedDay;
 	private long passedTime;
 	
@@ -60,23 +61,38 @@ public class UserDetail {
 	public void setHate(boolean isHate) {
 		this.isHate = isHate;
 	}
-	public String getCharacter() {
-		return character;
-	}
-	public void setCharacter(String character) {
-		this.character = character;
-	}
-	public String getMerit() {
+
+
+	
+	
+	// 포인트 높은 순으로 정렬
+	
+	public List<String> getMerit() {
 		return merit;
 	}
-	public void setMerit(String merit) {
+	public void setMerit(List<String> merit) {
 		this.merit = merit;
 	}
-	public String getHobby() {
+	public List<String> getHobby() {
 		return hobby;
 	}
-	public void setHobby(String hobby) {
+	public void setHobby(List<String> hobby) {
 		this.hobby = hobby;
+	}
+	@Override
+	public int compareTo(UserDetail user) {
+		if (user.point < point) {
+			return -1; 
+			} else if (user.point > point) {
+			return 1;
+			}
+			return 0;
+	}
+	public List<String> getCharacter() {
+		return character;
+	}
+	public void setCharacter(List<String> character) {
+		this.character = character;
 	}
 
 	

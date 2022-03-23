@@ -49,7 +49,7 @@ public class UserController {
 	
 	
 	@RequestMapping("/find_info_view")
-	public String findID_view()
+	public String findInfo_view()
 	{
 		return "user/findInfo";
 	}
@@ -67,6 +67,8 @@ public class UserController {
 		
 		return "user/myPage";
 	}
+	
+	
 	// 프로필 편집 화면
 	@RequestMapping("/mypage_edit_view")
 	public String editprofile_view(HttpServletRequest request

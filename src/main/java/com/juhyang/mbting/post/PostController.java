@@ -2,6 +2,8 @@ package com.juhyang.mbting.post;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,7 +59,6 @@ public class PostController {
 		List<UserCharacter> list = userBO.checkUserInfo(userId); 
 		if(list.isEmpty()) {
 			likeBO.sendDislike(userId, 1); // 관리자가 추천에 안 뜨게끔
-			
 			 session.setAttribute("firstconnection", "yes");	
 		}
 		else {
@@ -87,11 +88,28 @@ public class PostController {
         // 사용자가 사용자 정보를 다 입력했을 경우 추천을 받아온다.
 
         	List<UserDetail> userList = userBO.getRecommendedUser(userId,sex);
+        	Collections.sort(userList);
             model.addAttribute("userList", userList);
 
             /* 날 좋아하는 사람의 정보 가져오기 */
             int countLike = likeBO.countSender(userId); // 나를 좋아하는 사람의 수 
             model.addAttribute("countLike",countLike);
+           
+            // 내가 좋아하는 사람 리스트
+            List<UserDetail> ListWhoILike = new ArrayList<>();
+            int SendLike = likeBO.countSendLike(userId);
+            if(SendLike!=0) {
+            	List<Integer> idList = likeBO.getWhoILike(userId); 
+            	ListWhoILike = userBO.getProfileWhoILike(idList,userId);
+            	for(UserDetail who:ListWhoILike) {
+            		long passedDay = who.getPassedDay();
+            		if(passedDay>=5) {
+            			int likedId = who.getUser().getId();
+            			likeBO.deleteLike(likedId, userId);
+            		}
+            	}
+            }
+            
         
         
         /*채팅 상대가 있는지 확인*/

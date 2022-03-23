@@ -20,6 +20,11 @@ body{
 	height:10%;
 	border-bottom: 3px solid #ffeef2;
 }
+
+#smallProfile {
+    width: 60px;
+    height: 60px;
+}
 .user a:hover{
 text-decoration: none;
 color: #212529;

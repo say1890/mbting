@@ -38,7 +38,7 @@
             <c:choose>
             	<c:when test = "${sex eq '남'}">
             		<c:if test="${not empty chat.womanProfile}">
-            			<a href ="user/see_profile?userId=${chat.woman}"><img src="${chat.womanProfile}" class="mr-3 rounded-circle img-responsive"></a>
+            			<a href ="user/see_profile?userId=${chat.woman}"><img src="${chat.womanProfile}" class="mr-3 rounded-circle img-responsive" id = "smallProfile"></a>
             		</c:if>
             		<c:if test ="${empty chat.womanProfile}">
             			<a href ="user/see_profile?userId=${chat.woman}"><h1><i class="bi bi-person-circle myprofile-icon my-auto" ></i></h1></a>

@@ -38,7 +38,16 @@
     	
     	<div class ="mt-2  ml-2 col-12 row">
     	<h3 class = "col-4">${userdetail.user.userName}</h3>
-    	<h4 class = "col-6  mt-2">❝ ${userdetail.user.introduce} ❞</h4>
+    	<h4 class = "col-6  mt-2">
+    	<c:choose>
+    		<c:when test = "${empty userdetail.user.introduce}">
+    		</c:when>
+    		<c:otherwise>
+    			❝ ${userdetail.user.introduce} ❞
+    		</c:otherwise>
+    	</c:choose>
+    	</h4>
+    	
     	</div>
     	
     </section>
@@ -71,7 +80,8 @@
     <div class ="p-5">
 	    <h3 class ="mb-5 mt-5">나는 이런 사람이에요🙋‍♂️</h3>
 	    <c:if test="${not empty userdetail.userCharacter.myCharacter }">
-	    <h3 class ="ml-4 mt-5 mb-2">성격</h3>
+	    <h3 class ="ml-4 mt-5 mb-2">성격🤸🏻‍♀️</h3>
+	    <hr>
 	   		<p class = "introduceText" >${userdetail.userCharacter.myCharacter}</p>
 	    </c:if>
 	    

@@ -80,7 +80,6 @@
 				
 				var password = $("#password").val();
 				if(loginId == "") {
-					 
 					 return ;
 				}
 				

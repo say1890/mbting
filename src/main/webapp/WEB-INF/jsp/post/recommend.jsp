@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,7 @@
 				     	
 					   			
 						      		<div id = "mbti" class=" bg-white mt-3 text-center">
-						      			${user.user.mbti}
+						      			${user.user.mbti}					 
 						      		</div>
 						      		<!--  추천 상대 프로필 이미지 -->
 						      		<c:choose>
@@ -46,28 +47,64 @@
 	
 						      		</c:choose>
 						      		<!--  추천 상대 프로필 이미지 끝 -->
+						      		
+						      		
 						      		<h4 id ="recommended-profile-name" class ="mt-1">${user.user.userName}(${user.user.ageForProfile})</h4>
 						      		<div id="recommended-profile-introduce" class="mx-auto mt-4 mb-5">
+						      			<div>이런 부분이 나랑 찰떡🍓</div>
 						      			<p class = "recommended-profile-introduce-font">
-							      			<div>내 이상형과 일치하는 부분은</div>
+							      			<hr>
 							      			<c:if test="${not empty user.merit}">
-							      			#${user.merit}
+							      			 <div class ="col-12">
+							      			 💪
+							      			 <c:set var = "arr1" value = "${fn:replace(user.merit, '[','')}"/>
+							      			 <c:set var = "arr2" value = "${fn:replace(arr1, ']','')}"/>
+							      				<c:forEach var = "merit" items = "${arr2}">
+							      					#${fn:replace(merit,' ','')}
+							      				</c:forEach>
+							      			 </div>
 							      			</c:if>
+							      			
 							      			<c:if test="${not empty user.character}">
-							      			#${user.character}  
+							      			 <div class ="col-12">
+							      			  🎨
+							      			  <c:set var = "arr1" value = "${fn:replace(user.character, '[','')}"/>
+							      			 <c:set var = "arr2" value = "${fn:replace(arr1, ']','')}"/>
+							      			 <c:forEach var = "character" items = "${arr2} ">
+							      			 	#${fn:replace(character,' ','')}
+							      			 </c:forEach>
+							      			 
+							      			 </div> 
 							      			</c:if>
 						      			 	<c:if test="${not empty user.hobby}">
-						      				#${user.hobby} 
+						      				<div class ="col-12">🤹🏻‍
+						      				<c:set var = "arr1" value = "${fn:replace(user.hobby, '[','')}"/>
+							      			 <c:set var = "arr2" value = "${fn:replace(arr1, ']','')}"/>
+							      			 <c:forEach var = "hobby" items = "${arr2} ">
+							      			 	#${fn:replace(hobby,' ','')}
+							      			 </c:forEach>
+						      				
+						      				</div>
 						      				</c:if>
 						      			</p>
-						      			<p class ="recommended-profile-introduce-font ">
+						      			<p class ="recommended-profile-introduce-font mt-3">
 							      			<c:if test="${not empty user.user.introduce}">
-							      			❝${user.user.introduce}❞
+							      				<c:choose>
+							      					<c:when test = "${fn:length(user.user.introduce)gt 35}">
+														❝${fn:substring(user.user.introduce, 0, 34)} ... ❞
+							      					</c:when>
+							      					<c:otherwise>
+							      						❝${user.user.introduce}❞
+							      					</c:otherwise>
+							      				</c:choose>
+							      				
+							      				
 							      			</c:if>
 						      			</p>
 						      		</div>
-						      		<hr class ="mt-5">
-						      		<div class ="d-flex justify-content-around">
+						      		<hr class ="col-9 mt-6">
+						      		<div class ="d-flex justify-content-around mt-3">
+						      		
 						      			<!-- 좋아요 -->
 						      			
 						      			<c:choose>
@@ -95,14 +132,19 @@
 						      		</div>
 						  </div>  		<!-- profile box 끝 -->
 						</div> <!-- 프로필 한 개 끝 -->
-						  
+						<div class="swiper-scrollbar"></div>  
 				      </c:forEach>
-
+				 
 		      	</div> <!--  slider wrapper 끝 -->
-		     
-		      <div class="swiper-button-prev mb-5"></div>
+
+
+		     <c:if test ="${userList.size()>1}">
+		       <div class="swiper-button-prev mb-5"></div>
  			  <div class="swiper-button-next mb-5"></div>
-			      	
+
+		     </c:if>
+		    
+			      	 
 		    
 			      	</div> <!-- swiper 끝 -->
 
@@ -134,16 +176,13 @@
 	  $(".likeBtn").on("click",function(e){
 		  e.preventDefault();
 		  let matchedPersonId = $(this).data("your-id");
-		  alert(matchedPersonId);
-		  
-		  
+
 		  $.ajax({
 				type:"get",
 				url:"/like",
 				data:{"receiver":matchedPersonId},
 				success:function(data) {
 						location.reload();
-						alert("좋아요 성공");
 					}
 					
 				, error:function() {
@@ -158,16 +197,13 @@
 	  $(".dislikeBtn").on("click",function(e){
 		  e.preventDefault();
 		  let matchedPersonId = $(this).data("your-id");
-		  alert(matchedPersonId);
 		  
 		  $.ajax({
 				type:"get",
 				url:"/dislike",
 				data:{"receiver":matchedPersonId},
 				success:function(data) {
-						
 						alert("싫어요 성공");
-						location.reload();
 					}
 					
 				, error:function() {

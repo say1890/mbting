@@ -46,10 +46,16 @@
     			<img src = "#" id="smallProfile" class ="d-none rounded-circle img-responsive">
     		</c:when>
     		<c:otherwise>
+    		<div class = "dropdown">
     			<img src = "${profile}" id="smallProfile" class =" rounded-circle img-responsive">
+	    	 <div class="dropdown-menu dropdown-menu-sm" id="context-menu">
+	    		<a class="dropdown-item"  href = "#">프로필 사진 삭제</a>
+	    	 </div>
+    		</div>
     		</c:otherwise>
     	</c:choose>
     	</a>
+    	
     	<input type ="file" id ="fileInput" class ="d-none">
     	
     	
@@ -316,8 +322,46 @@ $(document).ready(function(){
 	}
 	
 	
-	$("#profileUpdateBtn").on("click",function(){
-		$("#fileInput").click();
+	$('.dropdown').on('contextmenu', function(e) {
+		  var top = e.pageY-240;
+		  var left = e.pageX-120;
+		  $("#context-menu").css({
+		    display: "block",
+		    top: top,
+		    left: left
+		  }).addClass("show");
+		  return false; //blocks default Webbrowser right click menu
+		}).on("click", function() {
+		  $("#context-menu").removeClass("show").hide();
+		  $("#smallProfile").replaceWith('<i class="bi bi-person-circle myprofile-icon" id = "basicIcon"></i>');
+		  $.ajax({
+				 type: 'get',
+	             url: "/user/deleteProfile",
+	 			success:function(data){
+	 			}, error:function(e){
+	 				alert("정보 수정 실패");
+	 			}
+	           	 	
+			});
+		 
+		});
+
+		$("#context-menu a").on("click", function() {
+		  $(this).parent().removeClass("show").hide();
+		});
+	
+	
+	
+	
+	
+	$("#profileUpdateBtn").mousedown(function(event){
+		switch(event.which){
+		case 1:
+			// 왼쪽 마우스 클릭
+			$("#fileInput").click();
+			break;
+		}
+		
 
 	})
 	
@@ -448,7 +492,7 @@ $(document).ready(function(){
 		
 		
 		formData.append("file", $("#fileInput")[0].files[0]);
-		alert()
+
 		$.ajax({
 			
 			

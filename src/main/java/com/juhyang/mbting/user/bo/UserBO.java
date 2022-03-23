@@ -202,15 +202,17 @@ public class UserBO {
 	public int editBasicInfo(int userId, String userName, String introduce, String mbti, MultipartFile file) {
 		User user = userDAO.selectUserById(userId);
 		String userProfile = user.getProfile();
-		// 사용자가 사진을 기본 프로필으로 바꿨을 경우
-		if(file==null && userProfile != null) {
-		FileManagerService.removeFile(userProfile);
-		}
+		String filePath = null;
+		
 		// 사용자가 프로필을 다른 사진으로 바꿨을 경우에 기존에 저장된 사진 삭제
-		else if( file != null && userProfile!=null) {
+		if( file != null && userProfile!=null ) {
 			FileManagerService.removeFile(userProfile);
+			filePath = FileManagerService.saveFile(userId, file);
 		}
-		String filePath = FileManagerService.saveFile(userId, file);
+		else {
+			filePath = FileManagerService.saveFile(userId, file);
+		}
+		
 		
 		return userDAO.updateBasicProfile(userId, userName,introduce,mbti,filePath);
 		
@@ -447,7 +449,7 @@ public class UserBO {
 				
 				
 				
-			
+				
 				
 				
 				// 장점 비교 반복문 ( 상대 기준 )
@@ -456,9 +458,12 @@ public class UserBO {
 						// 만약 내 i번째 장점과 상대가 원하는 나의 j번째 장점이 일치한다면
 						if(myMerit[i].equals(yourIdealMerit[j])) {
 							point++;
+							
 						}
 					}
 				}
+				
+				List<String> list = new ArrayList<>();
 				
 				// 장점 비교 반복문 ( 사용자 기준 )
 				for(String i:myIdealMerit) {
@@ -467,7 +472,11 @@ public class UserBO {
 						// 만약 내 이상형의 장점과 상대의 장점이 일치할 경우
 						if(i.equals(j)) {
 							point++;
-							userDetail.setMerit(j);
+							if(list.size()<3) {
+								list.add(j);
+							}
+							
+							userDetail.setMerit(list);
 						}
 					}
 				}
@@ -485,15 +494,19 @@ public class UserBO {
 					}
 				}
 				
-				
+				list = new ArrayList<>();
 				// 취미 비교 반복문 ( 사용자 기준 )
 				for(String i:myIdealHobby) {
 					
 					for(String j:yourHobby) {
-						// 만약 내 이상형의 취미와 상대의 취미가 일치할 경우
+						// 만약 내가 원하는 상대의 i번째  취미와 상대의  j번째 취미가 일치할 경우
 						if(i.equals(j)) {
 							point++;
-							userDetail.setHobby(j);
+							if(list.size()<3) {
+								list.add(j);
+							}
+							userDetail.setHobby(list);
+							
 						}
 					}
 				}
@@ -508,17 +521,24 @@ public class UserBO {
 						// 만약 내 i번째 성격과 상대가 원하는 나의 j번째 성격이 일치한다면
 						if(i.equals(j)) {
 							point++;
-							userDetail.setCharacter(j);
+							
 						}
 					}
 				}
+			
+				
+				list = new ArrayList<>();	
 			// 성격 비교 반복문  ( 사용자 기준 )
-				for(String i:myIdealCharacter) {
-					
+				for(String i:myIdealCharacter) {	
 					for(String j:yourCharacter) {
-						// 만약 내 i번째 성격과 상대가 원하는 나의 j번째 성격이 일치한다면
+						// 만약 내가 원하는 상대의 i번째 성격과 상대의  j번째 성격이 일치한다면
 						if(i.equals(j)) {
 							point++;
+							if(list.size()<3) {
+								list.add(j);
+							}
+							userDetail.setCharacter(list);
+							
 						}
 					}
 				}		

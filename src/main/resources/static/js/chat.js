@@ -10,21 +10,21 @@ var createdAt="2022-03-21";
 const eventSource = new EventSource(`http://localhost:8080/chat/roomNum/${roomNum}`);
 eventSource.onmessage = (event) => {
 	const data = JSON.parse(event.data);
+		let currentDay = data.createdAt.substring(0,10) // 최신 들어온거  
+	if(currentDay!=createdAt){
+		makeLine(currentDay);
+	}
+	createdAt =  data.createdAt.substring(0,10) // 날짜
 	if (data.sender === username) { // 로그인한 유저가 보낸 메시지
 		// 파란박스(오른쪽)
 		initMyMessage(data);
+		
 	} else {
 		// 회색박스(왼쪽)
 		initYourMessage(data);
 	}
 	
-	let currentDay = data.createdAt.substring(0,10) // 최신 들어온거  
-	if(currentDay!=createdAt){
-		console.log(currentDay + " " + createdAt);
-		makeLine(currentDay);
-	}
-	
-	createdAt =  data.createdAt.substring(0,10) // 날짜
+
 	
 	
 

@@ -9,3 +9,8 @@
     background-image: linear-gradient(181deg, #feefff 0%, #b621fe00 74%);
     transition: background 0.3s linear;
 }
+
+#smallProfile{
+	 width: 90px;
+    height: 90px;
+}

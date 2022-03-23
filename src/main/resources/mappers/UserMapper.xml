@@ -234,6 +234,7 @@
 
 		
     WHERE
+
     	sex != #{sex}
     	
     AND
@@ -249,6 +250,8 @@
     	year(current_date())-year(user.birthday)+1  ${chooseAge}  ${myage}	
 	AND
 		`receiver` != user.id
+	ORDER by (select createdAt from tracelogin where user.id = tracelogin.user_id) DESC
+    LIMIT 10;	
 	</select>
 	
 	

@@ -181,8 +181,14 @@ h1.hero:after {
 
 #profile-box{
 	margin-top:30px;
-	height:600px;
+	height:650px;
 	width:500px;
+}
+
+
+.mt-6{
+	
+	margin-top: 6rem!important;
 }
 
 #mbti{
@@ -194,14 +200,14 @@ h1.hero:after {
 
 
 #recommended-profile-image{
- max-width:200px;
+ max-width:250px;
  max-height:200px;
 }
 
 #recommended-profile-introduce{
  height:125px;
- width:200px;
- max-width:200px;
+ width:250px;
+ max-width:250px;
 }
 
 
