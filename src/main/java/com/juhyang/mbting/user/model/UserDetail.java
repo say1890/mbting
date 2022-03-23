@@ -1,6 +1,5 @@
 package com.juhyang.mbting.user.model;
 
-import java.util.Date;
 
 public class UserDetail {
 

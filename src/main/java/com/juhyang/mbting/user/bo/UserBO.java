@@ -85,8 +85,7 @@ public class UserBO {
 			}
 			
 		}
-		
-		
+	
 		
 		String myHobby = "";
 		if(myHobbyArr== null) {
@@ -203,9 +202,14 @@ public class UserBO {
 	public int editBasicInfo(int userId, String userName, String introduce, String mbti, MultipartFile file) {
 		User user = userDAO.selectUserById(userId);
 		String userProfile = user.getProfile();
+		// 사용자가 사진을 기본 프로필으로 바꿨을 경우
 		if(file==null && userProfile != null) {
 		FileManagerService.removeFile(userProfile);
-	}
+		}
+		// 사용자가 프로필을 다른 사진으로 바꿨을 경우에 기존에 저장된 사진 삭제
+		else if( file != null && userProfile!=null) {
+			FileManagerService.removeFile(userProfile);
+		}
 		String filePath = FileManagerService.saveFile(userId, file);
 		
 		return userDAO.updateBasicProfile(userId, userName,introduce,mbti,filePath);
@@ -217,8 +221,6 @@ public class UserBO {
 		
 	}
 	
-
-
 	
 	public List<String> getmeritContent() {
 		
@@ -239,6 +241,7 @@ public class UserBO {
 	}
 
 	public List<UserDetail> getRecommendedUser(int userId, String sex) {
+		
 		//나의 정보를 가져옴
 		List<UserCharacter> myInfo = userDAO.selectOptions(userId);
 		// 나의 나이
@@ -254,6 +257,7 @@ public class UserBO {
 		String chooseAge = "";
 		
 		List<UserCharacter> yourInfo = new ArrayList<>();
+		
 		// 최종 매칭될 user의  list
 		List<UserDetail> MatchingList = new ArrayList<>();
 		List<UserDetail>  list =  new ArrayList<>();
@@ -281,7 +285,7 @@ public class UserBO {
 			}
 			else {
 				chooseAge = "=";
-//				사용자가 원하는 나이의 user 정보를 가져옴
+				//	원하는 나이를 선택하지 않았을 경우에 동갑 사용자를 보여줌
 				yourInfo = userDAO.selectUsers(userId, myage,chooseAge,sex);
 				list =returnRecommendedUser(yourInfo,myInfo,userId);
 				MatchingList.addAll(list);
@@ -520,7 +524,7 @@ public class UserBO {
 				}		
 				
 		 
-			if(point>=6) {
+			if(point>=8) {
 			
 			userDetail.setUserCharacter(your);
 			User user = userDAO.selectUserById(your.getUser_id());

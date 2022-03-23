@@ -1,6 +1,5 @@
 package com.juhyang.mbting.comment.dao;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
