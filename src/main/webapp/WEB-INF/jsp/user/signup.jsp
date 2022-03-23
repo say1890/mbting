@@ -191,7 +191,7 @@ $(document).ready(function(){
 			type:"post",
 			data:{"loginId":loginId},
 			success:function(data){
-				alert(data.result);
+			
 				if(data.result) {
 					$("#nameCheckInfo").removeClass("d-none");
 					$("#nameCheckInfo").text("중복되었습니다.");	
@@ -225,8 +225,7 @@ $(document).ready(function(){
 		var mbti = $('select[name=mbti]').val();
 		var email = $("#email").val();
 		var birthday =$("#birthday").val();
-		alert(birthday);
-		alert(typeof birthday);
+
 		if(!loginId) {
 			alert("아이디를 입력하세요.");
 			return;
@@ -289,7 +288,6 @@ $(document).ready(function(){
 				"email":email
 				},
 			success:function(data){
-				alert(data.result);
 				location.href = "/user/signin_view"
 			}, error:function(e){
 				alert("error" + e);

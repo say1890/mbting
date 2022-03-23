@@ -1,13 +1,21 @@
 package com.juhyang.mbting.admin;
 
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.juhyang.mbting.admin.bo.AdminBO;
 import com.juhyang.mbting.post.bo.PostBO;
 import com.juhyang.mbting.post.model.Post;
 
@@ -48,9 +56,17 @@ public class AdminController {
 		
 	}
 	@RequestMapping("/calender_view")
-	public String calender_view() {
-		return "admin/calender";
+	public String calender_view(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		int userId = (Integer)session.getAttribute("userId");
+		int isAdm = 0;
+		if(userId==1) {
+			model.addAttribute("isAdm", isAdm);
+		}
+		return "admin/calendar";
 	}
+	
+	
 	
 	
 }

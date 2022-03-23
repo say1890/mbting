@@ -77,7 +77,7 @@
 				e.preventDefault();
 				
 				var loginId = $("#loginId").val();
-				alert(loginId);
+				
 				var password = $("#password").val();
 				if(loginId == "") {
 					 
@@ -85,7 +85,6 @@
 				}
 				
 				if(password == "") {
-				
 					return ;
 				}
 				

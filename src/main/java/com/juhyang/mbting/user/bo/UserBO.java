@@ -201,6 +201,11 @@ public class UserBO {
 	}
 	// 기본 프로필 변경
 	public int editBasicInfo(int userId, String userName, String introduce, String mbti, MultipartFile file) {
+		User user = userDAO.selectUserById(userId);
+		String userProfile = user.getProfile();
+		if(file==null && userProfile != null) {
+		FileManagerService.removeFile(userProfile);
+	}
 		String filePath = FileManagerService.saveFile(userId, file);
 		
 		return userDAO.updateBasicProfile(userId, userName,introduce,mbti,filePath);
@@ -249,7 +254,7 @@ public class UserBO {
 		String chooseAge = "";
 		
 		List<UserCharacter> yourInfo = new ArrayList<>();
-		// 최종 매칭될 user의 character list
+		// 최종 매칭될 user의  list
 		List<UserDetail> MatchingList = new ArrayList<>();
 		List<UserDetail>  list =  new ArrayList<>();
 		for(String ageTitle: age) {

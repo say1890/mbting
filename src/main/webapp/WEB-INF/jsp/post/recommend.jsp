@@ -154,7 +154,7 @@
 		  
 	  });
 	  
-	  
+	  // 싫어요 
 	  $(".dislikeBtn").on("click",function(e){
 		  e.preventDefault();
 		  let matchedPersonId = $(this).data("your-id");
@@ -165,8 +165,9 @@
 				url:"/dislike",
 				data:{"receiver":matchedPersonId},
 				success:function(data) {
-						location.reload();
+						
 						alert("싫어요 성공");
+						location.reload();
 					}
 					
 				, error:function() {

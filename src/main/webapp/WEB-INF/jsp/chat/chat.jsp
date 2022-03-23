@@ -63,7 +63,7 @@
 			            </c:when>
 			            <c:otherwise>
 			            	<span id="referralName">${chat.manName}</span>
-			            	${chat.man}
+			            	
 			            </c:otherwise>
 			        
 	            </c:choose>

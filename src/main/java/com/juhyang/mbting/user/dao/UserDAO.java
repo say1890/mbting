@@ -72,8 +72,8 @@ public interface UserDAO {
 	public String getAge(@Param("userId") int userId);
 	public UserCharacter selectOptionsForSeeProfile(@Param("userId") int userId);
 	public void insertLoginTime(@Param("userId") int userId);
-
 	
+
 	
 
 	

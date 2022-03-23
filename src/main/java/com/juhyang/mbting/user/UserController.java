@@ -77,7 +77,7 @@ public class UserController {
 		String introduce = (String)session.getAttribute("introduce");
 		int userId = (Integer)session.getAttribute("userId");
 		String profile = (String)session.getAttribute("profile");
-		String firstconnection = (String)session.getAttribute("firstconnection");
+		
 		
 		//장점
 		List<String> merit = userBO.getmeritContent();
@@ -125,7 +125,7 @@ public class UserController {
 			session.removeAttribute("mbti");
 			session.removeAttribute("sex");
 			session.removeAttribute("IsRoomExist");
-			session.removeAttribute("firstconnection");
+
 			return "redirect:/user/signin_view";
 		}
 		
