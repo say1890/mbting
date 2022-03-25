@@ -51,6 +51,8 @@ public class UserBO {
 		return userDAO.IsDuplicate(loginId);
 	}
 	
+	
+	
 	public int EmailExist(String email) {
 		return userDAO.IsEmailExist(email);
 	}
