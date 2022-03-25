@@ -43,9 +43,10 @@ public class LikeController {
         }
        
         // 내가 좋아하는 사람 리스트
-        List<UserDetail> ListWhoILike = new ArrayList<>();
+        
         int SendLike = likeBO.countSendLike(userId);
         if(SendLike!=0) {
+        	List<UserDetail> ListWhoILike = new ArrayList<>();
         	List<Integer> idList = likeBO.getWhoILike(userId); 
         	ListWhoILike = userBO.getProfileWhoILike(idList,userId);
         	model.addAttribute("likedList", ListWhoILike);

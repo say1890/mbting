@@ -26,6 +26,8 @@ public interface PostDAO {
 
 	public Integer selectPostId(@Param("today") LocalDate now);
 
+	public int deletePost(@Param("postId") int postId);
+
 
 	
 }

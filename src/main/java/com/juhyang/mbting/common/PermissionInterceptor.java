@@ -23,27 +23,56 @@ public class PermissionInterceptor  implements HandlerInterceptor {
 			String uri = request.getRequestURI();
 			
 			
-			// 로그인 상태
+			// 로그인 상태 ( 일반 유저 )
 			if(session.getAttribute("userId") != null) {
 				// 로그인 화면과, 회원가입 화면 접근 못하게
 				// 리스트 화면으로 이동
 				
-				if(uri.startsWith("/user/")) {
+				if(uri.startsWith("/user/signin_view")) {
 					// 리스트 페이지로 이동
-					response.sendRedirect("/post/list_view");
+					response.sendRedirect("/post/main");
+					return false;
+				}	
+				if(uri.startsWith("/admin")&& (Integer)session.getAttribute("userId")!=1){
+					
+					// 리스트 페이지로 이동
+					response.sendRedirect("/post/main");
 					return false;
 				}
 				
-			} else { // 비로그인 상태
+			} 
+			
+			else { // 비로그인 상태
 				// 리스트화면, 디테일 화면 
 				// 로그인 페이지로 이동 
 				if(uri.startsWith("/post/")) {
 					response.sendRedirect("/user/signin_view");
 					return false;
 				}
+				
+				if(uri.startsWith("/chat")) {
+					response.sendRedirect("/user/signin_view");
+					return false;
+				}
+				
+				if(uri.startsWith("/user/mypage")) {
+					response.sendRedirect("/user/signin_view");
+					return false;
+				}
+				
+			
 			} 
 			
+			
+			
 			return true;
+			
+			
+			
+			
+			
+			
+			
 			
 		}
 		

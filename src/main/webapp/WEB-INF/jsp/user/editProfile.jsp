@@ -30,7 +30,7 @@
 
 <c:if test ="${firstconnection eq 'yes'}">
   	<div id = "welcome">
-  	<div class = "h1"><h1>환영합니다 <strong>${userName}님 :)</strong></h1></div>
+  		<div class = "h1"><h1>환영합니다 <strong>${userName}님 :)</strong></h1></div>
   	</div>
   </c:if>
   <div class="container">
@@ -39,6 +39,8 @@
     <h1>나는 이런 사람이예요</h1>
     
     <section class ="d-flex mb-5 ml-5">
+    
+    <!-- 프로필 사진 영역 -->
     	<a href ="#" id = "profileUpdateBtn">
     	<c:choose>
     		<c:when test = "${empty profile}">
@@ -47,7 +49,7 @@
     		</c:when>
     		<c:otherwise>
     		<div class = "dropdown">
-    			<img src = "${profile}" id="smallProfile" class =" rounded-circle img-responsive">
+    			<img src = "${profile}" id="smallProfile" class ="rounded-circle img-responsive">
 	    	 <div class="dropdown-menu dropdown-menu-sm" id="context-menu">
 	    		<a class="dropdown-item"  href = "#">프로필 사진 삭제</a>
 	    	 </div>
@@ -55,14 +57,26 @@
     		</c:otherwise>
     	</c:choose>
     	</a>
-    	
     	<input type ="file" id ="fileInput" class ="d-none">
     	
     	
     	<div class ="mt-5 ml-4 col-12">
     	<h3 class ="ml-3">${userName}</h3> 
     	<div class ="mt-3 mb-1 col-12">
-    		<label class ="mr-4 col-2 mb-2">별명</label>
+    	<div class="alert alert-info text-sm">
+    	<svg class="smallSvg mt-1" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="info-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg>
+    	비밀번호 변경을 원하는 경우에만 아래 비밀번호 필드를 입력하세요.
+    	</div>
+    	
+    		<div>
+	    		<label class ="mr-4 col-2 mb-2 mt-2 ">비밀번호</label>
+	    			<input type ="password" class ="col-8 form-control"  id = "password" maxlength="32">
+	    		<small id = "pwInput" class= "d-none">ㅎㅎ</small>
+    		</div>
+    		
+    		<label class ="mr-4 col-2 mb-2 mt-2 ">비밀번호 확인</label>
+    			<input type ="password" class ="col-8 form-control"  id = "passwordCheck" maxlength="32">	
+    		<label class ="mr-4 col-2 mb-2 mt-2 ">별명</label>
     			<input type ="text" class ="col-8 form-control" value ="${userName}" id = "userNameInput" maxlength="10">
     			
 			<label class ="mr-4 col-3 mt-2">한줄소개</label>
@@ -310,6 +324,58 @@
 </div>
 <script>
 $(document).ready(function(){
+	 //비밀번호 체크
+	 var pwCheck = true;
+	
+	 $("#password").on("propertychange change keyup paste input",(function(){
+		 var password = $("#password").val();
+		 var passwordCheck = $("#passwordCheck").val();
+		
+		 $("#pwInput").removeClass("d-none");
+
+		 if(password.length<=6){
+			 $("#pwInput").text("비밀번호는 7자 이상이 돼야 합니다.");
+			 pwCheck = false;
+		 }
+		 
+		 if(password.length>=7 && password != passwordCheck){
+			 $("#pwInput").text("비밀번호가 같지 않습니다.");
+		 }
+		 if(password.length>=7 && !passwordCheck){
+			 $("#pwInput").text("비밀번호를 확인해주세요.");
+		 }
+		 if(password.length>=7 &&password!=passwordCheck) {
+			 $("#pwInput").text("비밀번호가 같지 않습니다.");
+         }
+		 
+		 if(password.length>=7 && password == passwordCheck){
+			 $("#pwInput").addClass("d-none");
+			 pwCheck=true;
+		 }
+		 
+		 if(password.length==0 && passwordCheck.length==0){
+			 pwCheck=true;
+		 }
+
+		
+	 }));
+	 
+	 
+	 $("#passwordCheck").on("propertychange change keyup paste input",function(){
+		 var password = $("#password").val();
+		 var passwordCheck = $("#passwordCheck").val();
+		 if(password.length>=7 &&password==passwordCheck) {
+			 $("#pwInput").text("비밀번호가 같습니다.");
+			 pwCheck = true;
+         }
+		 if(password.length>=7 &&password!=passwordCheck){
+			 $("#pwInput").text("비밀번호가 다릅니다");
+			 pwCheck = false;
+         }
+	 });
+
+	 
+	
 	if($("#welcome").length){
 		
 		$(".container").hide();
@@ -317,10 +383,12 @@ $(document).ready(function(){
 		,6000,function(){
 			$(".container").show();	
 		});
-		
-		
 	}
 	
+	$('.dropdown-item').on("click",function(){
+		$("#smallProfile").replaceWith('<i class="bi bi-person-circle myprofile-icon" id = "basicIcon"></i>');
+		$("#saveBtn").click();
+	});
 	
 	$('.dropdown').on('contextmenu', function(e) {
 		  var top = e.pageY-240;
@@ -333,13 +401,13 @@ $(document).ready(function(){
 		  return false; //blocks default Webbrowser right click menu
 		}).on("click", function() {
 		  $("#context-menu").removeClass("show").hide();
-		  $("#smallProfile").replaceWith('<i class="bi bi-person-circle myprofile-icon" id = "basicIcon"></i>');
+		  
 		  $.ajax({
 				 type: 'get',
 	             url: "/user/deleteProfile",
 	 			success:function(data){
 	 			}, error:function(e){
-	 				alert("정보 수정 실패");
+	 				alert("사진 삭제 실패");
 	 			}
 	           	 	
 			});
@@ -354,21 +422,16 @@ $(document).ready(function(){
 	
 	
 	
-	$("#profileUpdateBtn").mousedown(function(event){
-		switch(event.which){
-		case 1:
-			// 왼쪽 마우스 클릭
+	$("#smallProfile").on("click", function() {
+	
 			$("#fileInput").click();
-			break;
-		}
-		
 
-	})
+	});
 	
 	
 	
 	 $("#fileInput").on("change", function() {
-        	setImageFromFile(this, '#smallProfile');
+        	setImageFromFile(this, "#smallProfile");
  			$("#smallProfile").removeClass("d-none");
  			$("#basicIcon").addClass("d-none");
 		});
@@ -392,9 +455,20 @@ $(document).ready(function(){
 		
 	
 		/* 나 관련 */
+		let password = $("#password").val();
+		
+		if(pwCheck == false){
+			alert("비밀번호를 확인해주세요.");
+			$("#password").focus();
+		}
+		
+		
+		
 		let userName = $("#userNameInput").val();
 		let introduce = $("#introduceInput").val();
 		let mbti = $("#mbtiInput").val();
+		
+		
 		
 
 		let myMeritArr=[];
@@ -492,7 +566,7 @@ $(document).ready(function(){
 		
 		
 		formData.append("file", $("#fileInput")[0].files[0]);
-
+		formData.append("password",password);
 		$.ajax({
 			
 			
@@ -535,7 +609,7 @@ $(document).ready(function(){
 	    else{
 	    	$(this).addClass("selectedBtn");
 	    }
-	})
+	});
 	
 	
 	

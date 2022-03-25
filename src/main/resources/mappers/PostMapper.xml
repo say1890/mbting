@@ -32,7 +32,8 @@ SELECT
 	`updatedAt`
 FROM
 	`server_post`
-
+ORDER BY
+	`id` desc;
 </select>
 
 
@@ -74,5 +75,11 @@ WHERE
 	`date` = #{today}
 
 </select>
+<delete id ="deletePost">
+DELETE FROM
+	`server_post`
+WHERE
+		`id` = ${postId}
 
+</delete>
 </mapper>

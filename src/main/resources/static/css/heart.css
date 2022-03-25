@@ -1,0 +1,26 @@
+@charset "UTF-8";
+.heart {
+  width: 113px;
+  height: 100px;
+ /*position: absolute;*/
+  /*left: 50%;*/
+  top: 20%;
+  transform: translate(-20%, -25%);
+  background: url(https://cssanimation.rocks/images/posts/steps/heart.png) no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  
+}
+.clickedheart {
+  background-position: -2800px 0;
+  animation: fave-heart 1s steps(28);
+  transition: background 1s steps(28);
+}
+@keyframes fave-heart {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -2800px 0;
+  }
+}

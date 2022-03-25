@@ -17,11 +17,16 @@
   border-radius: 0.5rem;
   transition: transform 150ms ease;
   outline-color: hsl(var(--hue), 95%, 50%);
+
+  
 }
+
+
 
 .overlay__btn:hover {
   transform: scale(1.05);
   cursor: pointer;
+
 }
 
 .overlay__btn--transparent {

@@ -33,6 +33,7 @@
 	<div class="mt-5">
 
 		<h1 class="hero">보낸 좋아요</h1>
+
 		<c:forEach var="user" items="${likedList}">
 			<div class="d-flex">
 				<div class="col-3">
@@ -55,9 +56,6 @@
 
 					</c:choose>
 					<!--  추천 상대 프로필 이미지 끝 -->
-
-
-
 
 					<h4 id="recommended-profile-name" class="mt-1 text-white">${user.user.userName}(${user.user.ageForProfile})</h4>
 					<div class="text-white mt-1 text-center introduceText">${user.user.mbti}</div>
@@ -86,15 +84,10 @@
 					</h5>
 				</div>
 				
-				<div class ="text-white col-3">
-				
-				
-				</div>
 
 
 			</div>
 			<hr class="mt-5">
-
 		</c:forEach>
 		<c:if test = "${empty likedList}">
 			<div>

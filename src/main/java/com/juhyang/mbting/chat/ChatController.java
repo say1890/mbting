@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.juhyang.mbting.chat.bo.ChatBO;
 import com.juhyang.mbting.chat.model.ChatDetail;
 import com.juhyang.mbting.chat.model.ChatOriginal;
+import com.juhyang.mbting.like.bo.LikeBO;
 import com.juhyang.mbting.user.bo.UserBO;
 import com.juhyang.mbting.user.model.UserDetail;
 
@@ -26,6 +27,8 @@ public class ChatController {
 	ChatBO chatBO; 
 	@Autowired
 	UserBO userBO;
+	@Autowired
+	LikeBO likeBO;
 	
 	@GetMapping("/chatting")
 	public String chat(
@@ -48,10 +51,14 @@ public class ChatController {
 		int userId = (Integer)session.getAttribute("userId");
 		String sex = (String)session.getAttribute("sex");
 		String userName = (String)session.getAttribute("userName");
+        /* 날 좋아하는 사람의 정보 가져오기 */
+        int countLike = likeBO.countSender(userId); // 나를 좋아하는 사람의 수 
+        model.addAttribute("countLike",countLike);
 		// 사용자의 채팅방 번호 조회
 		List<ChatOriginal> room = chatBO.getRoomList(userId);
 		if(!room.isEmpty()) {
 			List<ChatDetail> chatDetail = new ArrayList<>();
+			session.setAttribute("chattingRoomAccess", "possible");
 			
 			for(ChatOriginal original: room) {
 				List<UserDetail> userDetail = new ArrayList<>();

@@ -23,17 +23,17 @@
 				<h1 class="text-center">메모 보기</h1>
 				<div class="d-flex mt-3">
 					<label class="mr-2">제목 : </label>
-					<input type="text" class="form-control col-11" id="titleInput" value="${post.subject }">
+					<input type="text" class="form-control col-11" id="titleInput" value="${post.subject}">
 				</div>
-				<textarea class="form-control mt-3" rows="5" id="contentInput">${post.content }</textarea>
+				<textarea class="form-control mt-3" rows="5" id="contentInput">${post.content}</textarea>
 				<div>
-					<img src="${post.imagePath }">
+					<img src="${post.imagePath}">
 				</div>
 				
 				<div class="d-flex justify-content-between mt-3">
 					<div>
 						<a href="/admin/question_view" class="btn btn-info">목록으로</a>
-						<button type="button" class="btn btn-danger" id="deleteBtn" data-post-id="${post.id }">삭제</button>
+						<button type="button" class="btn btn-danger" id="deleteBtn" data-post-id="${post.id}">삭제</button>
 					</div>
 					<button type="button" class="btn btn-success" id="saveBtn">수정</button>
 				</div>
@@ -42,6 +42,33 @@
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	
 	</div>
+<script>
+		$(document).ready(function() {
+			$("#deleteBtn").on("click", function() {
+				
+				let postId = $(this).data("post-id");
+				
+				$.ajax({
+					type:"get",
+					url:"/post/delete",
+					data:{"postId":postId},
+					success:function(data) {
+						if(data.result == "success") {
+							location.href="/admin/question_view";
+						} else {
+							alert("삭제 실패");
+						}
+					},
+					error:function() {
+						alert("에러발생");
+					}
+					
+				});
+			});
+		});	
+	
+	
+	</script>
 
 
 </body>

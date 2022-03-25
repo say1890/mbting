@@ -8,13 +8,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- slider -->
-<link rel="stylesheet"  href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
-<link rel="stylesheet"  href="/static/css/swiper.css"/>
+	<link rel="stylesheet"  href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+	<link rel="stylesheet"  href="/static/css/swiper.css"/>
+<!-- heart css -->	
+	<link rel="stylesheet"  href="/static/css/heart.css"/>
+
 </head>
 <body>
   <div class="slider">
     <div class="container slidercontent">
-      <h1 class="hero">오늘의 MBTING❤️</h1>
+      <h1 class="hero">오늘의 MBTING</h1> 
 
       <div class ="row justify-content-center ">
        <c:choose>
@@ -35,6 +38,7 @@
 						      		<!--  추천 상대 프로필 이미지 -->
 						      		<c:choose>
 							      		<c:when test = "${not empty user.user.profile}">
+							      			 
 							      			<a href = "/user/see_profile?userId=${user.user.id}">
 							      				<img id ="recommended-profile-image"  class="mt-3  mx-auto mt-4" src ="${user.user.profile}">
 							      			</a>
@@ -110,14 +114,11 @@
 						      			<c:choose>
 						      			
 							      			<c:when test="${user.like}">
-									      		<a href ="#">
-									      			<i class="bi bi-suit-heart-fill menu-icon text-danger likedBtn" data-your-id="${user.user.id}"></i>
-									      		</a>
+									      					<div class="heart clickedheart"></div>			      
 								      		</c:when>
 								      		<c:otherwise>
-									      		<a href ="#">
-									      			<i class="bi bi-suit-heart menu-icon text-danger likeBtn" data-your-id="${user.user.id}"></i>
-									      		</a>
+								      		<div class="heart" data-your-id="${user.user.id}"></div>
+									      			
 								      		</c:otherwise>
 								      		
 							      		</c:choose>
@@ -158,7 +159,7 @@
 	     		</c:choose>
 			      </div>	  
 		      	
-	 
+
 	    
 
       </div>
@@ -173,6 +174,27 @@
   <script>
   $(document).ready(function(){
 	
+	  $(".heart").on("click", function(e){
+		  e.preventDefault();
+		  let matchedPersonId = $(this).data("your-id");
+		  $(this).addClass('clickedheart');
+		  
+		  $.ajax({
+				type:"get",
+				url:"/like",
+				data:{"receiver":matchedPersonId},
+				success:function(data) {
+	
+					}
+					
+				, error:function() {
+					alert("좋아요 실패!!");
+				}
+				
+			});
+	  });
+	  
+	  
 	  $(".likeBtn").on("click",function(e){
 		  e.preventDefault();
 		  let matchedPersonId = $(this).data("your-id");
@@ -182,7 +204,9 @@
 				url:"/like",
 				data:{"receiver":matchedPersonId},
 				success:function(data) {
-						location.reload();
+					$(".likeBtn").removeClass("bi-suit-heart");
+					$(".likeBtn").addClass("bi-suit-heart-fill");
+					
 					}
 					
 				, error:function() {
@@ -197,7 +221,7 @@
 	  $(".dislikeBtn").on("click",function(e){
 		  e.preventDefault();
 		  let matchedPersonId = $(this).data("your-id");
-		  
+		  $("#profile-box").addClass("d-none");
 		  $.ajax({
 				type:"get",
 				url:"/dislike",

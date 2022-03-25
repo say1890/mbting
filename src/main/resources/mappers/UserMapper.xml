@@ -250,7 +250,7 @@
     	year(current_date())-year(user.birthday)+1  ${chooseAge}  ${myage}	
 	AND
 		`receiver` != user.id
-	ORDER by (select createdAt from tracelogin where user.id = tracelogin.user_id) DESC
+	ORDER by (select tracelogin.updatedAt from tracelogin where user.id = tracelogin.user_id) DESC
     LIMIT 10;	
 	</select>
 	
@@ -273,21 +273,21 @@
 		`user_id` =#{userId}	
 	</select>
 	
-	<insert id= "insertLoginTime" >
-	INSERT INTO
-	`tracelogin`
-	(
-	`user_id`,
-	`createdAt`
-	)
-	VALUES
-	(
-	#{userId},
-	now()
-	)
+	<update id= "updateLoginTime" >
 	
-	
-	</insert>
+	UPDATE `tracelogin`
+	SET
+		`updatedAt` = now()
+	WHERE
+		`id` = #{userId}	
+	</update>
+	<update id = "deleteUserProfile">
+	UPDATE `user`
+	SET
+		`profile` = null
+	WHERE
+		`id` = #{userId}	
+	</update>
 	
 	
 </mapper>

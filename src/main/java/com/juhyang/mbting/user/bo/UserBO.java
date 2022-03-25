@@ -199,33 +199,38 @@ public class UserBO {
 
 	}
 	// 기본 프로필 변경
-	public int editBasicInfo(int userId, String userName, String introduce, String mbti, MultipartFile file) {
+	public void editBasicInfo(int userId, String userName, String introduce, String mbti, MultipartFile file, String password) {
 		User user = userDAO.selectUserById(userId);
 		String userProfile = user.getProfile();
 		String filePath = null;
 		
-		// 사용자가 프로필을 다른 사진으로 바꿨을 경우에 기존에 저장된 사진 삭제
-		if( file != null && userProfile!=null ) {
-			FileManagerService.removeFile(userProfile);
-			filePath = FileManagerService.saveFile(userId, file);
+		if(file!=null) {
+			// 사용자가 프로필을 다른 사진으로 바꿨을 경우에 기존에 저장된 사진 삭제
+			if( userProfile!=null ) {
+				FileManagerService.removeFile(userProfile);
+				filePath = FileManagerService.saveFile(userId, file);
+			}
+			//파일이 비어있지 않으면서 기존 파일이 없을 때
+			else {
+				filePath = FileManagerService.saveFile(userId, file);
+			}
+			userDAO.updateBasicProfile(userId, userName,introduce,mbti,filePath);
 		}
-		else {
-			filePath = FileManagerService.saveFile(userId, file);
+		
+		if(password.length()>=6) {
+			String encPw = EncryptUtils.md5(password);
+			String loginId = user.getLoginId();
+			userDAO.updatePassword(loginId, encPw);
 		}
-		
-		
-		return userDAO.updateBasicProfile(userId, userName,introduce,mbti,filePath);
-		
+
 	}
 
 	public List<UserCharacter> getSelectOptions(int userId) {
 		return userDAO.selectOptions(userId);
-		
 	}
 	
 	
 	public List<String> getmeritContent() {
-		
 		return userDAO.selectMeritContent();
 	}
 	
@@ -632,7 +637,6 @@ public class UserBO {
 		List<UserDetail> PeopleWhoILiked = new ArrayList<>();
 		
 		// 현재 시간
-	
 		Date today=new Date();
 
 		
@@ -681,11 +685,15 @@ public class UserBO {
 		return PeopleWhoILiked;
 	}
 	public void setLoginTime(int userId) {
-		userDAO.insertLoginTime(userId);
+		userDAO.updateLoginTime(userId);
 		
 	}
 	public  List<UserCharacter> checkUserInfo(int userId) {
 		return userDAO.selectOptions(userId);
+	}
+	public void removeUserProfile(int userId) {
+		userDAO.deleteUserProfile(userId);
+		
 	}
 
 

@@ -154,10 +154,7 @@ $(document).ready(function(){
 			 $("#pwInput").text("비밀번호가 같습니다.");
 			 pwCheck = true;
          }
-		 if(password.length>=7 &&password!=passwordCheck){
-			 $("#pwInput").text("비밀번호가 틀립니다");
-			 pwCheck = false;
-         }
+
 	 });
 
 	
@@ -225,6 +222,8 @@ $(document).ready(function(){
 		var mbti = $('select[name=mbti]').val();
 		var email = $("#email").val();
 		var birthday =$("#birthday").val();
+		
+		var regEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 
 		if(!loginId) {
 			alert("아이디를 입력하세요.");
@@ -274,6 +273,7 @@ $(document).ready(function(){
 			}
 			if(pwCheck == false){
 				alert("비밀번호를 다시 확인해주세요.");
+				location.href = "/#password";
 			}
 		 
 		$.ajax({

@@ -75,5 +75,9 @@ public class PostBO {
 	
 		
 		return postForMyPage;
+	}
+
+	public int deletePost(int postId) {
+		return postDAO.deletePost(postId);
 	};
 }

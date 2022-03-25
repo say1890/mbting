@@ -136,10 +136,18 @@ public class UserController {
 		@RequestMapping("/see_profile")
 		public String seeProfile(
 				@RequestParam("userId") int userId, 
+				HttpServletRequest request,
 				Model model) {
-
+			HttpSession session = request.getSession();
+			
 			UserDetail userdetail = userBO.getUserProfile(userId);
 			model.addAttribute("userdetail", userdetail);
+			
+			
+			 /* 날 좋아하는 사람의 정보 가져오기 */
+			int myId = (Integer)session.getAttribute("userId");
+	        int countLike = likeBO.countSender(myId); // 나를 좋아하는 사람의 수 
+	        model.addAttribute("countLike",countLike);
 			
 			return "user/seeProfile";
 		}

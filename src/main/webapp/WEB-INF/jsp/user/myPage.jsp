@@ -16,7 +16,7 @@
 
 <!-- css -->
 <link href="/static/css/smallImg.css" rel="stylesheet">
-
+<link href="/static/css/btn.css" rel="stylesheet">
 </head>
 <body>
 <c:import url="/WEB-INF/jsp/include/header.jsp" />
@@ -42,16 +42,27 @@
    
     
     <c:forEach var="post" items="${postlist}">
+    	<c:choose>
     	
-    	<c:if test="${not empty post.subject}">
-    		<div class="col three bg nopad pointer">
-		      <div class="imgholder d-flex align-items-center justify-content-center">
-		      <p class ="questionText">"${post.subject}"</p>
-		      </div>
-		      <h1 class="feature">${post.comment}</h1>
-			   
-		    </div>  
-   		</c:if>  
+	    	<c:when test="${not empty post.subject}">
+	    		<div class="col three bg nopad pointer">
+			      <div class="imgholder d-flex align-items-center justify-content-center">
+			      <p class ="questionText">"${post.subject}"</p>
+			      </div>
+			      <h1 class="feature">${post.comment}</h1>
+				   
+			    </div>  
+	   		</c:when>
+	   		
+	   		<c:otherwise>
+	   		 	<div class ="container row col-12 justify-content-center p-5 mt-5">
+	   		 	<h1 class ="col-12 p-5">아직 작성된 포스트가 없군요  ... 🤔</h1>
+	   		 	<a href ="/post/main#QuestionForToday"><button type = "button" class ="btn col-12  p-5 overlay__btn"> <h2 class ="text-white">오늘의 질문 답하러 가기 ❤️</h2></button> </a> 
+	   		 	</div>
+	   		</c:otherwise>
+   		
+   		</c:choose>
+   		
     </c:forEach>  
     
 

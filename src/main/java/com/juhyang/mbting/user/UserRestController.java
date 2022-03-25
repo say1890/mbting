@@ -86,6 +86,7 @@ public class UserRestController {
 			session.setAttribute("sex", user.getSex());
 			session.setAttribute("introduce", user.getIntroduce());
 			session.setAttribute("profile", user.getProfile());
+			
 			userBO.setLoginTime(user.getId());
 		} else {
 			// 로그인 실패
@@ -170,14 +171,16 @@ public class UserRestController {
 			@RequestParam(value ="yourCharacterArr[]", required = false) List<String> yourCharacterArr,
 			@RequestParam(value ="ageArr[]", required = false) List<String> ageArr,
 			@RequestParam(value = "file", required = false) MultipartFile file,
+			@RequestParam(value ="password", required = false) String password,
 			HttpServletRequest request
 			) {
 		
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
-		userBO.editBasicInfo(userId,userName,introduce,mbti,file);
+		userBO.editBasicInfo(userId,userName,introduce,mbti,file,password);
 		User user = userDAO.selectUserById(userId);
 		session.setAttribute("profile", user.getProfile());
+		session.setAttribute("introduce", user.getIntroduce());
 		session.removeAttribute("firstconnection");
 		
 		return userBO.editMatchingProfile(userId,myMeritArr,myHobbyArr,myCharacterArr, yourMeritArr, yourHobbyArr,yourCharacterArr,ageArr);
@@ -194,6 +197,7 @@ public class UserRestController {
 		User user = userDAO.selectUserById(userId);
 		String userProfile = user.getProfile();
 		FileManagerService.removeFile(userProfile);
+		userBO.removeUserProfile(userId);
 		
 	}
 	

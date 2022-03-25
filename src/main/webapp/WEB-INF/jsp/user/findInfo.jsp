@@ -89,7 +89,6 @@ $(document).ready(function(){
 	$("#submitBtn").on("click",function(e){
 		e.preventDefault();
 		var email = $("#emailInput").val();
-		alert(email);
 		if(!email) {
 			alert("이메일을 입력하세요.");
 			return;

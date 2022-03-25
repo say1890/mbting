@@ -46,7 +46,7 @@
       </c:choose>
       
       <c:import url ="/WEB-INF/jsp/like/likedList.jsp" />
-	</div>
+		</div>
       </div>
 </div>   
 

@@ -48,7 +48,7 @@
 					</tbody>
 				</table>
 				
-				<div class ="d-flex justify-content-end">
+				<div class ="d-flex justify-content-end p-5">
 				<a href = "/admin/add_post_view" class ="btn btn-info">글쓰기</a>
 				</div>
 				
