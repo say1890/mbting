@@ -106,8 +106,8 @@ public class UserRestController {
 	}
 	
 	
-	//id 중복 확인
-		@RequestMapping("/checkId")
+	//이메일 중복 확인
+		@RequestMapping("/checkEmail")
 		public Map<String, Boolean>checkEmail(@RequestParam("email") String email){
 			Map<String,Boolean> result = new HashMap<>();
 			int Isexist =userBO.EmailExist(email);
