@@ -51,9 +51,9 @@
 		  
 		 	<div class="input-group">
 				<input type = "text" placeholder="ID를 입력하세요." class = "input-text form-control" id= "inputId" maxlength="15">
-				<div id="nameCheckInfo" class="text-info d-none mt-2 ml-2"></div>
+				
 			</div>
-		 
+		 	<div id="nameCheckInfo" class="text-info d-none mt-2 ml-2"></div>
 			
 
 			<input type = "password" id = "password" placeholder = "비밀번호 입력" class ="input-text form-control mt-3" maxlength="32">
@@ -92,7 +92,7 @@
 				<option value ="ENTJ">ENTJ</option>
 			</select>
 			<input type="email" id="email" size="30" required  placeholder = "이메일을 입력하세요." class = "input-text form-control mt-3" maxlength="30">
-			
+			<div id="emailCheckInfo" class="text-info d-none mt-2 ml-2"></div>
 			
 		</section>
     <!-- Buttons -->
@@ -113,8 +113,11 @@ $(document).ready(function(){
 	 var pwCheck = false;
 	 
 	 //id 중복 확인
-	 var isDuplication = false;
+	 var isIdDuplicated = false;
 	 var checkId = false;
+	 
+	 //이메일 중복 확인
+	 
 	 
 	 $('[data-bs-toggle="tooltip"]').tooltip();
 
@@ -156,6 +159,38 @@ $(document).ready(function(){
          }
 
 	 });
+	 
+	 $("#email").on("propertychange change keyup paste input",function(){
+		 var email = $("#email").val();
+		 
+		 if(email.length>=7) {
+				$.ajax({
+					url: "/user/checkEmail",
+					type:"post",
+					data:{"email":email},
+					success:function(data){
+					
+						if(data.result) {
+							$("#emailCheckInfo").removeClass("d-none");
+							$("#emailCheckInfo").text("중복되었습니다.");	
+							isIdDuplicated = true;
+							
+						} else {
+							$("#nameCheckInfo").removeClass("d-none");
+							 $("#nameCheckInfo").text("사용 가능합니다.");
+							isIdDuplicated = false;
+							checkId = true;
+							
+						}
+						
+					}, error:function(e){
+						alert("error" + e);
+					}
+					
+				});
+         }
+
+	 });
 
 	
 	
@@ -192,12 +227,12 @@ $(document).ready(function(){
 				if(data.result) {
 					$("#nameCheckInfo").removeClass("d-none");
 					$("#nameCheckInfo").text("중복되었습니다.");	
-					isDuplication = true;
+					isIdDuplicated = true;
 					
 				} else {
 					$("#nameCheckInfo").removeClass("d-none");
 					 $("#nameCheckInfo").text("사용 가능합니다.");
-					isDuplication = false;
+					isIdDuplicated = false;
 					checkId = true;
 					
 				}
@@ -267,7 +302,7 @@ $(document).ready(function(){
 			 }
 			
 			
-		 	if(isDuplication) {
+		 	if(isIdDuplicated) {
 				alert("아이디가 중복되었습니다.");
 				return;
 			}

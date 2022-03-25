@@ -105,6 +105,23 @@ public class UserRestController {
 		return result;
 	}
 	
+	
+	//id 중복 확인
+		@RequestMapping("/checkId")
+		public Map<String, Boolean>checkEmail(@RequestParam("email") String email){
+			Map<String,Boolean> result = new HashMap<>();
+			int Isexist =userBO.EmailExist(email);
+			if(Isexist==1) {
+				
+			}
+			result.put("result",true );
+			return result;
+		}
+	
+	
+	
+	
+	
 
 	//비밀번호 찾기
 	@RequestMapping("/findPw")
