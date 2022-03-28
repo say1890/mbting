@@ -27,5 +27,5 @@ public class WebMVCConfig implements WebMvcConfigurer{
 		.addPathPatterns("/**") // 어떤 path가 인터셉터를 거쳐서 수행될지 설정
 		.excludePathPatterns("/static/**", "/images/**", "/user/sign_out"); // 제외할 path
 	}
-	
+
 }

@@ -107,15 +107,15 @@ public class UserRestController {
 	
 	
 	//이메일 중복 확인
-		@RequestMapping("/checkEmail")
+		@PostMapping("/checkEmail")
 		public Map<String, Boolean>checkEmail(@RequestParam("email") String email){
 			Map<String,Boolean> result = new HashMap<>();
 			int Isexist =userBO.EmailExist(email);
 			if(Isexist==1) {
-				result.put("result",true );
+				result.put("result",true);
 			}
 			else {
-				result.put("result",false );
+				result.put("result",false);
 			}
 			return result;
 		}
