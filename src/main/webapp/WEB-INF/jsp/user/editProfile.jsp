@@ -422,7 +422,7 @@ $(document).ready(function(){
 	
 	
 	
-	$("#smallProfile").on("click", function() {
+	$("#profileUpdateBtn").on("click", function() {
 	
 			$("#fileInput").click();
 
