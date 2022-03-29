@@ -92,22 +92,31 @@ https://docs.google.com/spreadsheets/d/15WWveTZaCIsB7vpDN0bKxUib1w3DehJRtV-59e1D
 
 ###  ✨ DEMO ✨
 
- 🍓 회원 가입 및 로그인 
+ 🍓 회원 가입 /  로그인  / Id, PW 찾기
  ![user](demogif/user.gif)
 
  🍓 이미지 첨부한 글 쓰기
  ![user](demogif/post.gif)
  
-  🍓 댓글쓰기
+ 🍓 댓글쓰기
  ![user](demogif/comment.gif)
  
-  🍓 좋아요
+ 🍓 좋아요
  ![user](demogif/like.gif)
  
+ 🍓 싫어요
+ ![user](demogif/dislike.gif)
+ 
+ 🍓 정보 수정
+ ![user](demogif/edit.gif)
+ 
+ 🍓 채팅
+ ![user](demogif/chat.gif)
  
  
  
-### ✏ 외부 라이브러리 라이센스 ✏ 
+ 
+###  🤑 외부 라이브러리 라이센스 🤑
 
 * Tomcat [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) 
 * Mysql [GPLv2 or proprietary](https://www.gnu.org/licenses/gpl-3.0.html)
