@@ -2,6 +2,8 @@ package com.juhyang.mbting.chat.bo;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.juhyang.mbting.chat.dao.ChatDAO;
@@ -10,12 +12,15 @@ import com.juhyang.mbting.chat.model.ChatOriginal;
 
 @Service
 public class ChatBO {
-
 @Autowired
 ChatDAO chatDAO;
+private static ChatDAO staticChatDAO;
 	
 
-
+@PostConstruct
+private void initStatic() {
+	staticChatDAO = this.chatDAO;
+}
 
 
 public int makeRoomInfo(int man, int woman) {
@@ -24,7 +29,7 @@ public int makeRoomInfo(int man, int woman) {
 
 
 
-public List<ChatOriginal> getRoomList(int userId ){
+public List<ChatOriginal> getRoomList(int userId){
 	return chatDAO.selectRoomList(userId);
 }
 
@@ -36,9 +41,9 @@ public int addChatData(int id, String manName, String womanName, String manProfi
 
 
 
-public ChatOriginal getRoomInfo(int roomNum) {
+public static ChatOriginal getRoomInfo(int roomNum) {
 
-	return	chatDAO.selectRoomInfo(roomNum);
+	return	staticChatDAO.selectRoomInfo(roomNum);
 	
 };
 

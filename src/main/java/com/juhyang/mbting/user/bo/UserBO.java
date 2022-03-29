@@ -206,17 +206,23 @@ public class UserBO {
 		String userProfile = user.getProfile();
 		String filePath = null;
 		
+		// 사용자가 사진을 추가했을 때
 		if(file!=null) {
-			// 사용자가 프로필을 다른 사진으로 바꿨을 경우에 기존에 저장된 사진 삭제
+			// 기존 프사가 있을 때
 			if( userProfile!=null ) {
 				FileManagerService.removeFile(userProfile);
 				filePath = FileManagerService.saveFile(userId, file);
 			}
-			//파일이 비어있지 않으면서 기존 파일이 없을 때
+			// 기존 프사가 없을 때
 			else {
 				filePath = FileManagerService.saveFile(userId, file);
 			}
 			userDAO.updateBasicProfile(userId, userName,introduce,mbti,filePath);
+		}
+		
+		// 사진을 추가하지 않았을 때
+		else {
+			userDAO.updateBasicProfileExceptFile(userId, userName,introduce,mbti);
 		}
 		
 		if(password.length()>=6) {
@@ -697,7 +703,6 @@ public class UserBO {
 		userDAO.deleteUserProfile(userId);
 		
 	}
-
 
 	
 	

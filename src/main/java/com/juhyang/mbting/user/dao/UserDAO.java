@@ -26,9 +26,7 @@ public interface UserDAO {
 			@Param("loginId") String loginId,
 			@Param("password")String password);
 	
-	public User selectUserById(
-			@Param("userId") int userId
-		);
+	public User selectUserById(@Param("userId") int userId);
 	
 	public boolean IsDuplicate( @Param("loginId") String loginId);
 	
@@ -73,6 +71,10 @@ public interface UserDAO {
 	public UserCharacter selectOptionsForSeeProfile(@Param("userId") int userId);
 	public void updateLoginTime(@Param("userId") int userId);
 	public void deleteUserProfile(@Param("userId") int userId);
+	public void updateBasicProfileExceptFile(@Param("userId") int userId,
+			@Param("userName") String userName, 
+			@Param("introduce") String introduce, 
+			@Param("mbti") String mbti);
 	
 
 	

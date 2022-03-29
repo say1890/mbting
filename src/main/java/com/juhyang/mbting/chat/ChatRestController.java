@@ -2,7 +2,6 @@ package com.juhyang.mbting.chat;
 
 import java.time.LocalDateTime;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,7 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.juhyang.mbting.chat.bo.ChatBO;
+import com.juhyang.mbting.chat.model.ChatOriginal;
 
+import com.juhyang.mbting.user.dao.UserDAO;
+import com.juhyang.mbting.user.model.User;
+import com.juhyang.mbting.user.model.UserDetail;
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
@@ -30,6 +33,10 @@ private final ChatRepository chatRepository;
 @Autowired
 ChatBO chatBO;
 
+
+
+@Autowired
+UserDAO userDAO;
 
 
 	@CrossOrigin
@@ -58,18 +65,19 @@ ChatBO chatBO;
 	
 	
 	@PostMapping("/addChatData")
-	public int addChatData(@RequestParam("roomNum")int id,
-			@RequestParam("manName")String manName,
-			@RequestParam("womanName")String womanName,
-			@RequestParam(value="manProfile", required = false)String manProfile,
-			@RequestParam(value="womanProfile", required = false)String womanProfile
+	public int addChatData(@RequestParam("roomNum")int id
 			){
-//		if(manProfile.isEmpty()) {
-//			manProfile="";
-//		}
-//		if(womanProfile.isEmpty()) {
-//			womanProfile="";
-//		}
+	ChatOriginal RoomInfo = new ChatOriginal();
+	RoomInfo = ChatBO.getRoomInfo(id);
+	int man = RoomInfo.getMan();
+	int woman = RoomInfo.getWoman();
+	User UserMan = userDAO.selectUserById(man);
+	User UserWoman = userDAO.selectUserById(woman);
+
+	String manName  = UserMan.getUserName();
+	String womanName = UserWoman.getUserName();
+	String manProfile = UserMan.getProfile();
+	String womanProfile = UserWoman.getProfile();
 	return chatBO.addChatData(id,manName,womanName,manProfile,womanProfile);
 	}
 	
