@@ -30,6 +30,9 @@
 https://docs.google.com/spreadsheets/d/15WWveTZaCIsB7vpDN0bKxUib1w3DehJRtV-59e1Dwx0/edit#gid=0 
  
  ### ⛏ 주요 기능 ⛏
+ 
+ -- USER 패키지 --
+ 
  * 회원가입
    * package : [com.juhyang.mbting.user.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/user)
    * view : [/webapp/WEB-INF/jsp/user/*](https://github.com/say1890/mbting/blob/master/src/main/webapp/WEB-INF/jsp/user/signup.jsp)
@@ -43,20 +46,41 @@ https://docs.google.com/spreadsheets/d/15WWveTZaCIsB7vpDN0bKxUib1w3DehJRtV-59e1D
    * package : [com.juhyang.mbting.user.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/user)
    * view : [/webapp/WEB-INF/jsp/user/*](https://github.com/say1890/mbting/blob/master/src/main/webapp/WEB-INF/jsp/user/findInfo.jsp)
 
+
+ * 마이 페이지
+   * package : [com.juhyang.mbting.user.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/user)
+   * view : [/webapp/WEB-INF/jsp/user/*](https://github.com/say1890/mbting/blob/master/src/main/webapp/WEB-INF/jsp/user/myPage.jsp)
+
+
  * 정보 수정
    * package : [com.juhyang.mbting.user.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/user)
    * view : [/webapp/WEB-INF/jsp/user/*](https://github.com/say1890/mbting/blob/master/src/main/webapp/WEB-INF/jsp/user/editProfile.jsp)
+ 
+ * 프로필 보기
+   * package : [com.juhyang.mbting.user.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/user)
+   * view : [/webapp/WEB-INF/jsp/user/*](https://github.com/say1890/mbting/blob/master/src/main/webapp/WEB-INF/jsp/user/seeProfile.jsp)
+
+  -- CHAT 패키지 --
+
+ * 채팅하기
+   * package : [com.juhyang.mbting.chat.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/chat)
+   * view : [/webapp/WEB-INF/jsp/chat/*](https://github.com/say1890/mbting/blob/master/src/main/webapp/WEB-INF/jsp/chat/chat.jsp)
+
+  -- POST 패키지 --
 
 
- * 댓글 
+ * 댓글 달기
    * package : [com.juhyang.mbting.comment.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/comment)
-   * view : [/webapp/WEB-INF/jsp/post/*]()
-   
- * 좋아요
-   * package : [com.juhyang.mbting.like.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/like)
-   * view : [/webapp/WEB-INF/jsp/post/*]()
+   * view : [/webapp/WEB-INF/jsp/post/*](https://github.com/say1890/mbting/blob/master/src/main/webapp/WEB-INF/jsp/post/question.jsp)
 
-### 🎆 데모 🎆
+
+-- like 패키지 -- 
+
+ * 보낸 좋아요 보기, 받은 좋아요 보기, 좋아요 
+   * package : [com.juhyang.mbting.like.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/like)
+   * view : [/webapp/WEB-INF/jsp/post/*](https://github.com/say1890/mbting/tree/master/src/main/webapp/WEB-INF/jsp/like)
+
+###  ✨ DEMO ✨
 
  💎 회원 가입 및 로그인 
  ![user](demogif/user.gif)
