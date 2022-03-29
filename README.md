@@ -32,12 +32,21 @@ https://docs.google.com/spreadsheets/d/15WWveTZaCIsB7vpDN0bKxUib1w3DehJRtV-59e1D
  ### ⛏ 주요 기능 ⛏
  * 회원가입
    * package : [com.juhyang.mbting.user.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/user)
-   * view : [/webapp/WEB-INF/jsp/user/*](https://github.com/dulumary/spring_marondalgram_0817/tree/develop/src/main/webapp/WEB-INF/jsp/user)
+   * view : [/webapp/WEB-INF/jsp/user/*](https://github.com/say1890/mbting/blob/master/src/main/webapp/WEB-INF/jsp/user/signup.jsp)
   
    
  * 로그인
    * package : [com.juhyang.mbting.user.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/user)
-   * view : [/webapp/WEB-INF/jsp/user/*]()
+   * view : [/webapp/WEB-INF/jsp/user/*](https://github.com/say1890/mbting/blob/master/src/main/webapp/WEB-INF/jsp/user/signin.jsp)
+
+ * ID / PW 찾기
+   * package : [com.juhyang.mbting.user.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/user)
+   * view : [/webapp/WEB-INF/jsp/user/*](https://github.com/say1890/mbting/blob/master/src/main/webapp/WEB-INF/jsp/user/findInfo.jsp)
+
+ * 정보 수정
+   * package : [com.juhyang.mbting.user.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/user)
+   * view : [/webapp/WEB-INF/jsp/user/*](https://github.com/say1890/mbting/blob/master/src/main/webapp/WEB-INF/jsp/user/editProfile.jsp)
+
 
  * 댓글 
    * package : [com.juhyang.mbting.comment.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/comment)
