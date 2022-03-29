@@ -76,7 +76,7 @@
 								</div>
 													
 								<div class = "col-6 my-auto">
-									<h3 id = "womanName">${user.user.userName}</h3>
+									<h3 class = "womanName">${user.user.userName}</h3>
 									<h3 id = "manName" class="d-none">${userName}</h3>
 								</div>
 							</c:if>
@@ -141,25 +141,15 @@
 <script>
 $(document).ready(function(){
 	$(".btn").on("click",function(){
-		let roomNum = $(this).data("room-num");
-		let manName = $("#manName").text();
-		let womanName = $("#womanName").text();
-		let manProfile = $(".manProfile").attr("src");
-		let womanProfile = $(".womanProfile").attr("src");
-		
 
+		let roomNum = $(this).data("room-num");
 		
-		alert(roomNum);
 		
 		$.ajax({
 			type:"post",
 			url:"/addChatData",
 			data:{
-			"roomNum":roomNum,
-			"manName":manName,
-			"womanName":womanName,
-			"manProfile":manProfile,
-			"womanProfile":womanProfile
+			"roomNum":roomNum
 			},
 			success:function(data) {
 			location.href = "/chatting?roomNum="+roomNum;	

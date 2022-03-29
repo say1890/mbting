@@ -154,6 +154,18 @@
 		`id` = #{userId}
 	</update>
 	
+	<update id ="updateBasicProfileExceptFile"  parameterType = "map"  >
+	UPDATE `user`
+	SET
+		`userName` = #{userName},
+		`introduce` = #{introduce},
+		`mbti` = #{mbti},
+		`updatedAt` = now()
+	WHERE
+		`id` = #{userId}
+	</update>
+	
+	
 	<select id ="selectOptions" resultType ="com.juhyang.mbting.user.model.UserCharacter">
 	SELECT
 		`myMerit`,
