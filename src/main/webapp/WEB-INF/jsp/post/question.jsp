@@ -35,7 +35,18 @@
 				<section class ="mt-5 mb-5 row col-12  ml-4">
 					<p class ="col-12">
 					<h4 class ="col-12"> ${q.content}</h4>
-					<div ><img class = "questionImg" src = "${q.imagePath}"></div>
+					<c:choose>
+						
+						<c:when test = "${not empty q.imagePath}">
+							<div><img class = "questionImg" src = "${q.imagePath}"></div>
+						</c:when>
+						
+						<c:otherwise>
+						
+						</c:otherwise>
+					
+					</c:choose>
+					
 					</p>
 				
 			

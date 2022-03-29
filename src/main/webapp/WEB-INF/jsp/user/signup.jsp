@@ -111,13 +111,13 @@ $(document).ready(function(){
 
 	 //비밀번호 체크
 	 var pwCheck = false;
-	 
+
 	 //id 중복 확인
 	 var isIdDuplicated = false;
 	 var checkId = false;
 	 
 	 //이메일 중복 확인
-	 
+	 var isEmailDuplicated =false;
 	 
 	 $('[data-bs-toggle="tooltip"]').tooltip();
 
@@ -162,33 +162,33 @@ $(document).ready(function(){
 	 
 	 $("#email").on("propertychange change keyup paste input",function(){
 		 var email = $("#email").val();
-		 
-		 if(email.length>=7) {
-				$.ajax({
-					url: "/user/checkEmail",
-					type:"post",
-					data:{"email":email},
-					success:function(data){
-					
-						if(data.result) {
-							$("#emailCheckInfo").removeClass("d-none");
-							$("#emailCheckInfo").text("중복되었습니다.");	
-							isIdDuplicated = true;
+				if(email.length>=6){
+					$.ajax({
+						url: "/user/checkEmail",
+						type:"post",
+						data:{"email":email},
+						success:function(data){
+						
+							if(data.result) {
+								$("#emailCheckInfo").removeClass("d-none");
+								$("#emailCheckInfo").text("중복되었습니다.");	
+								isEmailDuplicated = true;
+								
+							} else {
+								$("#emailCheckInfo").removeClass("d-none");
+								 $("#emailCheckInfo").text("사용 가능합니다.");
+								 isEmailDuplicated = false;
+								
+							}
 							
-						} else {
-							$("#nameCheckInfo").removeClass("d-none");
-							 $("#nameCheckInfo").text("사용 가능합니다.");
-							isIdDuplicated = false;
-							checkId = true;
-							
+						}, error:function(e){
+							alert("error" + e);
 						}
 						
-					}, error:function(e){
-						alert("error" + e);
-					}
-					
-				});
-         }
+					});
+				}
+				
+        
 
 	 });
 
@@ -229,13 +229,15 @@ $(document).ready(function(){
 					$("#nameCheckInfo").text("중복되었습니다.");	
 					isIdDuplicated = true;
 					
-				} else {
+				} 
+				
+				else if(data.result==false) {
 					$("#nameCheckInfo").removeClass("d-none");
-					 $("#nameCheckInfo").text("사용 가능합니다.");
+					$("#nameCheckInfo").text("사용 가능합니다.");
 					isIdDuplicated = false;
 					checkId = true;
-					
 				}
+				
 				
 			}, error:function(e){
 				alert("error" + e);
@@ -275,10 +277,13 @@ $(document).ready(function(){
 		}
 		
 		if(!checkId){
-			alert("id를 확인해주세요. ");
+			alert("id를 확인해주세요.");
 			return;
 		}
 		
+		if(isIdDuplicated == true){
+			alert("이메일이 중복됐습니다. ");
+		}
 		if(typeof sex == undefined){
 			alert("성별을 선택하세요. ");
 		}
@@ -302,10 +307,10 @@ $(document).ready(function(){
 			 }
 			
 			
-		 	if(isIdDuplicated) {
-				alert("아이디가 중복되었습니다.");
+		 if(isEmailDuplicated==true) {
+				alert("이메일이 중복되었습니다.");
 				return;
-			}
+		}
 			if(pwCheck == false){
 				alert("비밀번호를 다시 확인해주세요.");
 				location.href = "/#password";

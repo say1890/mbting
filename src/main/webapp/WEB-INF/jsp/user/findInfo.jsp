@@ -64,17 +64,6 @@
 
 	</div>
 
-	<!-- <div id = "wrap" class = "row justify-content-center">
-<input type = text class = "form-control col-6" placeholder = "이메일을 입력하세요."  id ="emailInput" >
-<button type ="button" class = "btn btn-primary" id ="submitBtn">입력</button>
-</div> -->
-
-
-
-
-
-
-
 
 
 	<script>
