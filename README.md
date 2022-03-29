@@ -31,7 +31,7 @@ https://docs.google.com/spreadsheets/d/15WWveTZaCIsB7vpDN0bKxUib1w3DehJRtV-59e1D
  
  ### ⛏ 주요 기능 ⛏
  
- -- USER 패키지 --
+ ## -- USER 패키지 --
  
  * 회원가입
    * package : [com.juhyang.mbting.user.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/user)
@@ -60,13 +60,13 @@ https://docs.google.com/spreadsheets/d/15WWveTZaCIsB7vpDN0bKxUib1w3DehJRtV-59e1D
    * package : [com.juhyang.mbting.user.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/user)
    * view : [/webapp/WEB-INF/jsp/user/*](https://github.com/say1890/mbting/blob/master/src/main/webapp/WEB-INF/jsp/user/seeProfile.jsp)
 
-  -- CHAT 패키지 --
+ ## -- CHAT 패키지 --
 
  * 채팅하기
    * package : [com.juhyang.mbting.chat.*](https://github.com/say1890/mbting/tree/master/src/main/java/com/juhyang/mbting/chat)
    * view : [/webapp/WEB-INF/jsp/chat/*](https://github.com/say1890/mbting/blob/master/src/main/webapp/WEB-INF/jsp/chat/chat.jsp)
 
-  -- POST 패키지 --
+ ## -- POST 패키지 --
 
 
  * 댓글 달기
