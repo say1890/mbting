@@ -92,17 +92,20 @@ https://docs.google.com/spreadsheets/d/15WWveTZaCIsB7vpDN0bKxUib1w3DehJRtV-59e1D
 
 ###  ✨ DEMO ✨
 
- 💎 회원 가입 및 로그인 
+ 🍓 회원 가입 및 로그인 
  ![user](demogif/user.gif)
 
- 💎 이미지 첨부한 글 쓰기
+ 🍓 이미지 첨부한 글 쓰기
  ![user](demogif/post.gif)
  
-  💎 댓글쓰기
+  🍓 댓글쓰기
  ![user](demogif/comment.gif)
  
-  💎 좋아요
+  🍓 좋아요
  ![user](demogif/like.gif)
+ 
+ 
+ 
  
 ### ✏ 외부 라이브러리 라이센스 ✏ 
 
