@@ -27,8 +27,6 @@ eventSource.onmessage = (event) => {
 		
 	}
 
-	let countMsg = 1;
-	document.querySelector("#checkNull").innerHTML = countMsg;
 	
 }
 
