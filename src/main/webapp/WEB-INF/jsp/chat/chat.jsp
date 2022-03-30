@@ -24,7 +24,6 @@
 
 <body>
   <div class="container-fluid">
-
     <div class="row">
 
       <div class="col-sm-12">
@@ -70,15 +69,18 @@
             </div>
            
           </div>
-
+          
+          
           <div class="container-fluid chat_section" id="chat-box">
 		  	
           </div>
 		
-          <div class="type_msg">
-            <div class="input_msg_write">
+          <div class="type_msg col-11 ml-2 ">
+            <div class="input_msg_write ">
+            
               <input id="chat-outgoing-msg" type="text" class="write_msg" placeholder="Type a message" />
-              <button id="chat-outgoing-button" class="msg_send_btn" type="button"><i class="fa fa-paper-plane"
+               <div class ="heart"></div>
+              <button id="chat-outgoing-button" class="msg_send_btn d-none" type="button"><i class="fa fa-paper-plane"
                   aria-hidden="true"></i></button>
             </div>
           </div>
@@ -104,6 +106,18 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
+    
+    <script>
+  	$(document).ready(function(){
+  		
+  		$(".heart").on("click",function(e){
+  			 e.preventDefault();
+  			$("#chat-outgoing-button").click();
+  		});
+  		
+  	})
+    
+    </script>
 </body>
 
 

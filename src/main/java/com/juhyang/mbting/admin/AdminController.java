@@ -46,16 +46,7 @@ public class AdminController {
 		return "admin/PostDetail";
 		
 	}
-	@RequestMapping("/calender_view")
-	public String calender_view(HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession();
-		int userId = (Integer)session.getAttribute("userId");
-		int isAdm = 0;
-		if(userId==1) {
-			model.addAttribute("isAdm", isAdm);
-		}
-		return "admin/calendar";
-	}
+
 	
 	
 	

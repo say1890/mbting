@@ -25,8 +25,9 @@
   
 	<h1 class ="mt-5 ml-5">오늘의 질문</h1>
 	<h4 class ="ml-3 mt-5">${today}</h4>
+	
 	<c:choose>
-		<c:when test = "${not empty questionList }">
+		<c:when test = "${not empty questionList}">
 		<c:forEach var="q" items="${questionList}">	
 			<h3 class ="mt-5 ml-5">
 				<i class="bi bi-pen"></i>
@@ -48,9 +49,6 @@
 					</c:choose>
 					
 					</p>
-				
-			
-				
 				
 				<div class="input-group mt-4">
 				      <input type="text" class="form-control col-8 ml-4" id ="commentInput">
