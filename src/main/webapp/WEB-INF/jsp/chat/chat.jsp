@@ -24,7 +24,7 @@
 
 <body>
   <div class="container-fluid">
-
+	<div id ="checkNull"></div>
     <div class="row">
 
       <div class="col-sm-12">
@@ -104,6 +104,17 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
+    
+    <script>
+   $(document).ready(function(){
+	   alert($("#referralName").length);
+	   if($("#referralName").length>0){
+		   alert($("#checkNull").text());
+	   }
+	   
+   })
+    
+    </script>
 </body>
 
 

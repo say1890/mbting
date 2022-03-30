@@ -4,13 +4,15 @@ let username =  document.querySelector("#username").innerHTML;
 
 let roomNum = document.querySelector("#roomNum").innerHTML;
 var createdAt="2022-03-21";
-
+let countMsg;
 
 // SSE 연결하기
 const eventSource = new EventSource(`http://localhost:8080/chat/roomNum/${roomNum}`);
 eventSource.onmessage = (event) => {
 	const data = JSON.parse(event.data);
 		let currentDay = data.createdAt.substring(0,10) // 최신 들어온거  
+	
+		
 	if(currentDay!=createdAt){
 		makeLine(currentDay);
 	}
@@ -22,14 +24,11 @@ eventSource.onmessage = (event) => {
 	} else {
 		// 회색박스(왼쪽)
 		initYourMessage(data);
+		
 	}
-	
 
-	
-	
-
-	
 	let countMsg = 1;
+	document.querySelector("#checkNull").innerHTML = countMsg;
 	
 }
 
@@ -49,7 +48,7 @@ function makeLine(currentDay){
 	let righthr = document.createElement("hr");
 	righthr.className = "right_hr";
 	chatBox.append(righthr);
-
+	
 		}
 
 
@@ -156,3 +155,6 @@ document.querySelector("#chat-outgoing-msg").addEventListener("keydown", (e) => 
 		addMessage();
 	}
 });
+
+
+	
