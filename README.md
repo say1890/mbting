@@ -92,27 +92,33 @@ https://docs.google.com/spreadsheets/d/15WWveTZaCIsB7vpDN0bKxUib1w3DehJRtV-59e1D
 
 ###  ✨ DEMO ✨
 
- 🍓 회원 가입 /  로그인  / Id, PW 찾기
- ![user](demogif/user.gif)
 
- 🍓 이미지 첨부한 글 쓰기
- ![user](demogif/post.gif)
+ 🍓 회원 가입 /  로그인
+ ![user](demo/join_and_login.gif)
  
- 🍓 댓글쓰기
- ![user](demogif/comment.gif)
+ 🍓  Id, PW 찾기
+ ![user](demo/find_pw.gif)
+
+ 🍓 이미지 첨부한 글 쓰기 / 댓글 달기
+ ![user](demo/upload_and_comment.gif)
  
  🍓 좋아요
- ![user](demogif/like.gif)
+ ![user](demo/like.gif)
  
- 🍓 싫어요
- ![user](demogif/dislike.gif)
- 
+ 🍓 보낸 좋아요 / 받은 좋아요 보기 
+ ![user](demo/if_like_does_not_exists.gif)
+ ![user](demo/seeLike_seeProfile.gif)
+
+
  🍓 정보 수정
- ![user](demogif/edit.gif)
+ ![user](demo/editProfile.gif)
+ 
+ 🍓 로그 아웃
+ ![user](demo/logout.gif)
+ 
  
  🍓 채팅
- ![user](demogif/chat.gif)
- 
+ ![user](demo/chat.gif)
  
  
  
