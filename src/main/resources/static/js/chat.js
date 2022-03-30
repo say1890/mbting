@@ -7,7 +7,7 @@ var createdAt="2022-03-21";
 let countMsg;
 
 // SSE 연결하기
-const eventSource = new EventSource(`http://localhost:8080/chat/roomNum/${roomNum}`);
+const eventSource = new EventSource(`/chat/roomNum/${roomNum}`);
 eventSource.onmessage = (event) => {
 	const data = JSON.parse(event.data);
 		let currentDay = data.createdAt.substring(0,10) // 최신 들어온거  
@@ -131,7 +131,7 @@ async function addMessage() {
 		msg: msgInput.value
 	};
 
-	fetch("http://localhost:8080/chat", {
+	fetch("/chat", {
 		method: "post", //http post 메서드 (새로운 데이터를 write)
 		body: JSON.stringify(chat), // JS -> JSON
 		headers: {
