@@ -33,6 +33,16 @@ AND
 `sender` = #{userId}
 </select>
 
+<select id ="selectHateCountByUserId" parameterType="map"  resultType ="int">
+SELECT COUNT(*)
+FROM
+`dislike`
+WHERE
+`receiver` = #{receiver}
+AND
+`sender` = #{userId}
+</select>
+
 <select id ="selectWhoLikesMe" resultType ="int">
 SELECT
 	`sender`

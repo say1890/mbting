@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.juhyang.mbting.common.FileManagerService;
-import com.juhyang.mbting.like.bo.LikeBO;
+
 import com.juhyang.mbting.user.bo.UserBO;
 import com.juhyang.mbting.user.dao.UserDAO;
 import com.juhyang.mbting.user.model.User;
@@ -39,8 +39,7 @@ public class UserRestController {
 	User user;
 	@Autowired
 	JavaMailSender mailSender;
-	@Autowired
-	LikeBO likeBO;
+
 	@Autowired
 	UserDAO userDAO;
 	// 회원가입

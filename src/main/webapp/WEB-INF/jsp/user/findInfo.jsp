@@ -47,12 +47,14 @@
 
 			<div ng-app ng-init="checked = false">
 				<form class="form-signin" method="post" name="form">
-					<label for="email"><b>🍓 E-MAIL 🍓</b><label> 
-					<input class="form-styling mt-2" type="text"  placeholder="" id="emailInput" />
-
-
+				
+					<label for="email">
+						<b>🍓 E-MAIL 🍓</b>
+					<label> 
+					
+					<input class="form-styling mt-2" type="text" placeholder="" id="emailInput" />
 							<div class="btn-animate">
-								<a class="btn-signin" id= "submitBtn">ID/PW  찾기</a>
+								<a class="btn-signin" id="submitBtn">ID/PW 찾기</a>
 							</div>
 				</form>
 
