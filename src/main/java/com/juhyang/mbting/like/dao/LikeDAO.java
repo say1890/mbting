@@ -34,4 +34,7 @@ public interface LikeDAO {
 	public String selectLikeTime(@Param("receiver")int receiver,
 			@Param("userId")int userId);
 
+	public int selectHateCountByUserId(@Param("userId")int userId,
+			@Param("receiver")int receiver);
+
 }

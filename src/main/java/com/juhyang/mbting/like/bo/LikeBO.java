@@ -70,6 +70,24 @@ public class LikeBO {
 		
 	}
 	
+	public boolean sendHate(int userId, int receiver) {
+		//싫어요 누른 상태 - > true
+		if(this.isHate(userId,receiver)) {
+			return true;
+		} 
+		// 싫어요 안누른 상태 -> false
+		else {
+			likeDAO.insertDislike(userId, 1);
+			return false;
+		}
+		
+		
+	}
+	public boolean isHate(int userId, int receiver) {
+		return !(likeDAO.selectHateCountByUserId(userId, receiver) == 0);
+		
+	}
+	
 
 
 

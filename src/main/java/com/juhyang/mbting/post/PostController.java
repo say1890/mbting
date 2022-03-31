@@ -58,8 +58,8 @@ public class PostController {
 		/*사용자가 정보 수정을 했는지 확인 */
 		List<UserCharacter> list = userBO.checkUserInfo(userId); 
 		if(list.isEmpty()) {
-			likeBO.sendDislike(userId, 1); // 관리자가 추천에 안 뜨게끔
-			 session.setAttribute("firstconnection", "yes");	
+			likeBO.sendHate(userId,1);
+			session.setAttribute("firstconnection", "yes");	
 		}
 		else {
 			session.removeAttribute("firstconnection");

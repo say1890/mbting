@@ -221,7 +221,7 @@
 	  $(".dislikeBtn").on("click",function(e){
 		  e.preventDefault();
 		  let matchedPersonId = $(this).data("your-id");
-		  $("#profile-box").addClass("d-none");
+		 $("#profile-box").addClass("d-none");
 		  $.ajax({
 				type:"get",
 				url:"/dislike",
