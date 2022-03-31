@@ -19,10 +19,6 @@ public class Chat {
 	private String sender; // 보내는 사람
 	private String receiver; //받는 사람
 	private Integer roomNum;
-	
-	
-	
-	
 	private LocalDateTime createdAt;
 
 

@@ -137,9 +137,6 @@
 		`age` = #{age},
 		`updatedAt` = now()
 
-		
-
-		
 	</insert>
 	
 	<update id ="updateBasicProfile"  parameterType = "map"  >
@@ -239,11 +236,7 @@
 	INNER JOIN
 		`user`
 		
-	ON user.id = user_character.user_id
-	
-	INNER JOIN
-		`dislike`
-
+	ON user.id = user_character.user_id	
 		
     WHERE
 
@@ -260,8 +253,7 @@
     	)	
     AND
     	year(current_date())-year(user.birthday)+1  ${chooseAge}  ${myage}	
-	AND
-		`receiver` != user.id
+
 	ORDER by (select tracelogin.updatedAt from tracelogin where user.id = tracelogin.user_id) DESC
     LIMIT 10;	
 	</select>

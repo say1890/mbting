@@ -10,6 +10,7 @@ public class Server_Comment {
 	 private String user_name;
 	 private Date createdAt;
 	 private  Date updatedAt;
+	 
 	public int getId() {
 		return id;
 	}

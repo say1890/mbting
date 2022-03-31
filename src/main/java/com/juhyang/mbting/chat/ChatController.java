@@ -31,8 +31,7 @@ public class ChatController {
 	LikeBO likeBO;
 	
 	@GetMapping("/chatting")
-	public String chat(
-			@RequestParam("roomNum") int roomNum,
+	public String chat(@RequestParam("roomNum") int roomNum,
 			Model model) {
 		
 		ChatOriginal chat =  chatBO.getRoomInfo(roomNum);
@@ -46,7 +45,8 @@ public class ChatController {
 	
 	
 	@GetMapping("/chattingList")
-	public String chattingListView(HttpServletRequest request,  Model model) {
+	public String chattingListView(HttpServletRequest request,
+			Model model) {
 		HttpSession session = request.getSession();
 		int userId = (Integer)session.getAttribute("userId");
 		String sex = (String)session.getAttribute("sex");
@@ -77,11 +77,6 @@ public class ChatController {
 				
 		model.addAttribute("chatDetail", chatDetail);
 		}
-		
-		
-		
-	
-		
 		
 		
 		

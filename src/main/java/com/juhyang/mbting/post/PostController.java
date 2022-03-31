@@ -40,92 +40,79 @@ public class PostController {
 	@Autowired
 	LikeBO likeBO;
 	@Autowired
-	ChatBO chatBO; 
-	
+	ChatBO chatBO;
+
 	@GetMapping("/main")
-	public String main_view(
-			HttpServletRequest request
-			, Model model) throws ParseException {
+	public String main_view(HttpServletRequest request, Model model) throws ParseException {
 		HttpSession session = request.getSession();
-		int userId = (Integer)session.getAttribute("userId");
-		String userName = (String)session.getAttribute("userName");	
-		String profile = (String)session.getAttribute("profile");
-		String mbti = (String)session.getAttribute("mbti");
-		String sex = (String)session.getAttribute("sex");
+		int userId = (Integer) session.getAttribute("userId");
+		String userName = (String) session.getAttribute("userName");
+		String profile = (String) session.getAttribute("profile");
+		String mbti = (String) session.getAttribute("mbti");
+		String sex = (String) session.getAttribute("sex");
 		Post post;
-		
-		
-		/*사용자가 정보 수정을 했는지 확인 */
-		List<UserCharacter> list = userBO.checkUserInfo(userId); 
-		if(list.isEmpty()) {
-			likeBO.sendHate(userId,1);
-			session.setAttribute("firstconnection", "yes");	
-		}
-		else {
+
+		/* 사용자가 정보 수정을 했는지 확인 */
+		List<UserCharacter> list = userBO.checkUserInfo(userId);
+		if (list.isEmpty()) {
+			session.setAttribute("firstconnection", "yes");
+		} else {
 			session.removeAttribute("firstconnection");
 		}
-		
+
 		/* 오늘의 질문 받아오기 */
 		LocalDate now = LocalDate.now();
-        List<Post> questionList = postBO.getQuestionForMain(now);
-       
+		List<Post> questionList = postBO.getQuestionForMain(now);
 
-        try{ 
-        	 Integer PostId = postBO.getPostId(now);
-        	 List<Post> commentList = commentBO.getCommentForMain(PostId);
-        	 model.addAttribute("commentList", commentList);
-        }
-        catch(NullPointerException e) { 
-        	System.out.print("post 없음"); 
-        } 	
-  
-        model.addAttribute("today", now);
-        model.addAttribute("questionList", questionList);
-		
-		
-        
-        /* 오늘의 추천 받아오기 */
-        // 사용자가 사용자 정보를 다 입력했을 경우 추천을 받아온다.
+		try {
+			Integer PostId = postBO.getPostId(now);
+			List<Post> commentList = commentBO.getCommentForMain(PostId);
+			model.addAttribute("commentList", commentList);
+		} catch (NullPointerException e) {
+			System.out.print("post 없음");
+		}
 
-        	List<UserDetail> userList = userBO.getRecommendedUser(userId,sex);
-        	Collections.sort(userList);
-            model.addAttribute("userList", userList);
+		model.addAttribute("today", now);
+		model.addAttribute("questionList", questionList);
 
-            /* 날 좋아하는 사람의 정보 가져오기 */
-            int countLike = likeBO.countSender(userId); // 나를 좋아하는 사람의 수 
-            model.addAttribute("countLike",countLike);
-           
-            // 내가 좋아하는 사람 리스트
-            List<UserDetail> ListWhoILike = new ArrayList<>();
-            int SendLike = likeBO.countSendLike(userId);
-            if(SendLike!=0) {
-            	List<Integer> idList = likeBO.getWhoILike(userId); 
-            	ListWhoILike = userBO.getProfileWhoILike(idList,userId);
-            	for(UserDetail who:ListWhoILike) {
-            		long passedDay = who.getPassedDay();
-            		if(passedDay>=5) {
-            			int likedId = who.getUser().getId();
-            			likeBO.deleteLike(likedId, userId);
-            		}
-            	}
-            }
-            
-        
-        
-        /*채팅 상대가 있는지 확인*/
-            List<ChatOriginal> room = chatBO.getRoomList(userId);
-    		if(!room.isEmpty()) {
-    			session.setAttribute("IsRoomExist", "yes");
-    		}
-    		
+		/* 오늘의 추천 받아오기 */
+		// 사용자가 사용자 정보를 다 입력했을 경우 추천을 받아온다.
+
+		List<UserDetail> userList = userBO.getRecommendedUser(userId, sex);
+		Collections.sort(userList);
+		model.addAttribute("userList", userList);
+
+		/* 날 좋아하는 사람의 정보 가져오기 */
+		int countLike = likeBO.countSender(userId); // 나를 좋아하는 사람의 수
+		model.addAttribute("countLike", countLike);
+
+		// 내가 좋아하는 사람 리스트
+		List<UserDetail> ListWhoILike = new ArrayList<>();
+		int SendLike = likeBO.countSendLike(userId);
+		if (SendLike != 0) {
+			List<Integer> idList = likeBO.getWhoILike(userId);
+			ListWhoILike = userBO.getProfileWhoILike(idList, userId);
+			for (UserDetail who : ListWhoILike) {
+				long passedDay = who.getPassedDay();
+				if (passedDay >= 5) {
+					int likedId = who.getUser().getId();
+					likeBO.deleteLike(likedId, userId);
+				}
+			}
+		}
+
+		/* 채팅 상대가 있는지 확인 */
+		List<ChatOriginal> room = chatBO.getRoomList(userId);
+		if (!room.isEmpty()) {
+			session.setAttribute("IsRoomExist", "yes");
+		}
+
 		return "/post/main";
 	}
-	
+
 	@GetMapping("/question")
-	public String question_view(Model model)
-	{	
+	public String question_view(Model model) {
 		return "/post/question";
 	}
-	
-	
+
 }

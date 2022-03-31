@@ -3,25 +3,28 @@
 <mapper namespace = "com.juhyang.mbting.comment.dao.CommentDAO">
 
 	<insert id="insertComment" parameterType = "map">
+	
 	INSERT INTO `server_comment`
-	(`user_name`,
-	 `comment`,
-	 `user_id`,
-	 `server_postId`,
-	 `createdAt`,
-	 `updatedAt`
-	)
-	VALUES(
-	#{userName},
-	#{comment},
-	#{userId},
-	#{postId},
-	 now(),
-	 now()
-	)
+		(`user_name`,
+		 `comment`,
+		 `user_id`,
+		 `server_postId`,
+		 `createdAt`,
+		 `updatedAt`
+		)
+	VALUES
+		(#{userName},
+		#{comment},
+		#{userId},
+		#{postId},
+		 now(),
+		 now()
+		)
+		
 	</insert>
 
 	<select id ="selectComment" resultType ="com.juhyang.mbting.comment.model.Server_Comment">
+	
 	SELECT 
 		`id`,
 		`user_id`,
@@ -30,31 +33,35 @@
 	FROM
 		`server_comment`
 	WHERE
-	`server_postId` =#{postId}
+		`server_postId` =#{postId}
 	
 	</select>
+	
 	<delete id ="deleteComment">
+	
 	DELETE FROM 
 		`server_comment`
 	WHERE
 		`id` = #{commentId}
+		
 	</delete>
+	
 	<select id ="selectCommentListForMypage" resultType = "com.juhyang.mbting.comment.model.Server_Comment">
 	SELECT
 		`comment`,`server_postId`
 	FROM
 		`server_comment`
 	WHERE
-
 		`user_id` = #{userId}
 	</select>
+	
 	<select id ="selectPostId" resultType = "int">
 	SELECT
 		distinct `server_postId`
 	FROM
 		`server_comment`
 	WHERE
-		`user_id` = 8
+		`user_id` = 1
 	</select>
 	
 </mapper>	

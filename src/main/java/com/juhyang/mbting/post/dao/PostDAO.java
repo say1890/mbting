@@ -12,10 +12,7 @@ import com.juhyang.mbting.post.model.Post;
 @Repository
 public interface PostDAO {
 
-	public int insertPost(
-			@Param("subject") String subject, 
-			@Param("content") String content,
-			@Param("date") Date date, 
+	public int insertPost(@Param("subject") String subject, @Param("content") String content, @Param("date") Date date,
 			@Param("imagePath") String imagePath);
 
 	public List<Post> selectPostList();
@@ -28,6 +25,4 @@ public interface PostDAO {
 
 	public int deletePost(@Param("postId") int postId);
 
-
-	
 }

@@ -27,9 +27,9 @@
 	  			<div class="swiper-wrapper">	
 			  
 			       <!-- Slides -->
-			       <c:forEach var="user" items="${userList}">	
+			       <c:forEach var="user" items="${userList}" varStatus="i">	
 			       <div class="swiper-slide">
-				      <div id="profile-box" class ="bg-white  mx-auto">
+				      <div id="profile-box" class ="bg-white  mx-auto profile-box${user.user.id}" data-slide-num="${i.count}">
 				     	
 					   			
 						      		<div id = "mbti" class=" bg-white mt-3 text-center">
@@ -173,6 +173,32 @@
   <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
   <script>
   $(document).ready(function(){
+	  
+	  // 싫어요 
+	  $(".dislikeBtn").on("click",function(e){
+		  e.preventDefault();
+		  let matchedPersonId = $(this).data("your-id");
+		 //$(".profile-box"+matchedPersonId).remove("#profile-box");
+		 // let slideNum =  $(".profile-box"+matchedPersonId).data("slide-num");
+		 // swiper.removeSlide(slideNum); 
+		  $.ajax({
+				type:"get",
+				url:"/dislike",
+				data:{"receiver":matchedPersonId},
+				success:function(data) {
+					alert("싫어요 성공");
+					location.reload();
+						
+					}
+					
+				, error:function() {
+					alert("싫어요 실패!!");
+				}
+				
+			});
+	  });
+	  
+	  
 	
 	  $(".heart").on("click", function(e){
 		  e.preventDefault();
@@ -217,25 +243,7 @@
 		  
 	  });
 	  
-	  // 싫어요 
-	  $(".dislikeBtn").on("click",function(e){
-		  e.preventDefault();
-		  let matchedPersonId = $(this).data("your-id");
-		 $("#profile-box").addClass("d-none");
-		  $.ajax({
-				type:"get",
-				url:"/dislike",
-				data:{"receiver":matchedPersonId},
-				success:function(data) {
-						alert("싫어요 성공");
-					}
-					
-				, error:function() {
-					alert("싫어요 실패!!");
-				}
-				
-			});
-	  });
+
 	  
   });
   

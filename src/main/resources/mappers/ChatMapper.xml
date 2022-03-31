@@ -3,20 +3,24 @@
 <mapper namespace = "com.juhyang.mbting.chat.dao.ChatDAO">
 
 	<insert id="insertRoomInfo" parameterType = "map">
+	
 	INSERT INTO `chat`
-	(`man`,
-	`woman`,
-	`createdAt`,
-	`updatedAt`
-	)
-	VALUES(
-	#{man},
-	#{woman},
-	now(),
-	now()
-	)
+		(`man`,
+		`woman`,
+		`createdAt`,
+		`updatedAt`
+		)
+	VALUES
+		(#{man},
+		#{woman},
+		now(),
+		now()
+		)
+	
 	</insert>
+	
 	<select id = "selectRoomList" resultType = "com.juhyang.mbting.chat.model.ChatOriginal">
+	
 	SELECT
 		`id`,
 		`man`,
@@ -24,26 +28,25 @@
 	FROM
 		`chat`
 	WHERE
-		`man`
-	= #{UserId}
+		`man`= #{UserId}
 	OR
-		`woman`
-	= #{UserId}
+		`woman`= #{UserId}
+	
 	</select>
+	
 	<update id ="updateChatData" parameterType = "map">
 	UPDATE `chat`
 	SET
-	
-	`manName` = #{manName},
-	`womanName` = 	#{womanName},
-	`manProfile` = 	#{manProfile},
-	`womanProfile` = #{womanProfile},
-	`updatedAt` = 	now()
-
+		`manName` = #{manName},
+		`womanName` = 	#{womanName},
+		`manProfile` = 	#{manProfile},
+		`womanProfile` = #{womanProfile},
+		`updatedAt` = 	now()
 	WHERE
-	`id` =${id}
+		`id` =${id}
  
 	</update>
+	
 	<select id ="selectRoomInfo" resultType = "com.juhyang.mbting.chat.model.ChatOriginal">
 	SELECT
 		*
@@ -51,7 +54,7 @@
 		`chat`
 	WHERE
 		`id` = #{id}
-	
+		
 	</select>
 	
 </mapper>

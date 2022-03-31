@@ -17,9 +17,11 @@ public class CommentBO {
 		// TODO Auto-generated method stub
 	return commentDAO.insertComment(postId,comment,userId,userName);
 	}
+	
 	public List<Post> getCommentForMain(int postId) {
 	return commentDAO.selectComment(postId);
 	}
+	
 	public int deleteComment(int commentId) {
 		return commentDAO.deleteComment(commentId);
 	}

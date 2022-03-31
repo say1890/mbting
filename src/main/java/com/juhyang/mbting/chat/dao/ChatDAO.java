@@ -10,17 +10,13 @@ import com.juhyang.mbting.chat.model.ChatOriginal;
 @Repository
 public interface ChatDAO {
 
-	int insertRoomInfo(@Param("man")int man, 
-			@Param("woman")int woman  );
+	int insertRoomInfo(@Param("man") int man, @Param("woman") int woman);
 
 	List<ChatOriginal> selectRoomList(@Param("UserId") int userId);
 
-	int updateChatData(@Param("id")int id, 
-			@Param("manName")String manName, 
-			@Param("womanName")String womanName, 
-			@Param("manProfile")String manProfile, 
-			@Param("womanProfile")String womanProfile);
+	int updateChatData(@Param("id") int id, @Param("manName") String manName, @Param("womanName") String womanName,
+			@Param("manProfile") String manProfile, @Param("womanProfile") String womanProfile);
 
-	ChatOriginal selectRoomInfo(@Param("id")int roomNum);
+	ChatOriginal selectRoomInfo(@Param("id") int roomNum);
 
 }

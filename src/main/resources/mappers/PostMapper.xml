@@ -11,7 +11,6 @@ INSERT INTO `server_post`
 	`updatedAt`
 	)
 	VALUES(
-	
 	#{subject},
 	#{content},
 	#{date},
@@ -58,7 +57,6 @@ SELECT
 	`subject`,
 	`content`,
 	`imagePath`
-	
 FROM
 	`server_post`
 WHERE 

@@ -18,47 +18,35 @@ import com.juhyang.mbting.like.bo.LikeBO;
 public class LikeRestController {
 	@Autowired
 	LikeBO likeBO;
-	
-	
+
 	@GetMapping("/like")
-	public Map<String, Boolean> SendLike(
-			@RequestParam("receiver") int receiver,
-			HttpServletRequest request,
-			Model model
-			) {
+	public Map<String, Boolean> SendLike(@RequestParam("receiver") int receiver, HttpServletRequest request,
+			Model model) {
 		HttpSession session = request.getSession();
-		int userId = (Integer)session.getAttribute("userId");
-		boolean isLike = likeBO.sendLike(userId,receiver);
-		int checkIfHeLikesMe = likeBO.checkIfHeLikesMe(userId,receiver);
-		
-		
-		
+		int userId = (Integer) session.getAttribute("userId");
+		boolean isLike = likeBO.sendLike(userId, receiver);
+		int checkIfHeLikesMe = likeBO.checkIfHeLikesMe(userId, receiver);
+
 		Map<String, Boolean> result = new HashMap<>();
 		result.put("isLike", isLike);
-		if(checkIfHeLikesMe==1) {
-			result.put("WeLikeEachOther",true);
+		if (checkIfHeLikesMe == 1) {
+			result.put("WeLikeEachOther", true);
 		}
 		return result;
-		
+
 	}
-	
-	
+
 	@GetMapping("/dislike")
-	public Map<String, Boolean> disLike(
-			@RequestParam("receiver") int receiver,
-			HttpServletRequest request,
-			Model model
-			) {
+	public Map<String, Boolean> disLike(@RequestParam("receiver") int receiver, HttpServletRequest request,
+			Model model) {
 		HttpSession session = request.getSession();
-		int userId = (Integer)session.getAttribute("userId");
-		boolean isHate = likeBO.sendDislike(userId,receiver);
-		
-		
-		
+		int userId = (Integer) session.getAttribute("userId");
+		boolean isHate = likeBO.sendDislike(userId, receiver);
+
 		Map<String, Boolean> result = new HashMap<>();
 		result.put("isHate", isHate);
 		return result;
-		
+
 	}
-	
+
 }

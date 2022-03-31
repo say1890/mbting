@@ -46,7 +46,7 @@
             	</c:when>
             	<c:otherwise>
             	<c:if test="${not empty chat.manProfile}">
-            			<a href ="user/see_profile?userId=${chat.man}"><img src="${chat.manProfile}" class="mr-3 rounded-circle img-responsive"></a>
+            			<a href ="user/see_profile?userId=${chat.man}"><img src="${chat.manProfile}" class="mr-3 rounded-circle img-responsive" id = "smallProfile"></a>
             		</c:if>
             		<c:if test ="${empty chat.manProfile}">
             			<a href ="user/see_profile?userId=${chat.man}"><h1><i class="bi bi-person-circle myprofile-icon my-auto" ></i></h1></a>

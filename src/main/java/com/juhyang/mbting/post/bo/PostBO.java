@@ -19,14 +19,13 @@ import com.juhyang.mbting.post.model.PostForMyPage;
 @Service
 public class PostBO {
 
-	
 	@Autowired
 	PostDAO postDAO;
 	@Autowired
 	CommentBO commentBO;
-	
+
 	public int addPost(int userId, String subject, String content, Date date, MultipartFile file) {
-		
+
 		String filePath = FileManagerService.saveFile(userId, file);
 		return postDAO.insertPost(subject, content, date, filePath);
 	}
@@ -49,31 +48,25 @@ public class PostBO {
 
 	public List<PostForMyPage> getPostListForMypage(int userId) {
 
-
 		List<PostForMyPage> postForMyPage = new ArrayList<>();
 
-			
-			PostForMyPage postDetail = new PostForMyPage();
-			
-			// 해당하는 user id로 댓글 가져오기 
-			List<Server_Comment> commentList = commentBO.getCommentListForMyPage(userId);
-			for(Server_Comment Comment:commentList) {
-				String comment = String.valueOf(Comment.getComment());
-				int postId = Comment.getServer_postId(); 
-				Post post = postDAO.selectPost(postId);
-				String subject = post.getSubject();
-				
-				postDetail.setComment(comment);
-				postDetail.setPostId(postId);
-				postDetail.setSubject(subject);
-			}
-			
-			
+		PostForMyPage postDetail = new PostForMyPage();
 
-			
+		// 해당하는 user id로 댓글 가져오기
+		List<Server_Comment> commentList = commentBO.getCommentListForMyPage(userId);
+		for (Server_Comment Comment : commentList) {
+			String comment = String.valueOf(Comment.getComment());
+			int postId = Comment.getServer_postId();
+			Post post = postDAO.selectPost(postId);
+			String subject = post.getSubject();
+
+			postDetail.setComment(comment);
+			postDetail.setPostId(postId);
+			postDetail.setSubject(subject);
+		}
+
 		postForMyPage.add(postDetail);
-	
-		
+
 		return postForMyPage;
 	}
 

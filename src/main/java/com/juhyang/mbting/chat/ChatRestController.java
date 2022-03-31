@@ -17,7 +17,6 @@ import com.juhyang.mbting.chat.model.ChatOriginal;
 
 import com.juhyang.mbting.user.dao.UserDAO;
 import com.juhyang.mbting.user.model.User;
-import com.juhyang.mbting.user.model.UserDetail;
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
