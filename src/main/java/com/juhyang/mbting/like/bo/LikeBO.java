@@ -57,23 +57,20 @@ public class LikeBO {
 		return likeDAO.selectWhoILike(userId);
 	}
 
-	// 싫어요 보내기
-	public boolean sendDislike(int userId, int receiver) {
-		return likeDAO.insertDislike(userId, receiver);
-	}
 
 	public void deleteLike(int id, int myId) {
 		likeDAO.deleteLike(id, myId);
 	}
-
+	// 싫어요 보내기
 	public boolean sendHate(int userId, int receiver) {
 		// 싫어요 누른 상태 - > true
 		if (this.isHate(userId, receiver)) {
+			
 			return true;
 		}
 		// 싫어요 안누른 상태 -> false
 		else {
-			likeDAO.insertDislike(userId, 1);
+			likeDAO.insertDislike(userId, receiver);
 			return false;
 		}
 
@@ -81,6 +78,8 @@ public class LikeBO {
 
 	public boolean isHate(int userId, int receiver) {
 		return !(likeDAO.selectHateCountByUserId(userId, receiver) == 0);
+		// 싫어요 안눌렀으면 false
+		// 눌렀으면 true
 	}
 
 }

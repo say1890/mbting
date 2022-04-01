@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.juhyang.mbting.chat.ChatRestController;
 import com.juhyang.mbting.chat.bo.ChatBO;
+import com.juhyang.mbting.chat.model.ChatOriginal;
 import com.juhyang.mbting.common.EncryptUtils;
 import com.juhyang.mbting.common.FileManagerService;
 import com.juhyang.mbting.like.bo.LikeBO;
@@ -542,14 +543,14 @@ public class UserBO {
 			user.setAgeForProfile(ageForProfile);
 			userDetail.setUser(user);
 			userDetail.setUserCharacter(userCharacter);
-			// 좋아요 여부
-			boolean isLike = likeBO.isLike(id, myId);
+			// 내가 상대를 좋아하는지 여부
+			boolean isLike = likeBO.isLike(myId, id);
+			userDetail.setLike(isLike);
 			if (isLike) {
 				likeDAO.deleteLike(id, myId);
 				User me = userDAO.selectUserById(myId);
 				if (me.getSex().equals("여")) {
 					chatBO.makeRoomInfo(id, myId);
-
 				} else {
 					chatBO.makeRoomInfo(myId, id);
 

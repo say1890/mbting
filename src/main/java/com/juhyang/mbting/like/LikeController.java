@@ -39,13 +39,14 @@ public class LikeController {
 			List<Integer> idList = likeBO.getWhoLikesMe(userId);
 			ListWhoLikesMe = userBO.getProfileWhoLikesMe(idList, userId);
 			model.addAttribute("likeList", ListWhoLikesMe);
+			//model.addAttribute("me",LikeOrNot);
 		}
 
 		// 내가 좋아하는 사람 리스트
 
 		int SendLike = likeBO.countSendLike(userId);
+		List<UserDetail> ListWhoILike = new ArrayList<>();
 		if (SendLike != 0) {
-			List<UserDetail> ListWhoILike = new ArrayList<>();
 			List<Integer> idList = likeBO.getWhoILike(userId);
 			ListWhoILike = userBO.getProfileWhoILike(idList, userId);
 			model.addAttribute("likedList", ListWhoILike);

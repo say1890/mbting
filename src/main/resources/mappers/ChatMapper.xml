@@ -4,7 +4,7 @@
 
 	<insert id="insertRoomInfo" parameterType = "map">
 	
-	INSERT INTO `chat`
+	INSERT INTO `chat` 
 		(`man`,
 		`woman`,
 		`createdAt`,

@@ -41,7 +41,7 @@ public class LikeRestController {
 			Model model) {
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
-		boolean isHate = likeBO.sendDislike(userId, receiver);
+		boolean isHate = likeBO.sendHate(userId, receiver);
 
 		Map<String, Boolean> result = new HashMap<>();
 		result.put("isHate", isHate);

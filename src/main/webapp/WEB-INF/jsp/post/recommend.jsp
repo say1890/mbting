@@ -210,7 +210,7 @@
 				url:"/like",
 				data:{"receiver":matchedPersonId},
 				success:function(data) {
-	
+					
 					}
 					
 				, error:function() {
@@ -221,27 +221,6 @@
 	  });
 	  
 	  
-	  $(".likeBtn").on("click",function(e){
-		  e.preventDefault();
-		  let matchedPersonId = $(this).data("your-id");
-
-		  $.ajax({
-				type:"get",
-				url:"/like",
-				data:{"receiver":matchedPersonId},
-				success:function(data) {
-					$(".likeBtn").removeClass("bi-suit-heart");
-					$(".likeBtn").addClass("bi-suit-heart-fill");
-					
-					}
-					
-				, error:function() {
-					alert("좋아요 실패!!");
-				}
-				
-			});
-		  
-	  });
 	  
 
 	  

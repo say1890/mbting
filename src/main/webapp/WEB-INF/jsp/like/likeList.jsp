@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,20 +70,20 @@
 						      		<div class ="d-flex justify-content-around">
 						      			<!-- 좋아요 -->
 						      			
+									
 						      			<c:choose>
-						      			
-							      			<c:when test="${user.like}">
-									      		<a href ="#">
-									      			<i class="bi bi-suit-heart-fill menu-icon text-danger likedBtn" data-your-id="${user.user.id}"></i>
-									      		</a>
-								      		</c:when>
-								      		<c:otherwise>
-									      		<a href ="#">
-									      			<i class="bi bi-suit-heart menu-icon text-danger likeBtn" data-your-id="${user.user.id}"></i>
-									      		</a>
-								      		</c:otherwise>
-								      		
-							      		</c:choose>
+						      				<c:when test = "${user.like}">
+							      				<a href ="#">
+											      	<i class="bi bi-suit-heart-fill menu-icon text-danger likedBtn" data-your-id="${user.user.id}"></i>
+											     </a>
+						      				</c:when>
+						      				<c:otherwise>
+						      					<a href ="#">
+										      			<i class="bi bi-suit-heart menu-icon text-danger likeBtn" data-your-id="${user.user.id}"></i>
+										      		</a>
+						      				</c:otherwise>
+						      			</c:choose>
+						      					
 							      		<!-- 좋아요  끝-->
 							      		<a href ="#">
 							      			<i class="bi bi-trash-fill menu-icon text-dark "></i>
@@ -110,19 +111,15 @@
   $(document).ready(function(){
 	
 	  $(".likeBtn").on("click",function(e){
-		  alert();
 		  e.preventDefault();
 		  let matchedPersonId = $(this).data("your-id");
-		  alert(matchedPersonId);
-		  
-		  
 		  $.ajax({
 				type:"get",
-				url:"/user/like",
+				url:"/like",
 				data:{"receiver":matchedPersonId},
 				success:function(data) {
-						location.reload();
-						alert("좋아요 성공");
+						location.href="/chattingList";
+						
 						
 					}
 				, error:function() {
