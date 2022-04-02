@@ -120,7 +120,7 @@ https://docs.google.com/spreadsheets/d/15WWveTZaCIsB7vpDN0bKxUib1w3DehJRtV-59e1D
 
 
  🍓 정보 수정
- ![user](demo/editProfile.gif)
+ ![user](demo/edit_profile.gif)
  
  🍓 로그 아웃
  ![user](demo/logout.gif)
@@ -139,7 +139,7 @@ https://docs.google.com/spreadsheets/d/15WWveTZaCIsB7vpDN0bKxUib1w3DehJRtV-59e1D
 * Mybatis [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 * Bootstrap [MIT License](https://opensource.org/licenses/MIT)
 * jQuery [MIT License](https://opensource.org/licenses/MIT)
-* 이미지 출처 : [pixabay](https://pixabay.com/ko/)
+
 
 ### 🤔 향후 계획
  * favicon 추가
