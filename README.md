@@ -116,6 +116,8 @@ https://docs.google.com/spreadsheets/d/15WWveTZaCIsB7vpDN0bKxUib1w3DehJRtV-59e1D
  
  🍓 보낸 좋아요 / 받은 좋아요 보기 
  ![user](demo/if_like_does_not_exists.gif)
+ 
+ 🍓 추천된 사용자의 프로필 보기
  ![user](demo/seeLike_seeProfile.gif)
 
 
