@@ -24,7 +24,7 @@
  
  ### 👩‍🏫 포트폴리오 
   ## 링크
-  [mbting] (http://54.180.155.185:8080/user/signin_view)
+ ❗ [mbting] (http://54.180.101.42:8080/user/signin_view) ❗
   
   테스터 ID : tester10
   테스터 PW : tester10
