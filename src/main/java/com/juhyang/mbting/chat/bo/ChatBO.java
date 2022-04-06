@@ -20,11 +20,11 @@ private static ChatDAO staticChatDAO;
 	
 @Autowired
 LikeBO likeBO;
+
 @PostConstruct
 private void initStatic() {
-	staticChatDAO = this.chatDAO;
+    staticChatDAO = this.chatDAO;
 }
-
 
 public int makeRoomInfo(int man, int woman) {
 	// 방이 만들어졌을때 추천창에 뜨지 않게 dislike 보내기
@@ -51,7 +51,7 @@ public static ChatOriginal getRoomInfo(int roomNum) {
 
 	return	staticChatDAO.selectRoomInfo(roomNum);
 	
-};
+}
 
 
 

@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.juhyang.mbting.chat.ChatRestController;
 import com.juhyang.mbting.chat.bo.ChatBO;
-import com.juhyang.mbting.chat.model.ChatOriginal;
 import com.juhyang.mbting.common.EncryptUtils;
 import com.juhyang.mbting.common.FileManagerService;
 import com.juhyang.mbting.like.bo.LikeBO;
@@ -70,36 +69,20 @@ public class UserBO {
 			List<String> yourCharacterArr, List<String> ageArr) {
 
 		List<String> emptyArr = new ArrayList<>();
-		String before = ""; // 마지막 콤마 제거하기 전 문자열
+		StringBuilder before = new StringBuilder(); // 마지막 콤마 제거하기 전 문자열
 		String mymerit = "";
 
 		if (myMeritArr == null) {
 			myMeritArr = emptyArr;
 		} else {
-			before = "";
-			for (Object object : myMeritArr) {
-
-				String element = (String) object + ",";
-				before += element;
-				mymerit = before.replaceAll(",$", "");
-			}
-
+			mymerit=makeReturnString(myMeritArr);
 		}
 
 		String myHobby = "";
 		if (myHobbyArr == null) {
 			myHobbyArr = emptyArr;
-
 		} else {
-
-			before = "";
-			for (Object object : myHobbyArr) {
-
-				String element = (String) object + ",";
-				before += element;
-				myHobby = before.replaceAll(",$", "");
-			}
-			System.out.print(myHobby);
+			myHobby = makeReturnString(myHobbyArr);
 		}
 
 		String myCharacter = "";
@@ -107,15 +90,7 @@ public class UserBO {
 			myCharacterArr = emptyArr;
 
 		} else {
-			before = ""; // 마지막 콤마 제거하기 전 문자열
-
-			for (Object object : myCharacterArr) {
-
-				String element = (String) object + ",";
-				before += element;
-				myCharacter = before.replaceAll(",$", "");
-			}
-			System.out.print(myCharacter);
+			myCharacter = makeReturnString(myMeritArr);	
 		}
 
 		String yourMerit = "";
@@ -123,15 +98,7 @@ public class UserBO {
 			yourMeritArr = emptyArr;
 
 		} else {
-			before = ""; // 마지막 콤마 제거하기 전 문자열
-
-			for (Object object : yourMeritArr) {
-
-				String element = (String) object + ",";
-				before += element;
-				yourMerit = before.replaceAll(",$", "");
-			}
-			System.out.print(yourMerit);
+			yourMerit = makeReturnString(yourMeritArr);	
 		}
 
 		String yourHobby = "";
@@ -139,54 +106,53 @@ public class UserBO {
 			yourHobbyArr = emptyArr;
 
 		} else {
-			before = ""; // 마지막 콤마 제거하기 전 문자열
-
-			for (Object object : yourHobbyArr) {
-
-				String element = (String) object + ",";
-				before += element;
-				yourHobby = before.replaceAll(",$", "");
-			}
-			System.out.print(yourHobby);
+			yourHobby = makeReturnString(yourHobbyArr);	
 		}
 
 		String yourCharacter = "";
 		if (yourCharacterArr == null) {
 			yourCharacterArr = emptyArr;
-
 		} else {
-			before = ""; // 마지막 콤마 제거하기 전 문자열
-
-			for (Object object : yourCharacterArr) {
-
-				String element = (String) object + ",";
-				before += element;
-				yourCharacter = before.replaceAll(",$", "");
-			}
-
+			yourCharacter = makeReturnString(yourCharacterArr);	
 		}
 
 		String age = "";
 		if (ageArr == null) {
 			ageArr = emptyArr;
-
 		} else {
-			before = ""; // 마지막 콤마 제거하기 전 문자열
-
-			for (Object object : ageArr) {
-
-				String element = (String) object + ",";
-				before += element;
-				age = before.replaceAll(",$", "");
-			}
-
+			
+			age = makeReturnString(ageArr);	
 		}
 
+		
+		
+		
+		
 		return userDAO.updateMatchingProfile(userId, mymerit, myHobby, myCharacter, yourMerit, yourHobby, yourCharacter,
 				age);
 
 	}
 
+	// Array를 컴마가 들어간 문자열로 바꿔주는 메소드
+	public String makeReturnString(List<String> array) {
+		
+		StringBuilder before = new StringBuilder(); // 마지막 콤마 제거하기 전 문자열
+		before.setLength(0);
+			for (Object object : array) {
+
+				String element = (String) object + ",";
+				before.append(element);
+				
+			}
+			int lastComma = before.length();
+			before.deleteCharAt(lastComma-1);
+			String finalString; // 완성된 String
+			finalString=before.toString();
+			return finalString;
+		
+		
+	}
+	
 	// 기본 프로필 변경
 	public void editBasicInfo(int userId, String userName, String introduce, String mbti, MultipartFile file,
 			String password) {

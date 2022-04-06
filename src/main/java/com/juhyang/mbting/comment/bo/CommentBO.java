@@ -14,7 +14,6 @@ public class CommentBO {
 	@Autowired
 	CommentDAO commentDAO;
 	public int addComment(int postId, String comment, int userId, String userName) {
-		// TODO Auto-generated method stub
 	return commentDAO.insertComment(postId,comment,userId,userName);
 	}
 	
