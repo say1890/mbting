@@ -156,7 +156,8 @@ public class UserRestController {
 
 	// 프로필 수정
 	@PostMapping("/editProfile")
-	public int editProfile(@RequestParam("userName") String userName, @RequestParam("introduce") String introduce,
+	public int editProfile(@RequestParam("userName") String userName, 
+			@RequestParam("introduce") String introduce,
 			@RequestParam("mbti") String mbti,
 			@RequestParam(value = "myMeritArr[]", required = false) List<String> myMeritArr,
 			@RequestParam(value = "myHobbyArr[]", required = false) List<String> myHobbyArr,
