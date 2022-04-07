@@ -1,60 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace = "com.juhyang.mbting.chat.dao.ChatDAO">
+<mapper namespace="com.juhyang.mbting.chat.dao.ChatDAO">
 
-	<insert id="insertRoomInfo" parameterType = "map">
-	
-	INSERT INTO `chat` 
-		(`man`,
-		`woman`,
-		`createdAt`,
-		`updatedAt`
-		)
-	VALUES
-		(#{man},
-		#{woman},
-		now(),
-		now()
-		)
-	
-	</insert>
-	
-	<select id = "selectRoomList" resultType = "com.juhyang.mbting.chat.model.ChatOriginal">
-	
-	SELECT
-		`id`,
-		`man`,
-		`woman`
-	FROM
-		`chat`
-	WHERE
-		`man`= #{UserId}
-	OR
-		`woman`= #{UserId}
-	
-	</select>
-	
-	<update id ="updateChatData" parameterType = "map">
-	UPDATE `chat`
-	SET
-		`manName` = #{manName},
-		`womanName` = 	#{womanName},
-		`manProfile` = 	#{manProfile},
-		`womanProfile` = #{womanProfile},
-		`updatedAt` = 	now()
-	WHERE
-		`id` =${id}
- 
-	</update>
-	
-	<select id ="selectRoomInfo" resultType = "com.juhyang.mbting.chat.model.ChatOriginal">
-	SELECT
-		*
-	FROM
-		`chat`
-	WHERE
-		`id` = #{id}
-		
-	</select>
-	
+  <insert id="insertRoomInfo" parameterType="map">
+
+    INSERT INTO `chat`
+    (`man`,
+    `woman`,
+    `createdAt`,
+    `updatedAt`
+    )
+    VALUES
+    (#{man},
+    #{woman},
+    now(),
+    now()
+    )
+
+  </insert>
+
+  <select id="selectRoomList"
+    resultType="com.juhyang.mbting.chat.model.ChatOriginal">
+
+    SELECT
+    `id`,
+    `man`,
+    `woman`
+    FROM
+    `chat`
+    WHERE
+    `man`= #{UserId}
+    OR
+    `woman`= #{UserId}
+
+  </select>
+
+  <update id="updateChatData" parameterType="map">
+    UPDATE `chat`
+    SET
+    `manName` = #{manName},
+    `womanName` = #{womanName},
+    `manProfile` = #{manProfile},
+    `womanProfile` = #{womanProfile},
+    `updatedAt` = now()
+    WHERE
+    `id` =${id}
+
+  </update>
+
+  <select id="selectRoomInfo"
+    resultType="com.juhyang.mbting.chat.model.ChatOriginal">
+    SELECT
+    *
+    FROM
+    `chat`
+    WHERE
+    `id` = #{id}
+
+  </select>
+
 </mapper>

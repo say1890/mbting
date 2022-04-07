@@ -1,138 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper  namespace = "com.juhyang.mbting.like.dao.LikeDAO">
-<insert id = "insertLike" parameterType = "map" >
-INSERT INTO `like`
-	(`sender`,
-	`receiver`,
-	`createdAt`)
-VALUES
-	(#{userId},
-	#{receiver},
-	now())
+<mapper namespace="com.juhyang.mbting.like.dao.LikeDAO">
+  <insert id="insertLike" parameterType="map">
+    INSERT INTO `like`
+    (`sender`,
+    `receiver`,
+    `createdAt`)
+    VALUES
+    (#{userId},
+    #{receiver},
+    now())
 
-</insert>
+  </insert>
 
-<select id ="countLike" resultType ="int">
+  <select id="countLike" resultType="int">
 
-SELECT
-	COUNT(1)
-FROM
-	`like`
-WHERE
-	`receiver` = #{userId}
-	
-</select>
+    SELECT
+    COUNT(1)
+    FROM
+    `like`
+    WHERE
+    `receiver` = #{userId}
 
-<select id ="selectLikeCountByUserId"  parameterType="map"  resultType ="int">
-SELECT 
-	COUNT(*)
-FROM
-	`like`
-WHERE
-	`receiver` = #{receiver}
-AND
-	`sender` = #{userId}
-</select>
+  </select>
 
-<select id ="selectHateCountByUserId" parameterType="map"  resultType ="int">
+  <select id="selectLikeCountByUserId" parameterType="map"
+    resultType="int">
+    SELECT
+    COUNT(*)
+    FROM
+    `like`
+    WHERE
+    `receiver` = #{receiver}
+    AND
+    `sender` = #{userId}
+  </select>
 
-SELECT
-	COUNT(*)
-FROM
-	`dislike`
-WHERE
-	`receiver` = #{receiver}
-AND
-	`sender` = #{userId}
-	
-</select>
+  <select id="selectHateCountByUserId" parameterType="map"
+    resultType="int">
 
-<select id ="selectWhoLikesMe" resultType ="int">
+    SELECT
+    COUNT(*)
+    FROM
+    `dislike`
+    WHERE
+    `receiver` = #{receiver}
+    AND
+    `sender` = #{userId}
 
-SELECT
-	`sender`
-FROM
-	`like`
-WHERE
-	`receiver` = #{userId}
-	
-</select>
+  </select>
 
-<select id ="selectHisLike" resultType ="int">
+  <select id="selectWhoLikesMe" resultType="int">
 
-SELECT
-	COUNT(*)
-FROM
-	`like`
-WHERE
-	`receiver` = #{userId}
-AND
-	`sender` = #{receiver}
+    SELECT
+    `sender`
+    FROM
+    `like`
+    WHERE
+    `receiver` = #{userId}
 
-</select>
+  </select>
 
-<select id = "selectSendLike" resultType = "int">
+  <select id="selectHisLike" resultType="int">
 
-SELECT 
-	COUNT(*)
-FROM
-	`like`
-WHERE
-	`sender` = #{userId}
-	
-</select>
+    SELECT
+    COUNT(*)
+    FROM
+    `like`
+    WHERE
+    `receiver` = #{userId}
+    AND
+    `sender` = #{receiver}
 
-<select id ="selectWhoILike"  resultType = "int">
+  </select>
 
-SELECT
-	`receiver`
-FROM
-	`like`
-WHERE
-	`sender` = #{userId}
-	
-</select>
+  <select id="selectSendLike" resultType="int">
 
-<select id ="selectLikeTime" resultType = "string">
+    SELECT
+    COUNT(*)
+    FROM
+    `like`
+    WHERE
+    `sender` = #{userId}
 
-SELECT
-	`createdAt`
-FROM
-	`like`
-WHERE
-	`sender` = #{userId}
-AND
-	`receiver` = #{receiver}	
-	
-</select>
+  </select>
 
-<delete id = "deleteLike">
+  <select id="selectWhoILike" resultType="int">
 
-DELETE FROM
-	`like`
-WHERE
-	(`sender`, `receiver`)
-IN
-	(
-	(#{HisId},#{myId}),
-	(#{myId},#{HisId})
-	)
+    SELECT
+    `receiver`
+    FROM
+    `like`
+    WHERE
+    `sender` = #{userId}
 
-</delete>
+  </select>
 
-<insert id ="insertDislike"  parameterType = "map" >
+  <select id="selectLikeTime" resultType="string">
 
-INSERT INTO `dislike`
-	(`sender`,
-	`receiver`,
-	`createdAt`)
-VALUES(
-	#{userId},
-	#{receiver},
-	now())
+    SELECT
+    `createdAt`
+    FROM
+    `like`
+    WHERE
+    `sender` = #{userId}
+    AND
+    `receiver` = #{receiver}
 
-</insert>
+  </select>
+
+  <delete id="deleteLike">
+
+    DELETE FROM
+    `like`
+    WHERE
+    (`sender`, `receiver`)
+    IN
+    (
+    (#{HisId},#{myId}),
+    (#{myId},#{HisId})
+    )
+
+  </delete>
+
+  <insert id="insertDislike" parameterType="map">
+
+    INSERT INTO `dislike`
+    (`sender`,
+    `receiver`,
+    `createdAt`)
+    VALUES(
+    #{userId},
+    #{receiver},
+    now())
+
+  </insert>
 
 
 

@@ -12,17 +12,17 @@ import com.juhyang.mbting.post.model.Post;
 @Repository
 public interface PostDAO {
 
-	public int insertPost(@Param("subject") String subject, @Param("content") String content, @Param("date") Date date,
-			@Param("imagePath") String imagePath);
+  public int insertPost(@Param("subject") String subject, @Param("content") String content,
+      @Param("date") Date date, @Param("imagePath") String imagePath);
 
-	public List<Post> selectPostList();
+  public List<Post> selectPostList();
 
-	public Post selectPost(@Param("postId") int postId);
+  public Post selectPost(@Param("postId") int postId);
 
-	public List<Post> selectQuestion(@Param("today") LocalDate now);
+  public List<Post> selectQuestion(@Param("today") LocalDate now);
 
-	public Integer selectPostId(@Param("today") LocalDate now);
+  public Integer selectPostId(@Param("today") LocalDate now);
 
-	public int deletePost(@Param("postId") int postId);
+  public int deletePost(@Param("postId") int postId);
 
 }

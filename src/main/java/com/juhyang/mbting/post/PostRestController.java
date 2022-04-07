@@ -23,44 +23,44 @@ import com.juhyang.mbting.post.bo.PostBO;
 @RequestMapping("/post")
 public class PostRestController {
 
-	@Autowired
-	PostBO postBO;
+  @Autowired
+  PostBO postBO;
 
-	@PostMapping("/create")
-	public Map<String, String> createPost(@RequestParam("subject") String subject,
-			@RequestParam("content") String content, @RequestParam("date") String dateString,
-			@RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request)
-			throws ParseException {
+  @PostMapping("/create")
+  public Map<String, String> createPost(@RequestParam("subject") String subject,
+      @RequestParam("content") String content, @RequestParam("date") String dateString,
+      @RequestParam(value = "file", required = false) MultipartFile file,
+      HttpServletRequest request) throws ParseException {
 
-		HttpSession session = request.getSession();
-		int userId = (Integer) session.getAttribute("userId");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = sdf.parse(dateString);
-		int count = postBO.addPost(userId, subject, content, date, file);
+    HttpSession session = request.getSession();
+    int userId = (Integer) session.getAttribute("userId");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    Date date = sdf.parse(dateString);
+    int count = postBO.addPost(userId, subject, content, date, file);
 
-		Map<String, String> result = new HashMap<>();
-		if (count == 1) {
-			result.put("result", "success");
-		} else {
-			result.put("result", "fail");
-		}
+    Map<String, String> result = new HashMap<>();
+    if (count == 1) {
+      result.put("result", "success");
+    } else {
+      result.put("result", "fail");
+    }
 
-		return result;
-	}
+    return result;
+  }
 
-	@GetMapping("/delete")
-	public Map<String, String> postDelete(@RequestParam("postId") int postId) {
+  @GetMapping("/delete")
+  public Map<String, String> postDelete(@RequestParam("postId") int postId) {
 
-		int count = postBO.deletePost(postId);
+    int count = postBO.deletePost(postId);
 
-		Map<String, String> result = new HashMap<>();
-		if (count == 1) {
-			result.put("result", "success");
-		} else {
-			result.put("result", "fail");
-		}
+    Map<String, String> result = new HashMap<>();
+    if (count == 1) {
+      result.put("result", "success");
+    } else {
+      result.put("result", "fail");
+    }
 
-		return result;
-	}
+    return result;
+  }
 
 }
