@@ -68,60 +68,32 @@ public class UserBO {
       List<String> myCharacterArr, List<String> yourMeritArr, List<String> yourHobbyArr,
       List<String> yourCharacterArr, List<String> ageArr) {
 
-    List<String> emptyArr = new ArrayList<>();
-    String mymerit = "";
 
-    if (myMeritArr == null) {
-      myMeritArr = emptyArr;
-    } else {
-      mymerit = makeReturnString(myMeritArr);
-    }
+    String mymerit = "";
+    mymerit = makeReturnString(myMeritArr);
+
 
     String myHobby = "";
-    if (myHobbyArr == null) {
-      myHobbyArr = emptyArr;
-    } else {
-      myHobby = makeReturnString(myHobbyArr);
-    }
+    myHobby = makeReturnString(myHobbyArr);
+
 
     String myCharacter = "";
-    if (myCharacterArr == null) {
-      myCharacterArr = emptyArr;
-
-    } else {
-      myCharacter = makeReturnString(myMeritArr);
-    }
+    myCharacter = makeReturnString(myCharacterArr);
 
     String yourMerit = "";
-    if (yourMeritArr == null) {
-      yourMeritArr = emptyArr;
+    yourMerit = makeReturnString(yourMeritArr);
 
-    } else {
-      yourMerit = makeReturnString(yourMeritArr);
-    }
 
     String yourHobby = "";
-    if (yourHobbyArr == null) {
-      yourHobbyArr = emptyArr;
+    yourHobby = makeReturnString(yourHobbyArr);
 
-    } else {
-      yourHobby = makeReturnString(yourHobbyArr);
-    }
 
     String yourCharacter = "";
-    if (yourCharacterArr == null) {
-      yourCharacterArr = emptyArr;
-    } else {
-      yourCharacter = makeReturnString(yourCharacterArr);
-    }
+    yourCharacter = makeReturnString(yourCharacterArr);
+
 
     String age = "";
-    if (ageArr == null) {
-      ageArr = emptyArr;
-    } else {
-
-      age = makeReturnString(ageArr);
-    }
+    age = makeReturnString(ageArr);
 
 
 
@@ -135,18 +107,20 @@ public class UserBO {
 
     StringBuilder before = new StringBuilder(); // 마지막 콤마 제거하기 전 문자열
     before.setLength(0);
-    for (Object object : array) {
-
-      String element = (String) object + ",";
-      before.append(element);
-
-    }
-    int lastComma = before.length();
-    before.deleteCharAt(lastComma - 1);
     String finalString; // 완성된 String
-    finalString = before.toString();
-    return finalString;
+    if (array == null) {
+      finalString = "";
+    } else {
+      for (String object : array) {
+        String element = object + ",";
+        before.append(element);
+      }
+      int lastComma = before.length();
+      before.deleteCharAt(lastComma - 1);
+      finalString = before.toString();
+    }
 
+    return finalString;
 
   }
 
@@ -197,7 +171,6 @@ public class UserBO {
   }
 
   public List<String> gethobbyContent() {
-
     return userDAO.selectHobbyContent();
   }
 
@@ -220,50 +193,49 @@ public class UserBO {
     String[] age = ageString.split(",");
     // 부등호
     String chooseAge = "";
-
     List<UserCharacter> yourInfo = new ArrayList<>();
 
     // 최종 매칭될 user의 list
-    List<UserDetail> MatchingList = new ArrayList<>();
+    List<UserDetail> matchingList = new ArrayList<>();
     List<UserDetail> list = new ArrayList<>();
     for (String ageTitle : age) {
       if (ageTitle.equals("동갑")) {
         chooseAge = "=";
         // 사용자가 원하는 나이의 user 정보를 가져옴
         yourInfo = userDAO.selectUsers(userId, myage, chooseAge, sex);
-        list = returnRecommendedUser(yourInfo, myInfo, userId);
-        MatchingList.addAll(list);
+        list = recommendUser(yourInfo, myInfo, userId);
+        matchingList.addAll(list);
       } else if (ageTitle.equals("연상")) {
         chooseAge = ">";
         // 사용자가 원하는 나이의 user 정보를 가져옴
         yourInfo = userDAO.selectUsers(userId, myage, chooseAge, sex);
-        list = returnRecommendedUser(yourInfo, myInfo, userId);
-        MatchingList.addAll(list);
+        list = recommendUser(yourInfo, myInfo, userId);
+        matchingList.addAll(list);
       } else if (ageTitle.equals("연하")) {
         chooseAge = "<";
         // 사용자가 원하는 나이의 user 정보를 가져옴
         yourInfo = userDAO.selectUsers(userId, myage, chooseAge, sex);
-        list = returnRecommendedUser(yourInfo, myInfo, userId);
-        MatchingList.addAll(list);
+        list = recommendUser(yourInfo, myInfo, userId);
+        matchingList.addAll(list);
       } else {
         chooseAge = "=";
         // 원하는 나이를 선택하지 않았을 경우에 동갑 사용자를 보여줌
         yourInfo = userDAO.selectUsers(userId, myage, chooseAge, sex);
-        list = returnRecommendedUser(yourInfo, myInfo, userId);
-        MatchingList.addAll(list);
+        list = recommendUser(yourInfo, myInfo, userId);
+        matchingList.addAll(list);
         break;
       }
 
     }
-    return MatchingList;
+    return matchingList;
 
   }
 
-  public List<UserDetail> returnRecommendedUser(List<UserCharacter> yourInfo,
+  public List<UserDetail> recommendUser(List<UserCharacter> yourInfo,
       List<UserCharacter> myInfo, int userId) {
 
     // 최종 매칭될 user의 character list
-    List<UserDetail> MatchingList = new ArrayList<>();
+    List<UserDetail> matchingList = new ArrayList<>();
     for (UserCharacter your : yourInfo) {
       UserDetail userDetail = new UserDetail();
       int point = 0;
@@ -468,13 +440,13 @@ public class UserBO {
           userDetail.setPoint(point);
           boolean isLike = likeBO.isLike(userId, your.getUser_id());
           userDetail.setLike(isLike);
-          MatchingList.add(userDetail);
+          matchingList.add(userDetail);
         }
 
       }
     }
 
-    return MatchingList;
+    return matchingList;
   }
 
   public UserDetail getUserProfile(int userId) {
