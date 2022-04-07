@@ -11,17 +11,17 @@ import com.juhyang.mbting.post.model.Post;
 @Repository
 public interface CommentDAO {
 
-	public int insertComment(@Param("postId") int postId, @Param("comment") String comment, @Param("userId") int userId,
-			@Param("userName") String userName);
+  public int insertComment(@Param("postId") int postId, @Param("comment") String comment,
+      @Param("userId") int userId, @Param("userName") String userName);
 
-	public List<Post> selectComment(@Param("postId") int postId);
+  public List<Post> selectComment(@Param("postId") int postId);
 
-	public int deleteComment(@Param("commentId") int commentId);
+  public int deleteComment(@Param("commentId") int commentId);
 
-	public List<Server_Comment> selectCommentListForMypage(@Param("userId") int id);
+  public List<Server_Comment> selectCommentListForMypage(@Param("userId") int id);
 
-	public List<Server_Comment> selectCommentedPost(@Param("userId") int userId);
+  public List<Server_Comment> selectCommentedPost(@Param("userId") int userId);
 
-	public List<Integer> selectPostId(@Param("userId") int userId);
+  public List<Integer> selectPostId(@Param("userId") int userId);
 
 }

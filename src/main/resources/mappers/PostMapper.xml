@@ -1,83 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper  namespace = "com.juhyang.mbting.post.dao.PostDAO">
-<insert id="insertPost" parameterType = "map">
-INSERT INTO `server_post`
-	(`subject`,
-	`content`,
-	`date`,
-	`imagePath`,
-	`createdAt`,
-	`updatedAt`
-	)
-	VALUES(
-	#{subject},
-	#{content},
-	#{date},
-	#{imagePath},
-	 now(),
-	 now()
-	) 
-</insert>
+<mapper namespace="com.juhyang.mbting.post.dao.PostDAO">
+  <insert id="insertPost" parameterType="map">
+    INSERT INTO `server_post`
+    (`subject`,
+    `content`,
+    `date`,
+    `imagePath`,
+    `createdAt`,
+    `updatedAt`
+    )
+    VALUES(
+    #{subject},
+    #{content},
+    #{date},
+    #{imagePath},
+    now(),
+    now()
+    )
+  </insert>
 
-<select id ="selectPostList" resultType ="com.juhyang.mbting.post.model.Post">
-SELECT 
-	`id`,
-	`subject`,
-	`content`,
-	`date`,
-	`imagePath`,
-	`createdAt`,
-	`updatedAt`
-FROM
-	`server_post`
-ORDER BY
-	`id` desc;
-</select>
-
-
-<select id ="selectPost" resultType = "com.juhyang.mbting.post.model.Post">
-SELECT 
-	`id`,
-	`subject`,
-	`content`,
-	`date`,
-	`imagePath`,
-	`createdAt`,
-	`updatedAt`
-FROM
-	`server_post`
-WHERE 
-	`id` = #{postId}
-</select>
-
-<select id ="selectQuestion" resultType = "com.juhyang.mbting.post.model.Post">
-SELECT 
-	`id`,
-	`subject`,
-	`content`,
-	`imagePath`
-FROM
-	`server_post`
-WHERE 
-	`date` = #{today}
-</select>
+  <select id="selectPostList"
+    resultType="com.juhyang.mbting.post.model.Post">
+    SELECT
+    `id`,
+    `subject`,
+    `content`,
+    `date`,
+    `imagePath`,
+    `createdAt`,
+    `updatedAt`
+    FROM
+    `server_post`
+    ORDER BY
+    `id` desc;
+  </select>
 
 
-<select id = "selectPostId" resultType = "int">
-SELECT
- 	`id`
-FROM
-	`server_post`
-WHERE 
-	`date` = #{today}
+  <select id="selectPost"
+    resultType="com.juhyang.mbting.post.model.Post">
+    SELECT
+    `id`,
+    `subject`,
+    `content`,
+    `date`,
+    `imagePath`,
+    `createdAt`,
+    `updatedAt`
+    FROM
+    `server_post`
+    WHERE
+    `id` = #{postId}
+  </select>
 
-</select>
-<delete id ="deletePost">
-DELETE FROM
-	`server_post`
-WHERE
-		`id` = ${postId}
+  <select id="selectQuestion"
+    resultType="com.juhyang.mbting.post.model.Post">
+    SELECT
+    `id`,
+    `subject`,
+    `content`,
+    `imagePath`
+    FROM
+    `server_post`
+    WHERE
+    `date` = #{today}
+  </select>
 
-</delete>
+
+  <select id="selectPostId" resultType="int">
+    SELECT
+    `id`
+    FROM
+    `server_post`
+    WHERE
+    `date` = #{today}
+
+  </select>
+  <delete id="deletePost">
+    DELETE FROM
+    `server_post`
+    WHERE
+    `id` = ${postId}
+
+  </delete>
 </mapper>

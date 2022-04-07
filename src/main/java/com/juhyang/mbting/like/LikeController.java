@@ -20,44 +20,43 @@ import com.juhyang.mbting.user.model.UserDetail;
 @Controller
 @RequestMapping("/like")
 public class LikeController {
-	@Autowired
-	LikeBO likeBO;
-	@Autowired
-	UserBO userBO;
+  @Autowired
+  LikeBO likeBO;
+  @Autowired
+  UserBO userBO;
 
-	@GetMapping("/see_like_view")
-	public String likeView(HttpServletRequest request, Model model) throws ParseException {
-		/* 날 좋아하는 사람의 정보 가져오기 */
-		HttpSession session = request.getSession();
-		int userId = (Integer) session.getAttribute("userId");
-		int countLike = likeBO.countSender(userId); // 나를 좋아하는 사람의 수
-		model.addAttribute("countLike", countLike);
+  @GetMapping("/see_like_view")
+  public String likeView(HttpServletRequest request, Model model) throws ParseException {
+    /* 날 좋아하는 사람의 정보 가져오기 */
+    HttpSession session = request.getSession();
+    int userId = (Integer) session.getAttribute("userId");
+    int countLike = likeBO.countSender(userId); // 나를 좋아하는 사람의 수
+    model.addAttribute("countLike", countLike);
 
-		List<UserDetail> ListWhoLikesMe = new ArrayList<>();
-		// 나를 좋아하는 사람 리스트
-		if (countLike != 0) {
-			List<Integer> idList = likeBO.getWhoLikesMe(userId);
-			ListWhoLikesMe = userBO.getProfileWhoLikesMe(idList, userId);
-			model.addAttribute("likeList", ListWhoLikesMe);
-			//model.addAttribute("me",LikeOrNot);
-		}
+    List<UserDetail> ListWhoLikesMe = new ArrayList<>();
+    // 나를 좋아하는 사람 리스트
+    if (countLike != 0) {
+      List<Integer> idList = likeBO.getWhoLikesMe(userId);
+      ListWhoLikesMe = userBO.getProfileWhoLikesMe(idList, userId);
+      model.addAttribute("likeList", ListWhoLikesMe);
+      // model.addAttribute("me",LikeOrNot);
+    }
 
-		// 내가 좋아하는 사람 리스트
+    // 내가 좋아하는 사람 리스트
 
-		int SendLike = likeBO.countSendLike(userId);
-		List<UserDetail> ListWhoILike = new ArrayList<>();
-		if (SendLike != 0) {
-			List<Integer> idList = likeBO.getWhoILike(userId);
-			ListWhoILike = userBO.getProfileWhoILike(idList, userId);
-			model.addAttribute("likedList", ListWhoILike);
-		}
+    int SendLike = likeBO.countSendLike(userId);
+    List<UserDetail> ListWhoILike = new ArrayList<>();
+    if (SendLike != 0) {
+      List<Integer> idList = likeBO.getWhoILike(userId);
+      ListWhoILike = userBO.getProfileWhoILike(idList, userId);
+      model.addAttribute("likedList", ListWhoILike);
+    }
 
-		return "/like/seeLike";
-	}
+    return "/like/seeLike";
+  }
 
-	/*
-	 * int userId = (Integer)session.getAttribute("userId"); String sex =
-	 * (String)session.getAttribute("sex"); if(sex.equals("여")) { ChatBO.makeRoom();
-	 * }
-	 */
+  /*
+   * int userId = (Integer)session.getAttribute("userId"); String sex =
+   * (String)session.getAttribute("sex"); if(sex.equals("여")) { ChatBO.makeRoom(); }
+   */
 }

@@ -17,46 +17,41 @@ import com.juhyang.mbting.comment.bo.CommentBO;
 @RestController
 @RequestMapping("/comment")
 public class CommentRestController {
-	@Autowired
-	CommentBO commentBO;
-	
-	@GetMapping("/addComment")
-	public Map<String,String> addComment(
-			@RequestParam("postId") int postId,
-			@RequestParam("comment") String comment,
-			HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		int userId = (Integer)session.getAttribute("userId");
-		String userName = (String)session.getAttribute("userName");
-		int count = commentBO.addComment(postId,comment,userId,userName);
-		
-		Map<String,String> result = new HashMap<>();
-		if(count==1) {
-			result.put("result", "success");
-		}
-		else {
-			result.put("result", "fail");
-		}
-		return result;
-		
-	}
-	
-	
-	@GetMapping("/deleteComment")
-	public Map<String,String> deleteComment(
-			@RequestParam("CommentId") int CommentId,
-			HttpServletRequest request) {
-		int count = commentBO.deleteComment(CommentId);
-		Map<String,String> result = new HashMap<>();
-		if(count==1) {
-			result.put("result", "success");
-		}
-		else {
-			result.put("result", "fail");
-		}
-		return result;
-		
-	}
-	
-	
+  @Autowired
+  CommentBO commentBO;
+
+  @GetMapping("/addComment")
+  public Map<String, String> addComment(@RequestParam("postId") int postId,
+      @RequestParam("comment") String comment, HttpServletRequest request) {
+    HttpSession session = request.getSession();
+    int userId = (Integer) session.getAttribute("userId");
+    String userName = (String) session.getAttribute("userName");
+    int count = commentBO.addComment(postId, comment, userId, userName);
+
+    Map<String, String> result = new HashMap<>();
+    if (count == 1) {
+      result.put("result", "success");
+    } else {
+      result.put("result", "fail");
+    }
+    return result;
+
+  }
+
+
+  @GetMapping("/deleteComment")
+  public Map<String, String> deleteComment(@RequestParam("CommentId") int CommentId,
+      HttpServletRequest request) {
+    int count = commentBO.deleteComment(CommentId);
+    Map<String, String> result = new HashMap<>();
+    if (count == 1) {
+      result.put("result", "success");
+    } else {
+      result.put("result", "fail");
+    }
+    return result;
+
+  }
+
+
 }
