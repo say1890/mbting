@@ -1,9 +1,6 @@
 package com.juhyang.mbting.chat.bo;
 
 import java.util.List;
-
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,16 +13,12 @@ import com.juhyang.mbting.like.bo.LikeBO;
 public class ChatBO {
   @Autowired
   ChatDAO chatDAO;
-  private static ChatDAO staticChatDAO;
+
 
   @Autowired
   LikeBO likeBO;
 
-  @PostConstruct
-  private void initStatic() {
-    staticChatDAO = this.chatDAO;
-  }
-
+  
   public int makeRoomInfo(int man, int woman) {
     // 방이 만들어졌을때 추천창에 뜨지 않게 dislike 보내기
     likeBO.sendHate(man, woman);
@@ -48,9 +41,8 @@ public class ChatBO {
 
 
 
-  public static ChatOriginal getRoomInfo(int roomNum) {
-
-    return staticChatDAO.selectRoomInfo(roomNum);
+  public ChatOriginal getRoomInfo(int roomNum) {
+    return chatDAO.selectRoomInfo(roomNum);
 
   }
 

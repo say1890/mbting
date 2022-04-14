@@ -58,7 +58,6 @@ public class ChatController {
 
       for (ChatOriginal original : room) {
         List<UserDetail> userDetail = new ArrayList<>();
-        List<ChatOriginal> chatOriginal = new ArrayList<>();
         int hisId = original.getMan();
         UserDetail he = userBO.getUserProfile(hisId);
         userDetail.add(he);

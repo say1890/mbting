@@ -33,8 +33,6 @@ public class ChatRestController {
   @Autowired
   ChatBO chatBO;
 
-
-
   @Autowired
   UserDAO userDAO;
 
@@ -56,7 +54,6 @@ public class ChatRestController {
   @PostMapping("/chat")
   public Mono<Chat> setMsg(@RequestBody Chat chat) {
     chat.setCreatedAt(LocalDateTime.now());
-
     return chatRepository.save(chat); // Object를 리턴하면 자동으로 JSON 변환 (MessageConverter)
   }
 
@@ -64,8 +61,7 @@ public class ChatRestController {
 
   @PostMapping("/addChatData")
   public int addChatData(@RequestParam("roomNum") int id) {
-    ChatOriginal RoomInfo = new ChatOriginal();
-    RoomInfo = ChatBO.getRoomInfo(id);
+    ChatOriginal RoomInfo = chatBO.getRoomInfo(id);
     int man = RoomInfo.getMan();
     int woman = RoomInfo.getWoman();
     User UserMan = userDAO.selectUserById(man);
